@@ -24,15 +24,10 @@ The purpose of Fallacious0 is to create a fun online space where students can re
 ---
 
 ## 🖥️ Technologies Used
-
-Depending on your project, you can edit this section.
-
-Example:
-
 * HTML
 * CSS
 * JavaScript
-
+Can run on static hosts like github pages
 ---
 website:
 Fallacious0.dedyn.io or flashedcode.github.io
