@@ -2,7 +2,7 @@
 
 ## 🎮 About Fallacious0
 
-Fallacious0 is a school-friendly gaming website built for students who want fun, fast, and easy games to play during breaks, free periods, or after finishing work. The goal of the site is to provide entertaining browser games that are simple to access and enjoyable for everyone.
+Fallacious0 is a Gaming website built for students who want fun, fast, and easy games to play during breaks, free periods, or after finishing work. The goal of the site is to provide entertaining browser games that are simple to access and enjoyable for everyone.
 
 ---
 
