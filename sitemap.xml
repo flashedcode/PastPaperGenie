@@ -1,28 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <!-- MAIN SITE -->
+  <!-- MAIN WEBSITE -->
+
   <url>
     <loc>https://fallacious0.dedyn.io/</loc>
     <priority>1.0</priority>
+    <changefreq>daily</changefreq>
   </url>
 
   <url>
     <loc>https://fallacious0.dedyn.io/select</loc>
     <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://fallacious0.dedyn.io/updates</loc>
-    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
   </url>
 
   <url>
     <loc>https://fallacious0.dedyn.io/resources</loc>
     <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://fallacious0.dedyn.io/updates</loc>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+
+  <url>
+    <loc>https://fallacious0.dedyn.io/about-us</loc>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <!-- ARTICLES SECTION -->
+
+  <url>
+    <loc>https://fallacious0.dedyn.io/articles</loc>
+    <priority>0.9</priority>
+    <changefreq>daily</changefreq>
+  </url>
+
+  <!-- ARTICLE EXAMPLES -->
+
+  <url>
+    <loc>https://fallacious0.dedyn.io/articles/best-browser-horror-games</loc>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://fallacious0.dedyn.io/articles/how-to-play-fnaf-online</loc>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://fallacious0.dedyn.io/articles/best-minecraft-style-browser-games</loc>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
   </url>
 
   <!-- GAME PAGES -->
+
   <url>
     <loc>https://fallacious0.dedyn.io/Resources/Amanda the Adventurer.html</loc>
   </url>
@@ -45,26 +86,6 @@
 
   <url>
     <loc>https://fallacious0.dedyn.io/Resources/Five Nights at Freddy's 4.html</loc>
-  </url>
-
-  <url>
-    <loc>https://fallacious0.dedyn.io/Resources/Five Nights at Freddy's 4_ Halloween.html</loc>
-  </url>
-
-  <url>
-    <loc>https://fallacious0.dedyn.io/Resources/Five Nights at Freddy's_ Pizza Simulator.html</loc>
-  </url>
-
-  <url>
-    <loc>https://fallacious0.dedyn.io/Resources/Five Nights at Freddy's_ Sister Location.html</loc>
-  </url>
-
-  <url>
-    <loc>https://fallacious0.dedyn.io/Resources/Five Nights at Freddy's_ Ultimate Custom Night.html</loc>
-  </url>
-
-  <url>
-    <loc>https://fallacious0.dedyn.io/Resources/Five Nights at Freddy's_ World.html</loc>
   </url>
 
   <url>
@@ -97,14 +118,6 @@
 
   <url>
     <loc>https://fallacious0.dedyn.io/Resources/Eaglercraft_IR_TuffClient_1.12.2wasm.html</loc>
-  </url>
-
-  <url>
-    <loc>https://fallacious0.dedyn.io/Resources/1.12-u2-js.html</loc>
-  </url>
-
-  <url>
-    <loc>https://fallacious0.dedyn.io/Resources/1.12-u2-wasm%20(2).html</loc>
   </url>
 
 </urlset>
