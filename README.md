@@ -27,6 +27,7 @@ The purpose of Fallacious0 is to create a fun online space where students can re
 * HTML
 * CSS
 * JavaScript
+  
 Can run on static hosts like github pages
 ---
 website:
