@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Prioritize your main structure
+Allow: /Resources/
+Allow: /select
+Allow: /updates
+Allow: /about-us
+
+# Sitemap
+Sitemap: https://fallacious0.dedyn.io/sitemap.xml
