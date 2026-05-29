@@ -1,591 +1,372 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gcse select Course</title>
-<meta name="description" content="Play free online games instantly. FNAF, Undertale, Minecraft-style games, horror, multiplayer, and indie browser games on Fallacious0. No downloads." />
-  <!-- Font Awesome -->
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Games Collection</title>
 
-  <!-- Required for games to run -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4807814255844437"
-     crossorigin="anonymous"></script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-TE6DN1C5LV');
-  </script>
+<style>
+/* =========================
+   CURSOR
+========================= */
 
-<meta name="google-adsense-account" content="ca-pub-4807814255844437">
+#cursor {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background: #c7f2d0;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 12px rgba(199,242,208,0.6);
+}
 
-  <script async
-    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9701529284798825"
-    crossorigin="anonymous">
-  </script>
+#cursor-ring {
+  position: fixed;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(199,242,208,0.3);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: transform 0.08s ease, border-color 0.2s ease;
+}
 
+/* =========================
+   BASE
+========================= */
 
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: #07140c;
+  color: #dbe7d8;
+  overflow-x: hidden;
+  cursor: none;
+}
 
+/* moss background */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(95,139,76,0.12), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(199,242,208,0.08), transparent 45%);
+  pointer-events: none;
+}
 
-  <style>
+/* =========================
+   LAYOUT
+========================= */
 
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      font-family:Arial, sans-serif;
-    }
+#games-page {
+  padding: 6rem 8vw;
+  position: relative;
+  z-index: 2;
+}
 
-    body{
-      background:#0f172a;
-      color:white;
-      line-height:1.6;
-    }
+.games-title {
+  font-size: 2.5rem;
+  text-align: center;
+  letter-spacing: 0.15em;
+  color: #c7f2d0;
+  margin-bottom: 0.5rem;
+}
 
-    /* NAVBAR */
+.games-subtitle {
+  text-align: center;
+  color: rgba(199,242,208,0.7);
+  margin-top: 2rem;
+}
 
-    nav{
-      width:100%;
-      background:#111827;
-      padding:18px 40px;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      position:sticky;
-      top:0;
-      z-index:1000;
-      box-shadow:0 2px 10px rgba(0,0,0,0.3);
-    }
+.subtitle {
+  text-align: center;
+  font-size: 0.95rem;
+  color: rgba(219,231,216,0.5);
+  max-width: 600px;
+  margin: 0 auto 2rem;
+}
 
-    .logo{
-      color:#38bdf8;
-      text-decoration:none;
-      font-size:1.4rem;
-      font-weight:bold;
-    }
+/* =========================
+   GRID
+========================= */
 
-    .nav-btn{
-      background:#38bdf8;
-      color:#0f172a;
-      border:none;
-      padding:12px 20px;
-      border-radius:12px;
-      font-weight:bold;
-      cursor:pointer;
-      transition:0.2s ease;
-    }
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
 
-    .nav-btn:hover{
-      transform:translateY(-2px);
-      background:#7dd3fc;
-    }
+/* =========================
+   CARD
+========================= */
 
-    /* MAIN */
+.game-card {
+  position: relative;
+  padding: 1.5rem;
+  border-radius: 18px;
 
-    .container{
-      max-width:1100px;
-      margin:auto;
-      padding:50px 20px;
-    }
+  background: rgba(47, 93, 58, 0.12);
+  backdrop-filter: blur(18px);
 
-    h1{
-      text-align:center;
-      margin-bottom:15px;
-      font-size:3rem;
-      color:#38bdf8;
-    }
+  border: 1px solid rgba(199, 242, 208, 0.12);
 
-    .subtitle{
-      text-align:center;
-      color:#cbd5e1;
-      margin-bottom:50px;
-    }
+  transition: all 0.35s ease;
+  overflow: hidden;
 
-    /* GAME GRID */
+  cursor: none;
+}
 
-    .game-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
-      gap:25px;
-      margin-bottom:60px;
-    }
+.game-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  border-color: rgba(199,242,208,0.35);
+}
 
-    .game-card{
-      background:#111827;
-      padding:25px;
-      border-radius:18px;
-      box-shadow:0 4px 14px rgba(0,0,0,0.3);
-      transition:0.25s ease;
-    }
+/* text */
+.game-card h2 {
+  font-size: 1.15rem;
+  color: #c7f2d0;
+}
 
-    .game-card:hover{
-      transform:translateY(-6px);
-      box-shadow:0 10px 25px rgba(56,189,248,0.25);
-    }
+.game-card p {
+  font-size: 0.9rem;
+  color: rgba(219,231,216,0.65);
+}
 
-    .game-card h2{
-      margin-bottom:15px;
-      color:#38bdf8;
-      font-size:1.3rem;
-    }
+/* button */
+.play-btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
 
-    .game-card p{
-      color:#cbd5e1;
-      margin-bottom:20px;
-    }
+  background: rgba(199,242,208,0.08);
+  border: 1px solid rgba(199,242,208,0.25);
 
-    .play-btn{
-      display:inline-block;
-      background:#38bdf8;
-      color:#0f172a;
-      text-decoration:none;
-      padding:12px 20px;
-      border-radius:12px;
-      font-weight:bold;
-      transition:0.2s ease;
-    }
+  color: #c7f2d0;
+  text-decoration: none;
+  font-size: 0.85rem;
 
-    .play-btn:hover{
-      background:#7dd3fc;
-    }
+  transition: 0.3s;
+  cursor: none;
+}
 
-    /* STORY SECTION */
+.play-btn:hover {
+  background: rgba(199,242,208,0.18);
+  transform: translateY(-2px);
+}
 
-    .story{
-      background:#111827;
-      padding:35px;
-      border-radius:18px;
-      box-shadow:0 4px 14px rgba(0,0,0,0.3);
-    }
+/* =========================
+   MOBILE
+========================= */
 
-    .story h2{
-      color:#38bdf8;
-      margin-bottom:20px;
-    }
-
-    .story p{
-      color:#d1d5db;
-      margin-bottom:18px;
-    }
-
-    footer{
-      margin-top:60px;
-      text-align:center;
-      padding:30px;
-      background:#111827;
-      color:#94a3b8;
-    }
-
-  </style>
+@media (max-width: 768px) {
+  .game-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <!-- NAVBAR -->
+<!-- CURSOR ELEMENTS -->
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
 
-  <nav>
+<section id="games-page">
 
-    <a href="https://fallacious0.dedyn.io/" class="logo">
-      <i class="fa-solid fa-mountain"></i>
-      Fallacious0
-    </a>
+  <h1 class="games-title">Browser Games Collection</h1>
+  <h2 class="games-subtitle">Most Popular</h2>
 
-    <a href="https://www.effectivecpmnetwork.com/rniicts9q4?key=d1b41715480408113831053122cdae9c">
-      <button class="nav-btn">
-        <i class="fa-regular fa-bookmark"></i>
-        Don't Click This Button
-      </button>
-    </a>
-
-  </nav>
-    <!-- MAIN CONTENT -->
-    <a href="https://classroom.google.com/u/2/c/NzIzMTE2ODY0NjY0">
-      <i class="fa-solid fa-mountain"></i>
-      Join my google classroom with more stuff like this
-  </a>
-
-  <script async="async" data-cfasync="false" src="https://depthschokedirected.com/f1901fdf687b1b83b08f43b7ec4b0d03/invoke.js"></script>
-<div id="container-f1901fdf687b1b83b08f43b7ec4b0d03"></div>
-
-  <main class="container">
-
-    <h1>Browser Games Collection</h1>
-        <h2>Most Popular</h2>
-    <p class="subtitle">
-      Play Games directly in your browser with no downloads required.
-    </p>
-
-    <!-- GAMES -->
-
-    <section class="game-grid">
-
-      <div class="game-card">
-        <h2>Minecraft 1.12 WASM</h2>
-
-        <p>
-          Fast browser version using WebAssembly for improved performance.
-        </p>
-
-        <a class="play-btn"
-          href="https://Fallacious0.dedyn.io/Resources/1.12-u2-wasm%20(2).html">
-          Play Now
-        </a>
-      </div>
-
-      <div class="game-card">
-        <h2>Minecraft 1.12 JS</h2>
-
-        <p>
-          JavaScript-based version compatible with most browsers.
-        </p>
-
-        <a class="play-btn"
-          href="https://Fallacious0.dedyn.io/Resources/1.12-u2-js.html">
-          Play Now
-        </a>
-      </div>
-
-      <div class="game-card">
-        <h2>Tuff Client MC (Recommended)</h2>
-
-        <p>
-          Most popular eaglercraft client.
-        </p>
-
-        <a class="play-btn"
-          href="https://Fallacious0.dedyn.io/Resources/Eaglercraft_IR_TuffClient_1.12.2wasm.html">
-          Play Now
-        </a>
-      </div>
-
-      <div class="game-card">
-        <h2>Updated Resent Client 5.1 WASM</h2>
-
-        <p>
-          Recommended version with updated PvP client and optimized mods.
-        </p>
-
-        <a class="play-btn"
-          href="https://Fallacious0.dedyn.io/Resources/ResentClient5.1.html">
-          Play Now
-        </a>
-      </div>
-
-         <div class="game-card">
-        <h2>Geometry Dash Lite</h2>
-
-        <p>
-          Geometry Dash Lite in the comfort of your browser!.
-        </p>
-
-        <a class="play-btn"
-          href="https://Fallacious0.dedyn.io/Resources/geolite.html">
-          Play Now
-        </a>
-      </div>
-
-
-         <div class="game-card">
-        <h2>Kirka.io</h2>
-
-        <p>
-          Online Multiplayer Fps first person shooter.
-        </p>
-
-        <a class="play-btn"
-          href="https://Fallacious0.dedyn.io/Resources/kirka.html">
-          Play Now
-        </a>
-      </div>
-      <h1>Other Games Collection</h1>
-      <div class="game-card">
-        <h2>Five nights at Winston's</h2>
-
-        <p>
-          Fnaf knockoff.
-        </p>
-
-        <a class="play-btn"
-          href="https://Fallacious0.dedyn.io/Resources/Five Nights at Winstons Offline Download.html">
-          Play Now
-        </a>
-      </div>
-      
-<div class="game-card">
-  <h2>Amanda the Adventurer</h2>
-  <p>
-    Explore a strange and mysterious cartoon adventure filled with secrets.
+  <p class="subtitle">
+    Play games directly in your browser with no downloads required.
   </p>
-  <a class="play-btn"
-    href="https://fallacious0.dedyn.io/Resources/Amanda%20the%20Adventurer.html">
-    Play Now
-  </a>
+
+  <div class="game-grid">
+
+    <div class="game-grid">
+
+  <div class="game-card">
+    <h2>Amanda the Adventurer</h2>
+    <p>Horror puzzle experience.</p>
+    <a class="play-btn" href="https://fallacious0.dedyn.io/Resources/Amanda the Adventurer.html">Play Now</a>
+  </div>
+
+  <div class="game-card">
+    <h2>Buckshot Roulette</h2>
+    <p>High-stakes roulette horror game.</p>
+    <a class="play-btn" href="https://fallacious0.dedyn.io/Resources/Buckshot Roulette.html">Play Now</a>
+  </div>
+
+  <div class="game-card">
+    <h2>FNAF 2</h2>
+    <p>Five Nights at Freddy’s 2.</p>
+    <a class="play-btn" href="https://fallacious0.dedyn.io/Resources/Five Nights at Freddy's 2.html">Play Now</a>
+  </div>
+
+  <div class="game-card">
+    <h2>FNAF 3</h2>
+    <p>Five Nights at Freddy’s 3.</p>
+    <a class="play-btn" href="https://fallacious0.dedyn.io/Resources/Five Nights at Freddy's 3.html">Play Now</a>
+  </div>
+
+  <div class="game-card">
+    <h2>FNAF 4</h2>
+    <p>Five Nights at Freddy’s 4.</p>
+    <a class="play-btn" href="https://fallacious0.dedyn.io/Resources/Five Nights at Freddy's 4.html">Play Now</a>
+  </div>
+
+  <div class="game-card">
+    <h2>FNAF 4 Halloween</h2>
+    <p>Halloween edition.</p>
+    <a class="play-btn" href="https://fallacious0.dedyn.io/Resources/Five Nights at Freddy's 4_ Halloween.html">Play Now</a>
+  </div>
+
+  <div class="game-card">
+    <h2>FNAF 1</h2>
+    <p>Original Five Nights at Freddy’s.</p>
+    <a class="play-btn" href="https://fallacious0.dedyn.io/Resources/Five Nights at Freddy's.html">Play Now</a>
+  </div>
+
+  <div class="game-card">
+    <h2>FNAF: Pizza Simulator</h2>
+    <p>Manage your pizzeria… survive the night.</p>
+    <a class="play-btn" href="https://fallacious0.dedyn.io/Resources/Five Nights at Freddy's_ Pizza Simulator.html">Play Now</a>
+  </div>
+
+  <div class="game-card">
+    <h2>FNAF: Sister Location</h2>
+    <p>Deep underground horror.</p>
+    <a class="play-btn" href="https://fallacious0.dedyn.io/Resources/Five Nights at Freddy's_ Sister Location.html">Play Now</a>
+  </div>
+
+  <div class="game-card">
+    <h2>FNAF: Ultimate Custom Night</h2>
+    <p>All animatronics, endless chaos.</p>
+    <a class="play-btn" href="https://fallacious0.dedyn.io/Resources/Five Nights at Freddy's_ Ultimate Custom Night.html">Play Now</a>
+  </div>
+
+  <div class="game-card">
+    <h2>FNAF World</h2>
+    <p>RPG spin-off adventure.</p>
+    <a class="play-btn" href="https://fallacious0.dedyn.io/Resources/Five Nights at Freddy's_ World.html">Play Now</a>
+  </div>
+
+  <div class="game-card">
+    <h2>Friday Night Funkin</h2>
+    <p>Rhythm battle game.</p>
+    <a class="play-btn" href="https://fallacious0.dedyn.io/Resources/Friday Night Funkin.html">Play Now</a>
+  </div>
+
+  <div class="game-card">
+    <h2>Half-Life</h2>
+    <p>Classic FPS experience.</p>
+    <a class="play-btn" href="https://fallacious0.dedyn.io/Resources/Half Life.html">Play Now</a>
+  </div>
+
+  <div class="game-card">
+    <h2>Plants vs Zombies</h2>
+    <p>Defend your garden.</p>
+    <a class="play-btn" href="https://fallacious0.dedyn.io/Resources/Plants vs Zombies.html">Play Now</a>
+  </div>
+
+  <div class="game-card">
+    <h2>Super Mario 63</h2>
+    <p>Fan-made Mario platformer.</p>
+    <a class="play-btn" href="https://fallacious0.dedyn.io/Resources/Super Mario 63.html">Play Now</a>
+  </div>
+
+  <div class="game-card">
+    <h2>ULTRAKILL</h2>
+    <p>Fast-paced shooter action.</p>
+    <a class="play-btn" href="https://fallacious0.dedyn.io/Resources/ULTRAKILL.html">Play Now</a>
+  </div>
+
+  <div class="game-card">
+    <h2>Undertale Yellow</h2>
+    <p>Undertale fan story.</p>
+    <a class="play-btn" href="https://fallacious0.dedyn.io/Resources/Undertale Yellow.html">Play Now</a>
+  </div>
+
+  <div class="game-card">
+    <h2>Undertale</h2>
+    <p>Classic indie RPG.</p>
+    <a class="play-btn" href="https://fallacious0.dedyn.io/Resources/Undertale.html">Play Now</a>
+  </div>
+
+  <div class="game-card">
+    <h2>Minecraft 1.12 WASM</h2>
+    <p>WebAssembly version.</p>
+    <a class="play-btn" href="https://fallacious0.dedyn.io/Resources/1.12-u2-wasm%20(2).html">Play Now</a>
+  </div>
+
+  <div class="game-card">
+    <h2>Minecraft 1.12 JS</h2>
+    <p>JavaScript version.</p>
+    <a class="play-btn" href="https://fallacious0.dedyn.io/Resources/1.12-u2-js.html">Play Now</a>
+  </div>
+
+  <div class="game-card">
+    <h2>Tuff Client MC</h2>
+    <p>Eaglercraft client.</p>
+    <a class="play-btn" href="https://fallacious0.dedyn.io/Resources/Eaglercraft_IR_TuffClient_1.12.2wasm.html">Play Now</a>
+  </div>
+
 </div>
+  </div>
 
-<div class="game-card">
-  <h2>Buckshot Roulette</h2>
-  <p>
-    High-risk strategy horror game inspired by Russian roulette mechanics.
-  </p>
-  <a class="play-btn"
-    href="https://fallacious0.dedyn.io/Resources/Buckshot%20Roulette.html">
-    Play Now
-  </a>
-</div>
+</section>
 
-<div class="game-card">
-  <h2>Five Nights at Freddy's</h2>
-  <p>
-    Survive the night while animatronics roam the pizzeria after dark.
-  </p>
-  <a class="play-btn"
-    href="https://fallacious0.dedyn.io/Resources/Five%20Nights%20at%20Freddy's.html">
-    Play Now
-  </a>
-</div>
-
-<div class="game-card">
-  <h2>Five Nights at Freddy's 2</h2>
-  <p>
-    The terrifying sequel with more animatronics and faster gameplay.
-  </p>
-  <a class="play-btn"
-    href="https://fallacious0.dedyn.io/Resources/Five%20Nights%20at%20Freddy's%202.html">
-    Play Now
-  </a>
-</div>
-
-<div class="game-card">
-  <h2>Five Nights at Freddy's 3</h2>
-  <p>
-    Return to Fazbear's Fright and survive against Springtrap.
-  </p>
-  <a class="play-btn"
-    href="https://fallacious0.dedyn.io/Resources/Five%20Nights%20at%20Freddy's%203.html">
-    Play Now
-  </a>
-</div>
-
-<div class="game-card">
-  <h2>Five Nights at Freddy's 4</h2>
-  <p>
-    Face nightmare animatronics inside your own bedroom.
-  </p>
-  <a class="play-btn"
-    href="https://fallacious0.dedyn.io/Resources/Five%20Nights%20at%20Freddy's%204.html">
-    Play Now
-  </a>
-</div>
-
-<div class="game-card">
-  <h2>FNaF 4 Halloween Edition</h2>
-  <p>
-    Halloween update with redesigned nightmare animatronics and visuals.
-  </p>
-  <a class="play-btn"
-    href="https://fallacious0.dedyn.io/Resources/Five%20Nights%20at%20Freddy's%204_%20Halloween.html">
-    Play Now
-  </a>
-</div>
-
-<div class="game-card">
-  <h2>FNaF Pizza Simulator</h2>
-  <p>
-    Build your pizza restaurant while surviving hidden dangers at night.
-  </p>
-  <a class="play-btn"
-    href="https://fallacious0.dedyn.io/Resources/Five%20Nights%20at%20Freddy's_%20Pizza%20Simulator.html">
-    Play Now
-  </a>
-</div>
-
-<div class="game-card">
-  <h2>FNaF Sister Location</h2>
-  <p>
-    Explore underground facilities filled with advanced animatronics.
-  </p>
-  <a class="play-btn"
-    href="https://fallacious0.dedyn.io/Resources/Five%20Nights%20at%20Freddy's_%20Sister%20Location.html">
-    Play Now
-  </a>
-</div>
-
-<div class="game-card">
-  <h2>Ultimate Custom Night</h2>
-  <p>
-    Customize your own FNaF challenge with dozens of animatronics.
-  </p>
-  <a class="play-btn"
-    href="https://fallacious0.dedyn.io/Resources/Five%20Nights%20at%20Freddy's_%20Ultimate%20Custom%20Night.html">
-    Play Now
-  </a>
-</div>
-
-<div class="game-card">
-  <h2>FNaF World</h2>
-  <p>
-    RPG-style adventure featuring classic Five Nights at Freddy's characters.
-  </p>
-  <a class="play-btn"
-    href="https://fallacious0.dedyn.io/Resources/Five%20Nights%20at%20Freddy's_%20World.html">
-    Play Now
-  </a>
-</div>
-
-<div class="game-card">
-  <h2>Friday Night Funkin'</h2>
-  <p>
-    Rhythm battle game with music, fast reflexes, and iconic tracks.
-  </p>
-  <a class="play-btn"
-    href="https://fallacious0.dedyn.io/Resources/Friday%20Night%20Funkin.html">
-    Play Now
-  </a>
-</div>
-
-<div class="game-card">
-  <h2>Half-Life</h2>
-  <p>
-    Classic sci-fi shooter where you survive a disaster at Black Mesa.
-  </p>
-  <a class="play-btn"
-    href="https://fallacious0.dedyn.io/Resources/Half%20Life.html">
-    Play Now
-  </a>
-</div>
-
-<div class="game-card">
-  <h2>Plants vs Zombies</h2>
-  <p>
-    Defend your garden using plants against waves of invading zombies.
-  </p>
-  <a class="play-btn"
-    href="https://fallacious0.dedyn.io/Resources/Plants%20vs%20Zombies.html">
-    Play Now
-  </a>
-</div>
-
-<div class="game-card">
-  <h2>Super Mario 63</h2>
-  <p>
-    Fan-made Mario platformer inspired by Super Mario 64 mechanics.
-  </p>
-  <a class="play-btn"
-    href="https://fallacious0.dedyn.io/Resources/Super%20Mario%2063.html">
-    Play Now
-  </a>
-</div>
-
-<div class="game-card">
-  <h2>ULTRAKILL</h2>
-  <p>
-    Fast-paced retro-inspired action shooter with intense movement combat.
-  </p>
-  <a class="play-btn"
-    href="https://fallacious0.dedyn.io/Resources/ULTRAKILL.html">
-    Play Now
-  </a>
-</div>
-
-<div class="game-card">
-  <h2>Undertale</h2>
-  <p>
-    Story-driven RPG where choices affect every character and ending.
-  </p>
-  <a class="play-btn"
-    href="https://fallacious0.dedyn.io/Resources/Undertale.html">
-    Play Now
-  </a>
-</div>
-
-<div class="game-card">
-  <h2>Undertale Yellow</h2>
-  <p>
-    Fan-made Undertale prequel with new characters and emotional storylines.
-  </p>
-  <a class="play-btn"
-    href="https://fallacious0.dedyn.io/Resources/Undertale%20Yellow.html">
-    Play Now
-  </a>
-</div>
-```
-
-    </section>
-
-    <!-- STORY -->
-<script async="async" data-cfasync="false" src="https://depthschokedirected.com/f1901fdf687b1b83b08f43b7ec4b0d03/invoke.js"></script>
-<div id="container-f1901fdf687b1b83b08f43b7ec4b0d03"></div>
-
-    <section class="story">
-
-      <h2>The Story of LAX1DUDE & Eaglercraft</h2>
-
-      <p>
-        The story of <strong>LAX1DUDE</strong> and <strong>Eaglercraft</strong>
-        became one of the most famous legends in the Minecraft browser community.
-      </p>
-
-      <p>
-        Around 2020–2021, LAX1DUDE began working on an ambitious project:
-        making Minecraft Java Edition run directly inside a web browser after
-        traditional Java applets had long been discontinued.
-      </p>
-
-      <p>
-        Using tools like TeaVM and rebuilding major graphics systems from scratch,
-        he successfully created a browser-based version of Minecraft known as
-        <strong>Eaglercraft</strong>.
-      </p>
-
-      <p>
-        The project quickly exploded in popularity because it worked on school
-        Chromebooks, required no downloads, and could run on weak computers.
-      </p>
-
-      <p>
-        Students across the internet began playing it during school hours, and
-        communities formed around custom servers and multiplayer experiences.
-      </p>
-
-      <p>
-        In 2022, LAX1DUDE and collaborator <strong>ayunami2000</strong>
-        released <strong>EaglercraftX</strong>, a more advanced version based on
-        Minecraft 1.8.8.
-      </p>
-
-      <p>
-        Today, Eaglercraft is remembered as both an impressive technical
-        achievement and a major part of internet gaming culture.
-      </p>
-
-    </section>
-<script async="async" data-cfasync="false" src="https://depthschokedirected.com/f1901fdf687b1b83b08f43b7ec4b0d03/invoke.js"></script>
-<div id="container-f1901fdf687b1b83b08f43b7ec4b0d03"></div>
 <script>
-  atOptions = {
-    'key' : '322917da0c9fb7f9639e0d47374eec0c',
-    'format' : 'iframe',
-    'height' : 90,
-    'width' : 728,
-    'params' : {}
-  };
+/* =========================
+   CURSOR LOGIC
+========================= */
+
+const cursor = document.getElementById("cursor");
+const ring = document.getElementById("cursor-ring");
+
+let mouseX = 0, mouseY = 0;
+let ringX = 0, ringY = 0;
+
+document.addEventListener("mousemove", (e) => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+
+  cursor.style.left = mouseX + "px";
+  cursor.style.top = mouseY + "px";
+});
+
+function animate() {
+  ringX += (mouseX - ringX) * 0.15;
+  ringY += (mouseY - ringY) * 0.15;
+
+  ring.style.left = ringX + "px";
+  ring.style.top = ringY + "px";
+
+  requestAnimationFrame(animate);
+}
+animate();
+
+/* hover effect */
+document.querySelectorAll("a, button").forEach(el => {
+  el.addEventListener("mouseenter", () => {
+    cursor.style.transform = "translate(-50%,-50%) scale(1.8)";
+    ring.style.transform = "translate(-50%,-50%) scale(1.5)";
+    ring.style.borderColor = "rgba(199,242,208,0.6)";
+  });
+
+  el.addEventListener("mouseleave", () => {
+    cursor.style.transform = "translate(-50%,-50%) scale(1)";
+    ring.style.transform = "translate(-50%,-50%) scale(1)";
+    ring.style.borderColor = "rgba(199,242,208,0.3)";
+  });
+});
 </script>
-<script src="https://depthschokedirected.com/322917da0c9fb7f9639e0d47374eec0c/invoke.js"></script>
-
-  </main>
-
-  <!-- FOOTER -->
-
-  <footer>
-
-    <p>
-      © 2026 Fallacious0 • Built for students, gamers, and fun.
-    </p>
-
-  </footer>
-
-
 
 </body>
 </html>
