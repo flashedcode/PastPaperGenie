@@ -5,23 +5,172 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Games Collection</title>
 
+<!-- 🌿 FONTS -->
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Manrope:wght@300;400;500&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+
 <style>
 /* =========================
    CURSOR
 ========================= */
 
-<!-- CURSOR ELEMENTS -->
+#cursor {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background: #c7f2d0;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 12px rgba(199,242,208,0.6);
+}
+
+#cursor-ring {
+  position: fixed;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(199,242,208,0.3);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+}
+
+/* =========================
+   BASE
+========================= */
+
+body {
+  margin: 0;
+  font-family: "Manrope", system-ui, sans-serif;
+  background: #07140c;
+  color: #dbe7d8;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* moss background */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(95,139,76,0.12), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(199,242,208,0.08), transparent 45%);
+  pointer-events: none;
+}
+
+/* =========================
+   CURSOR TRAIL CANVAS
+========================= */
+
+#trail {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9997;
+}
+
+/* =========================
+   LAYOUT
+========================= */
+
+#games-page {
+  padding: 6rem 8vw;
+}
+
+.games-title {
+  font-family: "Cinzel", serif;
+  font-size: 2.5rem;
+  text-align: center;
+  letter-spacing: 0.15em;
+  color: #c7f2d0;
+}
+
+.games-subtitle {
+  text-align: center;
+  font-family: "Cormorant Garamond", serif;
+  color: rgba(199,242,208,0.7);
+}
+
+/* =========================
+   GRID
+========================= */
+
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.game-card {
+  padding: 1.5rem;
+  border-radius: 18px;
+  background: rgba(47,93,58,0.12);
+  border: 1px solid rgba(199,242,208,0.12);
+  backdrop-filter: blur(18px);
+  transition: 0.3s;
+  cursor: none;
+}
+
+.game-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  border-color: rgba(199,242,208,0.35);
+}
+
+.game-card h2 {
+  font-family: "Cormorant Garamond", serif;
+  color: #c7f2d0;
+}
+
+.game-card p {
+  font-size: 0.9rem;
+  color: rgba(219,231,216,0.65);
+}
+
+/* button */
+.play-btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  background: rgba(199,242,208,0.08);
+  border: 1px solid rgba(199,242,208,0.25);
+  color: #c7f2d0;
+  text-decoration: none;
+  cursor: none;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+  .game-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- CURSOR -->
 <div id="cursor"></div>
 <div id="cursor-ring"></div>
+
+<!-- TRAIL CANVAS -->
+<canvas id="trail"></canvas>
 
 <section id="games-page">
 
   <h1 class="games-title">Browser Games Collection</h1>
   <h2 class="games-subtitle">Most Popular</h2>
-
-  <p class="subtitle">
-    Play games directly in your browser with no downloads required.
-  </p>
 
   <div class="game-grid">
 
@@ -154,54 +303,115 @@
   </div>
 
 </div>
-  </div>
 
+  </div>
 </section>
 
 <script>
 /* =========================
-   CURSOR LOGIC
+   CURSOR
 ========================= */
 
 const cursor = document.getElementById("cursor");
 const ring = document.getElementById("cursor-ring");
 
-let mouseX = 0, mouseY = 0;
-let ringX = 0, ringY = 0;
+let mx = 0, my = 0, rx = 0, ry = 0;
 
-document.addEventListener("mousemove", (e) => {
-  mouseX = e.clientX;
-  mouseY = e.clientY;
+document.addEventListener("mousemove", e => {
+  mx = e.clientX;
+  my = e.clientY;
 
-  cursor.style.left = mouseX + "px";
-  cursor.style.top = mouseY + "px";
+  cursor.style.left = mx + "px";
+  cursor.style.top = my + "px";
 });
 
-function animate() {
-  ringX += (mouseX - ringX) * 0.15;
-  ringY += (mouseY - ringY) * 0.15;
+function animateRing() {
+  rx += (mx - rx) * 0.15;
+  ry += (my - ry) * 0.15;
 
-  ring.style.left = ringX + "px";
-  ring.style.top = ringY + "px";
+  ring.style.left = rx + "px";
+  ring.style.top = ry + "px";
 
-  requestAnimationFrame(animate);
+  requestAnimationFrame(animateRing);
 }
-animate();
+animateRing();
 
-/* hover effect */
+/* hover */
 document.querySelectorAll("a, button").forEach(el => {
   el.addEventListener("mouseenter", () => {
     cursor.style.transform = "translate(-50%,-50%) scale(1.8)";
     ring.style.transform = "translate(-50%,-50%) scale(1.5)";
-    ring.style.borderColor = "rgba(199,242,208,0.6)";
   });
 
   el.addEventListener("mouseleave", () => {
     cursor.style.transform = "translate(-50%,-50%) scale(1)";
     ring.style.transform = "translate(-50%,-50%) scale(1)";
-    ring.style.borderColor = "rgba(199,242,208,0.3)";
   });
 });
+
+/* =========================
+   SPORE CURSOR TRAIL
+========================= */
+
+const canvas = document.getElementById("trail");
+const ctx = canvas.getContext("2d");
+
+let w, h;
+function resize() {
+  w = canvas.width = window.innerWidth;
+  h = canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener("resize", resize);
+
+let spores = [];
+
+class Spore {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+    this.life = 1;
+    this.decay = 0.02 + Math.random() * 0.02;
+    this.r = 1 + Math.random() * 2;
+    this.vx = (Math.random() - 0.5) * 0.6;
+    this.vy = -Math.random() * 0.6;
+  }
+
+  update() {
+    this.x += this.vx;
+    this.y += this.vy;
+    this.life -= this.decay;
+  }
+
+  draw() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(199,242,208,${this.life * 0.5})`;
+    ctx.shadowBlur = 8;
+    ctx.shadowColor = "rgba(95,139,76,0.5)";
+    ctx.fill();
+    ctx.shadowBlur = 0;
+  }
+}
+
+document.addEventListener("mousemove", e => {
+  if (Math.random() > 0.6) return;
+  spores.push(new Spore(e.clientX, e.clientY));
+  if (spores.length > 120) spores.shift();
+});
+
+function loop() {
+  ctx.clearRect(0, 0, w, h);
+  spores = spores.filter(s => s.life > 0);
+
+  spores.forEach(s => {
+    s.update();
+    s.draw();
+  });
+
+  requestAnimationFrame(loop);
+}
+loop();
 </script>
 
 </body>
