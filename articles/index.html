@@ -1,240 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Fallacious0 | Articles</title>
 
-<title>Fallacious0 | Moss Glass Articles</title>
-
-<link rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+<!-- FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 
 /* =========================
    BASE
 ========================= */
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Games Collection</title>
 
-<style>
 body {
   margin: 0;
-  font-family: system-ui, sans-serif;
+  font-family: 'Poppins', system-ui, sans-serif;
   background: #07140c;
   color: #dbe7d8;
-  overflow-x: hidden;
-  cursor: none;
 }
 
-/* background glow */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background:
-    radial-gradient(circle at 20% 20%, rgba(95,139,76,0.12), transparent 40%),
-    radial-gradient(circle at 80% 70%, rgba(199,242,208,0.08), transparent 45%);
-  pointer-events: none;
-}
-
-/* CURSOR */
-#cursor {
-  position: fixed;
-  width: 8px;
-  height: 8px;
-  background: #c7f2d0;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9999;
-  transform: translate(-50%, -50%);
-  box-shadow: 0 0 12px rgba(199,242,208,0.6);
-}
-
-#cursor-ring {
-  position: fixed;
-  width: 32px;
-  height: 32px;
-  border: 1px solid rgba(199,242,208,0.3);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9998;
-  transform: translate(-50%, -50%);
-  transition: transform 0.08s ease, border-color 0.2s ease;
-}
-
-/* PAGE */
-#games-page {
-  padding: 6rem 8vw;
-}
-
-.games-title {
-  font-size: 2.5rem;
-  text-align: center;
-  color: #c7f2d0;
-}
-
-.games-subtitle {
-  text-align: center;
-  color: rgba(199,242,208,0.7);
-  margin-top: 1rem;
-}
-
-.subtitle {
-  text-align: center;
-  font-size: 0.95rem;
-  color: rgba(219,231,216,0.5);
-  max-width: 600px;
-  margin: 0 auto 2rem;
-}
-
-/* GRID */
-.game-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.5rem;
-  margin-top: 2rem;
-}
-
-/* CARD */
-.game-card {
-  padding: 1.5rem;
-  border-radius: 18px;
-  background: rgba(47, 93, 58, 0.12);
-  backdrop-filter: blur(18px);
-  border: 1px solid rgba(199, 242, 208, 0.12);
-  transition: 0.35s;
-  cursor: none;
-}
-
-.game-card:hover {
-  transform: translateY(-6px) scale(1.02);
-  border-color: rgba(199,242,208,0.35);
-}
-
-.game-card h2 {
-  color: #c7f2d0;
-  font-size: 1.1rem;
-}
-
-.game-card p {
-  font-size: 0.9rem;
-  color: rgba(219,231,216,0.65);
-}
-
-.play-btn {
-  display: inline-block;
-  margin-top: 1rem;
-  padding: 0.6rem 1rem;
-  border-radius: 999px;
-  background: rgba(199,242,208,0.08);
-  border: 1px solid rgba(199,242,208,0.25);
-  color: #c7f2d0;
-  text-decoration: none;
-  font-size: 0.85rem;
-  cursor: none;
-}
-
-.play-btn:hover {
-  background: rgba(199,242,208,0.18);
-}
-</style>
-</head>
-
-<body>
-
-<!-- CURSOR -->
-<div id="cursor"></div>
-<div id="cursor-ring"></div>
-
-<section id="games-page">
-
-  <h1 class="games-title">Browser Games Collection</h1>
-  <h2 class="games-subtitle">Most Popular</h2>
-
-  <p class="subtitle">
-    Play games directly in your browser with no downloads required.
-  </p>
-
-  <div class="game-grid">
-
-    <div class="game-card">
-      <h2>Amanda the Adventurer</h2>
-      <p>Horror puzzle experience.</p>
-      <a class="play-btn" href="#">Play Now</a>
-    </div>
-
-    <div class="game-card">
-      <h2>Buckshot Roulette</h2>
-      <p>High-stakes roulette horror game.</p>
-      <a class="play-btn" href="#">Play Now</a>
-    </div>
-
-    <div class="game-card">
-      <h2>FNAF 1</h2>
-      <p>Classic Five Nights at Freddy’s.</p>
-      <a class="play-btn" href="#">Play Now</a>
-    </div>
-
-  </div>
-</section>
-
-<script>
-const cursor = document.getElementById("cursor");
-const ring = document.getElementById("cursor-ring");
-
-let mouseX = 0, mouseY = 0;
-let ringX = 0, ringY = 0;
-
-document.addEventListener("mousemove", (e) => {
-  mouseX = e.clientX;
-  mouseY = e.clientY;
-
-  cursor.style.left = mouseX + "px";
-  cursor.style.top = mouseY + "px";
-});
-
-function animate() {
-  ringX += (mouseX - ringX) * 0.15;
-  ringY += (mouseY - ringY) * 0.15;
-
-  ring.style.left = ringX + "px";
-  ring.style.top = ringY + "px";
-
-  requestAnimationFrame(animate);
-}
-animate();
-
-/* hover effect */
-document.querySelectorAll("a, button").forEach(el => {
-  el.addEventListener("mouseenter", () => {
-    cursor.style.transform = "translate(-50%,-50%) scale(1.8)";
-    ring.style.transform = "translate(-50%,-50%) scale(1.5)";
-    ring.style.borderColor = "rgba(199,242,208,0.6)";
-  });
-
-  el.addEventListener("mouseleave", () => {
-    cursor.style.transform = "translate(-50%,-50%) scale(1)";
-    ring.style.transform = "translate(-50%,-50%) scale(1)";
-    ring.style.borderColor = "rgba(199,242,208,0.3)";
-  });
-});
-</script>
-
-</body>
-body {
-  margin: 0;
-  font-family: system-ui, sans-serif;
-  background: #07140c;
-  color: #dbe7d8;
-  overflow-x: hidden;
-}
-
-/* moss glow background */
+/* glow background */
 body::before {
   content: "";
   position: fixed;
@@ -246,159 +33,151 @@ body::before {
 }
 
 /* =========================
-   CURSOR (match your system)
+   NAV
 ========================= */
 
-#cursor {
-  position: fixed;
-  width: 8px;
-  height: 8px;
-  background: #c7f2d0;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9999;
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 40px;
+  background: rgba(17, 24, 17, 0.7);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(199,242,208,0.1);
 }
 
-#cursor-ring {
-  position: fixed;
-  width: 32px;
-  height: 32px;
-  border: 1px solid rgba(199,242,208,0.3);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9998;
+.logo {
+  text-decoration: none;
+  color: #c7f2d0;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.nav-button {
+  background: rgba(199,242,208,0.08);
+  border: 1px solid rgba(199,242,208,0.25);
+  color: #c7f2d0;
+  padding: 10px 14px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.nav-button:hover {
+  background: rgba(199,242,208,0.18);
 }
 
 /* =========================
    LAYOUT
 ========================= */
 
-#articles-page {
-  padding: 6rem 8vw;
-  position: relative;
-  z-index: 2;
+.container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 60px 20px;
 }
 
-.title {
+.hero {
   text-align: center;
-  font-size: 2.8rem;
+  margin-bottom: 50px;
+}
+
+.hero h1 {
+  font-size: 3rem;
   color: #c7f2d0;
-  letter-spacing: 0.12em;
-  margin-bottom: 0.5rem;
+  margin-bottom: 10px;
 }
 
-.subtitle {
-  text-align: center;
-  color: rgba(219,231,216,0.6);
-  margin-bottom: 3rem;
+.hero p {
+  color: rgba(219,231,216,0.7);
+  max-width: 700px;
+  margin: auto;
 }
 
 /* =========================
    GRID
 ========================= */
 
-.article-grid {
+.grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1.5rem;
+  margin-top: 40px;
 }
 
 /* =========================
-   GLASS CARDS
+   ARTICLE CARDS
 ========================= */
 
-.article-card {
-  position: relative;
-  padding: 1.5rem;
-  border-radius: 18px;
-
+.card {
   background: rgba(47, 93, 58, 0.12);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(199,242,208,0.12);
+  border-radius: 18px;
+  padding: 20px;
+  text-decoration: none;
+  color: inherit;
 
-  border: 1px solid rgba(199, 242, 208, 0.12);
+  backdrop-filter: blur(18px);
 
   box-shadow:
     0 10px 30px rgba(0,0,0,0.25),
-    inset 0 0 25px rgba(199,242,208,0.03);
+    inset 0 0 20px rgba(199,242,208,0.03);
 
-  transition: 0.3s ease;
-  text-decoration: none;
-  color: inherit;
-  overflow: hidden;
-}
-
-/* shimmer */
-.article-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(199,242,208,0.10),
-    transparent 60%
-  );
-  opacity: 0;
   transition: 0.3s;
 }
 
-.article-card:hover {
-  transform: translateY(-6px) scale(1.02);
+.card:hover {
+  transform: translateY(-6px);
   border-color: rgba(199,242,208,0.35);
   box-shadow:
-    0 0 40px rgba(47,93,58,0.25),
-    0 0 90px rgba(47,93,58,0.12);
+    0 0 40px rgba(47,93,58,0.25);
 }
 
-.article-card:hover::before {
-  opacity: 1;
-}
-
-.article-card h2 {
+.card h2 {
   color: #c7f2d0;
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  margin-bottom: 10px;
 }
 
-.article-card p {
-  font-size: 0.9rem;
+.card p {
   color: rgba(219,231,216,0.65);
-  line-height: 1.4;
+  font-size: 0.9rem;
 }
 
 /* =========================
-   BUTTON STYLE (reuse moss)
+   CTA
 ========================= */
 
-.read-btn {
-  display: inline-block;
-  margin-top: 1rem;
-  padding: 0.6rem 1rem;
-  border-radius: 999px;
-
+.cta {
+  margin-top: 50px;
   background: rgba(199,242,208,0.08);
-  border: 1px solid rgba(199,242,208,0.25);
-
-  color: #c7f2d0;
-  font-size: 0.85rem;
-  letter-spacing: 0.08em;
-
-  transition: 0.3s;
+  border: 1px solid rgba(199,242,208,0.2);
+  padding: 40px;
+  border-radius: 18px;
+  text-align: center;
 }
 
-.read-btn:hover {
-  background: rgba(199,242,208,0.18);
-  box-shadow: 0 0 25px rgba(199,242,208,0.25);
-  transform: translateY(-2px);
+.cta button {
+  margin-top: 15px;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 12px;
+  background: #c7f2d0;
+  color: #07140c;
+  cursor: pointer;
+  font-weight: 600;
 }
 
 /* =========================
-   CURSOR SUPPORT
+   FOOTER
 ========================= */
 
-.article-card,
-.read-btn {
-  cursor: none;
+footer {
+  margin-top: 60px;
+  padding: 30px;
+  text-align: center;
+  color: rgba(219,231,216,0.5);
+  background: rgba(17, 24, 17, 0.7);
 }
 
 /* =========================
@@ -406,79 +185,78 @@ body::before {
 ========================= */
 
 @media (max-width: 768px) {
-  #articles-page {
-    padding: 4rem 5vw;
+  .hero h1 {
+    font-size: 1.8rem;
   }
 
-  .title {
-    font-size: 1.8rem;
+  nav {
+    flex-direction: column;
+    gap: 10px;
   }
 }
 
 </style>
-
 </head>
 
 <body>
 
-<!-- CURSOR ELEMENTS -->
-<div id="cursor"></div>
-<div id="cursor-ring"></div>
+<nav>
+  <a class="logo" href="https://fallacious0.dedyn.io/">🌲 Fallacious0</a>
 
-<section id="articles-page">
+  <a href="#">
+    <button class="nav-button">Don’t Click This Button</button>
+  </a>
+</nav>
 
-  <h1 class="title">Moss Glass Articles</h1>
-  <p class="subtitle">Guides, lore breakdowns, and browser game insights.</p>
+<main class="container">
 
-  <div class="article-grid">
+  <section class="hero">
+    <h1>Fallacious0 Articles</h1>
+    <p>Guides, lore breakdowns, and browser game insights from horror to FPS to sandbox games.</p>
+  </section>
 
-    <a class="article-card" href="/articles/eaglercraft-guide.html">
-      <h2>Eaglercraft Guide</h2>
-      <p>How to play Minecraft in your browser with no downloads.</p>
-      <div class="read-btn">Read Article</div>
+  <div class="grid">
+
+    <a class="card" href="/articles/eaglercraft-guide.html">
+      <h2>Eaglercraft Minecraft Guide</h2>
+      <p>Play Minecraft directly in your browser with no downloads required.</p>
     </a>
 
-    <a class="article-card" href="/articles/fnaf-lore.html">
-      <h2>FNAF Lore Breakdown</h2>
-      <p>Understanding the timeline, animatronics, and hidden story.</p>
-      <div class="read-btn">Read Article</div>
+    <a class="card" href="/articles/fnaf-complete-guide.html">
+      <h2>Five Nights at Freddy’s Guide</h2>
+      <p>Full breakdown of FNAF games, lore, and gameplay mechanics.</p>
     </a>
 
-    <a class="article-card" href="/articles/fnf-guide.html">
-      <h2>Friday Night Funkin Guide</h2>
-      <p>Rhythm mechanics, mods, and tips for improving gameplay.</p>
-      <div class="read-btn">Read Article</div>
+    <a class="card" href="/articles/friday-night-funkin-guide.html">
+      <h2>Friday Night Funkin’ Guide</h2>
+      <p>Rhythm battles, mods, and gameplay tips for FNF.</p>
     </a>
 
-    <a class="article-card" href="/articles/ultrakill-overview.html">
+    <a class="card" href="/articles/ultrakill-overview.html">
       <h2>ULTRAKILL Overview</h2>
-      <p>Fast FPS movement, weapons, and combat system explained.</p>
-      <div class="read-btn">Read Article</div>
+      <p>Fast-paced FPS gameplay guide and mechanics explained.</p>
     </a>
 
-    <a class="article-card" href="/articles/undertale-lore.html">
-      <h2>Undertale Lore</h2>
-      <p>Routes, secrets, characters, and hidden story layers.</p>
-      <div class="read-btn">Read Article</div>
+    <a class="card" href="/articles/undertale-lore.html">
+      <h2>Undertale Lore Explained</h2>
+      <p>Story paths, characters, and secrets of Undertale and Undertale Yellow.</p>
     </a>
 
   </div>
 
-</section>
+  <section class="cta">
+    <h2>Play Games on Fallacious0</h2>
+    <p>Jump into your favorite browser games instantly.</p>
+    <a href="https://fallacious0.dedyn.io/">
+      <button>🎮 Go to Homepage</button>
+    </a>
+  </section>
 
-<script>
-/* simple cursor trail */
-const cursor = document.getElementById("cursor");
-const ring = document.getElementById("cursor-ring");
+</main>
 
-document.addEventListener("mousemove", e => {
-  cursor.style.left = e.clientX + "px";
-  cursor.style.top = e.clientY + "px";
-
-  ring.style.left = e.clientX - 16 + "px";
-  ring.style.top = e.clientY - 16 + "px";
-});
-</script>
+<footer>
+  © 2026 Fallacious0 • All Rights Reserved
+</footer>
 
 </body>
 </html>
