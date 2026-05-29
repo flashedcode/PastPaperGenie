@@ -1,0 +1,1708 @@
+
+  <!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Fallacious0 — The Best Studying Website</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Manrope:wght@300;400;500&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+	<style>
+		*,
+		*::before,
+		*::after {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		:root {
+			--forest: #0a1a10;
+			--forest-mid: #0f1f16;
+			--moss: #2f5d3a;
+			--fern: #5f8b4c;
+			--dew: #c7f2d0;
+			--dew-faint: rgba(199, 242, 208, 0.06);
+			--soil: #3b2f24;
+			--fog: #dbe7d8;
+			--fog-faint: rgba(219, 231, 216, 0.04);
+			--gold: #c9a96e;
+			--shell: #8a7b6a;
+			--glass: rgba(255, 255, 255, 0.04);
+			--glass-border: rgba(199, 242, 208, 0.12);
+		}
+
+		html {
+			scroll-behavior: smooth;
+		}
+
+		body {
+			background: var(--forest);
+			color: var(--fog);
+			font-family: 'Manrope', sans-serif;
+			overflow-x: hidden;
+			cursor: none;
+		}
+
+		/* Custom cursor */
+		#cursor {
+			position: fixed;
+			width: 8px;
+			height: 8px;
+			background: var(--dew);
+			border-radius: 50%;
+			pointer-events: none;
+			z-index: 9999;
+			transform: translate(-50%, -50%);
+			transition: transform 0.1s ease, opacity 0.3s ease;
+			box-shadow: 0 0 12px 4px rgba(199, 242, 208, 0.4);
+			mix-blend-mode: screen;
+		}
+
+		#cursor-ring {
+			position: fixed;
+			width: 32px;
+			height: 32px;
+			border: 1px solid rgba(199, 242, 208, 0.3);
+			border-radius: 50%;
+			pointer-events: none;
+			z-index: 9998;
+			transform: translate(-50%, -50%);
+			transition: all 0.15s ease;
+		}
+
+		/* Spore canvas */
+		#spore-canvas {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			pointer-events: none;
+			z-index: 100;
+			mix-blend-mode: screen;
+		}
+
+		/* === HERO === */
+		#hero {
+			position: relative;
+			height: 100vh;
+			min-height: 700px;
+			display: flex;
+			align-items: center;
+			overflow: hidden;
+		}
+
+		#fog-canvas {
+			position: absolute;
+			inset: 0;
+			width: 100%;
+			height: 100%;
+			pointer-events: none;
+		}
+
+		.hero-bg {
+			position: absolute;
+			inset: 0;
+			background:
+				radial-gradient(ellipse 80% 60% at 70% 50%, rgba(47, 93, 58, 0.18) 0%, transparent 70%),
+				radial-gradient(ellipse 40% 40% at 20% 80%, rgba(15, 31, 22, 0.9) 0%, transparent 60%),
+				radial-gradient(ellipse 60% 70% at 80% 20%, rgba(10, 26, 16, 0.7) 0%, transparent 55%),
+				linear-gradient(160deg, #070f09 0%, #0a1a10 30%, #0d2218 55%, #0a1a10 100%);
+		}
+
+		/* Layered organic textures via SVG filter */
+		.hero-texture {
+			position: absolute;
+			inset: 0;
+			opacity: 0.6;
+			background-image:
+				radial-gradient(circle at 65% 48%, rgba(95, 139, 76, 0.12) 0%, transparent 40%),
+				radial-gradient(circle at 30% 60%, rgba(47, 93, 58, 0.08) 0%, transparent 35%);
+		}
+
+		/* Moss patch shapes */
+		.moss-shape {
+			position: absolute;
+			border-radius: 50%;
+			background: radial-gradient(circle, rgba(47, 93, 58, 0.25) 0%, transparent 70%);
+			filter: blur(40px);
+			pointer-events: none;
+		}
+
+		.dew-drop {
+			position: absolute;
+			width: 6px;
+			height: 8px;
+			background: radial-gradient(ellipse at 30% 25%, rgba(255, 255, 255, 0.9) 0%, rgba(199, 242, 208, 0.6) 40%, rgba(47, 93, 58, 0.2) 100%);
+			border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+			box-shadow: inset -1px -2px 3px rgba(0, 0, 0, 0.3), 0 0 8px rgba(199, 242, 208, 0.3);
+			animation: dewGlimmer 3s ease-in-out infinite;
+		}
+
+		@keyframes dewGlimmer {
+
+			0%,
+			100% {
+				opacity: 0.5;
+				transform: scale(1);
+			}
+
+			50% {
+				opacity: 1;
+				transform: scale(1.15);
+			}
+		}
+
+		.hero-content {
+			position: relative;
+			z-index: 10;
+			padding: 0 8vw;
+			max-width: 780px;
+		}
+
+		.eyebrow {
+			font-family: 'Cinzel', serif;
+			font-size: clamp(10px, 1.2vw, 13px);
+			letter-spacing: 0.35em;
+			color: var(--fern);
+			text-transform: uppercase;
+			margin-bottom: 2rem;
+			opacity: 0;
+			animation: fadeUp 1.2s 0.3s forwards;
+		}
+
+		h1.hero-title {
+			font-family: 'Cormorant Garamond', serif;
+			font-weight: 300;
+			font-size: clamp(52px, 8vw, 110px);
+			line-height: 0.92;
+			color: var(--fog);
+			margin-bottom: 2.5rem;
+			opacity: 0;
+			animation: fadeUp 1.4s 0.5s forwards;
+			letter-spacing: -0.01em;
+		}
+
+		h1.hero-title em {
+			font-style: italic;
+			color: var(--dew);
+			display: block;
+		}
+
+		.hero-sub {
+			font-family: 'Manrope', sans-serif;
+			font-weight: 300;
+			font-size: clamp(13px, 1.5vw, 16px);
+			color: rgba(219, 231, 216, 0.55);
+			line-height: 1.8;
+			max-width: 360px;
+			margin-bottom: 3.5rem;
+			opacity: 0;
+			animation: fadeUp 1.4s 0.8s forwards;
+			letter-spacing: 0.02em;
+		}
+
+		.cta-wrap {
+			display: flex;
+			gap: 1.5rem;
+			align-items: center;
+			opacity: 0;
+			animation: fadeUp 1.2s 1.1s forwards;
+		}
+
+		.cta-btn {
+			position: relative;
+			display: inline-flex;
+			align-items: center;
+			gap: 12px;
+			padding: 14px 32px;
+			background: var(--glass);
+			border: 1px solid var(--glass-border);
+			border-radius: 2px;
+			color: var(--dew);
+			font-family: 'Cinzel', serif;
+			font-size: 12px;
+			letter-spacing: 0.25em;
+			text-transform: uppercase;
+			text-decoration: none;
+			cursor: none;
+			transition: background 0.4s, border-color 0.4s, box-shadow 0.4s;
+			backdrop-filter: blur(20px);
+			-webkit-backdrop-filter: blur(20px);
+			overflow: hidden;
+		}
+
+		.cta-btn::before {
+			content: '';
+			position: absolute;
+			inset: 0;
+			background: linear-gradient(135deg, rgba(199, 242, 208, 0.08) 0%, transparent 60%);
+			opacity: 0;
+			transition: opacity 0.4s;
+		}
+
+		.cta-btn:hover {
+			border-color: rgba(199, 242, 208, 0.35);
+			box-shadow: 0 0 40px rgba(95, 139, 76, 0.15), inset 0 0 30px rgba(199, 242, 208, 0.03);
+		}
+
+		.cta-btn:hover::before {
+			opacity: 1;
+		}
+
+		.cta-btn .arrow {
+			font-size: 16px;
+			transition: transform 0.3s;
+		}
+
+		.cta-btn:hover .arrow {
+			transform: translateX(4px);
+		}
+
+		.cta-secondary {
+			font-family: 'Manrope', sans-serif;
+			font-weight: 300;
+			font-size: 12px;
+			color: rgba(219, 231, 216, 0.35);
+			letter-spacing: 0.12em;
+			cursor: none;
+			transition: color 0.3s;
+		}
+
+		.cta-secondary:hover {
+			color: rgba(219, 231, 216, 0.7);
+		}
+
+		/* Scroll indicator */
+		.scroll-hint {
+			position: absolute;
+			bottom: 2.5rem;
+			left: 8vw;
+			display: flex;
+			align-items: center;
+			gap: 12px;
+			opacity: 0;
+			animation: fadeIn 1s 2s forwards;
+			z-index: 10;
+		}
+
+		.scroll-line {
+			width: 40px;
+			height: 1px;
+			background: linear-gradient(90deg, transparent, rgba(199, 242, 208, 0.4));
+			position: relative;
+			overflow: hidden;
+		}
+
+		.scroll-line::after {
+			content: '';
+			position: absolute;
+			inset: 0;
+			background: var(--dew);
+			transform: translateX(-100%);
+			animation: scrollPulse 2.5s 2.5s ease-in-out infinite;
+		}
+
+		@keyframes scrollPulse {
+			0% {
+				transform: translateX(-100%);
+			}
+
+			100% {
+				transform: translateX(100%);
+			}
+		}
+
+		.scroll-label {
+			font-family: 'Cinzel', serif;
+			font-size: 9px;
+			letter-spacing: 0.3em;
+			color: rgba(199, 242, 208, 0.3);
+		}
+
+		/* Hero right — shell detail */
+		.hero-shell {
+			position: absolute;
+			right: -5vw;
+			top: 50%;
+			transform: translateY(-50%);
+			width: clamp(320px, 45vw, 620px);
+			height: clamp(320px, 45vw, 620px);
+			opacity: 0;
+			animation: shellReveal 2.5s 0.8s forwards;
+		}
+
+		@keyframes shellReveal {
+			0% {
+				opacity: 0;
+				transform: translateY(-48%) scale(0.95) rotate(-3deg);
+			}
+
+			100% {
+				opacity: 1;
+				transform: translateY(-50%) scale(1) rotate(0deg);
+			}
+		}
+
+		/* === SNAIL TRAIL SVG === */
+		.trail-section {
+			position: relative;
+			height: 200px;
+			overflow: hidden;
+		}
+
+		.trail-path {
+			stroke-dasharray: 1200;
+			stroke-dashoffset: 1200;
+			transition: stroke-dashoffset 2s ease;
+		}
+
+		.trail-path.animate {
+			stroke-dashoffset: 0;
+		}
+
+		/* === SECTION BASE === */
+		section {
+			padding: clamp(80px, 10vw, 140px) 8vw;
+		}
+
+		.section-label {
+			font-family: 'Cinzel', serif;
+			font-size: 10px;
+			letter-spacing: 0.4em;
+			color: var(--fern);
+			text-transform: uppercase;
+			margin-bottom: 1.5rem;
+			display: flex;
+			align-items: center;
+			gap: 16px;
+		}
+
+		.section-label::before {
+			content: '';
+			display: inline-block;
+			width: 28px;
+			height: 1px;
+			background: var(--fern);
+		}
+
+		/* === ABOUT / MANIFESTO === */
+		#manifesto {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 6vw;
+			align-items: start;
+			position: relative;
+		}
+
+		#manifesto::before {
+			content: '';
+			position: absolute;
+			top: -80px;
+			left: -8vw;
+			right: -8vw;
+			height: 1px;
+			background: linear-gradient(90deg, transparent, rgba(47, 93, 58, 0.4) 30%, rgba(95, 139, 76, 0.3) 60%, transparent);
+		}
+
+		.manifesto-quote {
+			font-family: 'Cormorant Garamond', serif;
+			font-weight: 300;
+			font-size: clamp(32px, 4vw, 54px);
+			line-height: 1.15;
+			color: var(--fog);
+			position: sticky;
+			top: 30vh;
+		}
+
+		.manifesto-quote span {
+			color: var(--dew);
+		}
+
+		.manifesto-body {
+			padding-top: 4px;
+		}
+
+		.manifesto-body p {
+			font-weight: 300;
+			font-size: clamp(13px, 1.3vw, 15px);
+			line-height: 1.9;
+			color: rgba(219, 231, 216, 0.6);
+			margin-bottom: 1.5rem;
+			letter-spacing: 0.02em;
+		}
+
+		.data-row {
+			display: flex;
+			align-items: baseline;
+			gap: 1rem;
+			padding: 1.2rem 0;
+			border-bottom: 1px solid rgba(47, 93, 58, 0.25);
+		}
+
+		.data-num {
+			font-family: 'Cormorant Garamond', serif;
+			font-size: clamp(28px, 3.5vw, 44px);
+			font-weight: 300;
+			color: var(--dew);
+			min-width: 80px;
+		}
+
+		.data-label {
+			font-size: 12px;
+			font-weight: 300;
+			color: rgba(199, 242, 208, 0.45);
+			letter-spacing: 0.08em;
+			line-height: 1.5;
+		}
+
+		/* === FEATURES GRID === */
+		#features {
+			background: linear-gradient(180deg, transparent 0%, rgba(10, 26, 16, 0.6) 50%, transparent 100%);
+		}
+
+		.features-title {
+			font-family: 'Cormorant Garamond', serif;
+			font-size: clamp(36px, 5vw, 70px);
+			font-weight: 300;
+			line-height: 1.1;
+			margin-bottom: 4rem;
+			max-width: 640px;
+		}
+
+		.features-title em {
+			font-style: italic;
+			color: var(--dew);
+		}
+
+		.cards-grid {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			gap: 1.5px;
+		}
+
+		.feature-card {
+			position: relative;
+			padding: 2.5rem 2rem;
+			background: var(--glass);
+			border: 1px solid var(--glass-border);
+			overflow: hidden;
+			transition: background 0.5s, border-color 0.5s;
+			cursor: none;
+		}
+
+		.feature-card:first-child {
+			border-radius: 12px 0 0 12px;
+		}
+
+		.feature-card:last-child {
+			border-radius: 0 12px 12px 0;
+		}
+
+		.feature-card::before {
+			content: '';
+			position: absolute;
+			inset: 0;
+			background: radial-gradient(ellipse 100% 100% at 50% 120%, rgba(95, 139, 76, 0.1) 0%, transparent 60%);
+			opacity: 0;
+			transition: opacity 0.5s;
+		}
+
+		.feature-card:hover {
+			background: rgba(255, 255, 255, 0.06);
+			border-color: rgba(199, 242, 208, 0.2);
+		}
+
+		.feature-card:hover::before {
+			opacity: 1;
+		}
+
+		.card-glyph {
+			width: 44px;
+			height: 44px;
+			margin-bottom: 1.5rem;
+			opacity: 0.7;
+		}
+
+		.card-title {
+			font-family: 'Cormorant Garamond', serif;
+			font-size: clamp(20px, 2.5vw, 28px);
+			font-weight: 400;
+			color: var(--fog);
+			margin-bottom: 0.75rem;
+			line-height: 1.2;
+		}
+
+		.card-body {
+			font-weight: 300;
+			font-size: 13px;
+			line-height: 1.85;
+			color: rgba(219, 231, 216, 0.45);
+			letter-spacing: 0.02em;
+		}
+
+		.card-num {
+			position: absolute;
+			bottom: 1.5rem;
+			right: 1.5rem;
+			font-family: 'Cormorant Garamond', serif;
+			font-size: 72px;
+			font-weight: 300;
+			color: rgba(47, 93, 58, 0.12);
+			line-height: 1;
+			user-select: none;
+		}
+
+		/* === SPECIMEN SECTION === */
+		#specimen {
+			position: relative;
+			min-height: 80vh;
+			display: flex;
+			align-items: center;
+			overflow: hidden;
+		}
+
+		.specimen-bg {
+			position: absolute;
+			inset: 0;
+			background:
+				radial-gradient(ellipse 70% 80% at 80% 50%, rgba(59, 47, 36, 0.4) 0%, transparent 60%),
+				radial-gradient(ellipse 50% 60% at 10% 50%, rgba(10, 26, 16, 0.9) 0%, transparent 60%),
+				linear-gradient(135deg, #0a1a10 0%, #12211a 50%, #1a1208 100%);
+		}
+
+		.specimen-content {
+			position: relative;
+			z-index: 2;
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 6vw;
+			align-items: center;
+			width: 100%;
+		}
+
+		.specimen-visual {
+			position: relative;
+			display: flex;
+			justify-content: center;
+		}
+
+		.glass-panel {
+			background: rgba(255, 255, 255, 0.03);
+			border: 1px solid rgba(199, 242, 208, 0.1);
+			border-radius: 16px;
+			padding: 3rem;
+			backdrop-filter: blur(30px);
+			-webkit-backdrop-filter: blur(30px);
+			position: relative;
+			overflow: hidden;
+		}
+
+		.glass-panel::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			height: 1px;
+			background: linear-gradient(90deg, transparent, rgba(199, 242, 208, 0.3), transparent);
+		}
+
+		.glass-panel::after {
+			content: '';
+			position: absolute;
+			bottom: -60px;
+			right: -60px;
+			width: 200px;
+			height: 200px;
+			background: radial-gradient(circle, rgba(95, 139, 76, 0.08) 0%, transparent 70%);
+			border-radius: 50%;
+		}
+
+		.specimen-name {
+			font-family: 'Cinzel', serif;
+			font-size: 11px;
+			letter-spacing: 0.4em;
+			color: var(--fern);
+			margin-bottom: 1rem;
+		}
+
+		.specimen-title {
+			font-family: 'Cormorant Garamond', serif;
+			font-size: clamp(30px, 4vw, 52px);
+			font-weight: 300;
+			line-height: 1.15;
+			margin-bottom: 1.5rem;
+			color: var(--fog);
+		}
+
+		.specimen-title em {
+			font-style: italic;
+			color: var(--dew);
+		}
+
+		.specimen-desc {
+			font-weight: 300;
+			font-size: 14px;
+			line-height: 1.9;
+			color: rgba(219, 231, 216, 0.5);
+			margin-bottom: 2rem;
+			letter-spacing: 0.02em;
+		}
+
+		.spec-list {
+			list-style: none;
+			display: flex;
+			flex-direction: column;
+			gap: 0.75rem;
+		}
+
+		.spec-list li {
+			display: flex;
+			align-items: center;
+			gap: 12px;
+			font-size: 13px;
+			font-weight: 300;
+			color: rgba(199, 242, 208, 0.5);
+			letter-spacing: 0.04em;
+		}
+
+		.spec-list li::before {
+			content: '';
+			display: inline-block;
+			width: 4px;
+			height: 4px;
+			border-radius: 50%;
+			background: var(--fern);
+			flex-shrink: 0;
+		}
+
+		/* === GALLERY STRIP === */
+		#gallery {
+			padding-top: 0;
+			padding-bottom: 0;
+			overflow: hidden;
+		}
+
+		.gallery-strip {
+			display: flex;
+			gap: 2px;
+			height: 55vh;
+			min-height: 300px;
+		}
+
+		.gallery-cell {
+			position: relative;
+			flex: 1;
+			overflow: hidden;
+			cursor: none;
+			transition: flex 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+		}
+
+		.gallery-cell:hover {
+			flex: 2.5;
+		}
+
+		.gallery-cell-inner {
+			position: absolute;
+			inset: 0;
+			transition: transform 0.7s ease;
+		}
+
+		.gallery-cell:hover .gallery-cell-inner {
+			transform: scale(1.02);
+		}
+
+		.gallery-label {
+			position: absolute;
+			bottom: 1.5rem;
+			left: 1.5rem;
+			font-family: 'Cormorant Garamond', serif;
+			font-size: 22px;
+			font-weight: 300;
+			font-style: italic;
+			color: rgba(219, 231, 216, 0.7);
+			opacity: 0;
+			transition: opacity 0.4s 0.2s;
+			pointer-events: none;
+		}
+
+		.gallery-cell:hover .gallery-label {
+			opacity: 1;
+		}
+
+		/* === CLOSING / CTA === */
+		#closing {
+			text-align: center;
+			position: relative;
+			overflow: hidden;
+		}
+
+		#closing::before {
+			content: '';
+			position: absolute;
+			inset: 0;
+			background:
+				radial-gradient(ellipse 80% 60% at 50% 50%, rgba(47, 93, 58, 0.12) 0%, transparent 70%);
+			pointer-events: none;
+		}
+
+		.closing-eyebrow {
+			font-family: 'Cinzel', serif;
+			font-size: 10px;
+			letter-spacing: 0.45em;
+			color: var(--fern);
+			text-transform: uppercase;
+			margin-bottom: 2rem;
+		}
+
+		.closing-title {
+			font-family: 'Cormorant Garamond', serif;
+			font-weight: 300;
+			font-size: clamp(48px, 7vw, 100px);
+			line-height: 0.95;
+			color: var(--fog);
+			margin-bottom: 1.5rem;
+		}
+
+		.closing-title em {
+			display: block;
+			font-style: italic;
+			color: var(--dew);
+		}
+
+		.closing-sub {
+			font-weight: 300;
+			font-size: 14px;
+			color: rgba(219, 231, 216, 0.4);
+			letter-spacing: 0.08em;
+			margin-bottom: 4rem;
+		}
+
+		.closing-cta {
+			display: inline-flex;
+			align-items: center;
+			gap: 14px;
+			padding: 18px 44px;
+			border: 1px solid rgba(199, 242, 208, 0.2);
+			border-radius: 2px;
+			background: rgba(47, 93, 58, 0.08);
+			color: var(--dew);
+			font-family: 'Cinzel', serif;
+			font-size: 12px;
+			letter-spacing: 0.3em;
+			text-transform: uppercase;
+			text-decoration: none;
+			cursor: none;
+			transition: all 0.5s;
+			backdrop-filter: blur(20px);
+			-webkit-backdrop-filter: blur(20px);
+			position: relative;
+			overflow: hidden;
+		}
+
+		.closing-cta::after {
+			content: '';
+			position: absolute;
+			inset: 0;
+			background: linear-gradient(135deg, rgba(199, 242, 208, 0.05) 0%, transparent 50%);
+			opacity: 0;
+			transition: opacity 0.4s;
+		}
+
+		.closing-cta:hover {
+			border-color: rgba(199, 242, 208, 0.4);
+			box-shadow:
+				0 0 60px rgba(47, 93, 58, 0.25),
+				0 0 120px rgba(47, 93, 58, 0.1),
+				inset 0 0 40px rgba(199, 242, 208, 0.03);
+			background: rgba(47, 93, 58, 0.15);
+		}
+
+		.closing-cta:hover::after {
+			opacity: 1;
+		}
+
+		.pulse-dot {
+			width: 6px;
+			height: 6px;
+			border-radius: 50%;
+			background: var(--dew);
+			animation: pulseDot 1.5s ease-in-out infinite;
+		}
+
+		@keyframes pulseDot {
+
+			0%,
+			100% {
+				transform: scale(1);
+				opacity: 1;
+			}
+
+			50% {
+				transform: scale(1.6);
+				opacity: 0.5;
+			}
+		}
+
+		/* === FOOTER === */
+		footer {
+			padding: 3rem 8vw;
+			border-top: 1px solid rgba(47, 93, 58, 0.2);
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		}
+
+		.footer-brand {
+			font-family: 'Cinzel', serif;
+			font-size: 14px;
+			letter-spacing: 0.3em;
+			color: var(--fern);
+		}
+
+		.footer-copy {
+			font-size: 11px;
+			font-weight: 300;
+			color: rgba(219, 231, 216, 0.2);
+			letter-spacing: 0.08em;
+		}
+
+		/* === ANIMATIONS === */
+		@keyframes fadeUp {
+			from {
+				opacity: 0;
+				transform: translateY(24px);
+			}
+
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		@keyframes fadeIn {
+			from {
+				opacity: 0;
+			}
+
+			to {
+				opacity: 1;
+			}
+		}
+
+		.reveal {
+			opacity: 0;
+			transform: translateY(30px);
+			transition: opacity 0.9s ease, transform 0.9s ease;
+		}
+
+		.reveal.visible {
+			opacity: 1;
+			transform: translateY(0);
+		}
+
+		.reveal-delay-1 {
+			transition-delay: 0.15s;
+		}
+
+		.reveal-delay-2 {
+			transition-delay: 0.3s;
+		}
+
+		.reveal-delay-3 {
+			transition-delay: 0.45s;
+		}
+
+		/* Mobile */
+		@media (max-width: 768px) {
+
+			#manifesto,
+			.specimen-content {
+				grid-template-columns: 1fr;
+			}
+
+			.manifesto-quote {
+				position: static;
+			}
+
+			.cards-grid {
+				grid-template-columns: 1fr;
+			}
+
+			.feature-card:first-child {
+				border-radius: 12px 12px 0 0;
+			}
+
+			.feature-card:last-child {
+				border-radius: 0 0 12px 12px;
+			}
+
+			.hero-shell {
+				display: none;
+			}
+
+			footer {
+				flex-direction: column;
+				gap: 1rem;
+				text-align: center;
+			}
+		}
+	</style>
+</head>
+
+<body>
+
+	<div id="cursor"></div>
+	<div id="cursor-ring"></div>
+	<canvas id="spore-canvas"></canvas>
+
+	<!-- ===== HERO ===== -->
+	<section id="hero">
+		<div class="hero-bg"></div>
+		<div class="hero-texture"></div>
+
+		<!-- Fog canvas -->
+		<canvas id="fog-canvas"></canvas>
+
+		<!-- Dew drops scattered -->
+		<div class="dew-drop" style="top:28%;left:58%;animation-delay:0s"></div>
+		<div class="dew-drop" style="top:42%;left:72%;animation-delay:0.8s;width:4px;height:6px"></div>
+		<div class="dew-drop" style="top:55%;left:63%;animation-delay:1.4s;width:8px;height:10px"></div>
+		<div class="dew-drop" style="top:35%;left:81%;animation-delay:2.1s;width:5px;height:7px"></div>
+		<div class="dew-drop" style="top:60%;left:75%;animation-delay:0.5s;width:3px;height:4px"></div>
+		<div class="dew-drop" style="top:22%;left:66%;animation-delay:1.8s;width:6px;height:9px"></div>
+
+		<!-- Moss shapes -->
+		<div class="moss-shape" style="width:400px;height:300px;top:30%;left:40%;"></div>
+		<div class="moss-shape" style="width:250px;height:200px;top:60%;left:65%;"></div>
+
+		<!-- Hero content -->
+		<div class="hero-content">
+			<p class="eyebrow">Fallacious0.</p>
+			<h1 class="hero-title">
+				Built<br>
+				To Bypass<br>
+				<em>Boredom.</em>
+			</h1>
+			<p class="hero-sub">Games like Minecraft,Geometry Dash right in your browser.</p>
+		<a href="#specimen" class="cta-btn">
+					About us
+					<span class="arrow">→</span>
+				</a>
+				<a href="https://fallacious0.dedyn.io/select/">
+				<a href="#manifesto" class="cta-secondary">Our Games Collection</a>
+			</div>
+		</div>
+
+		<!-- Shell SVG illustration -->
+		<div class="hero-shell">
+			<svg viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<defs>
+					<radialGradient id="shellGrad" cx="40%" cy="35%" r="65%">
+						<stop offset="0%" stop-color="#c9a96e" stop-opacity="0.25" />
+						<stop offset="40%" stop-color="#8a7b6a" stop-opacity="0.12" />
+						<stop offset="100%" stop-color="#3b2f24" stop-opacity="0" />
+					</radialGradient>
+					<radialGradient id="glowCenter" cx="50%" cy="50%" r="50%">
+						<stop offset="0%" stop-color="#5f8b4c" stop-opacity="0.15" />
+						<stop offset="100%" stop-color="#5f8b4c" stop-opacity="0" />
+					</radialGradient>
+					<filter id="softGlow">
+						<feGaussianBlur stdDeviation="3" result="blur" />
+						<feComposite in="SourceGraphic" in2="blur" operator="over" />
+					</filter>
+				</defs>
+
+				<!-- Glow halo -->
+				<ellipse cx="250" cy="250" rx="200" ry="200" fill="url(#glowCenter)" />
+
+				<!-- Shell spiral — main form -->
+				<path d="M250 250
+               C 250 210, 290 195, 318 210
+               C 346 225, 355 258, 340 285
+               C 325 312, 295 322, 268 315
+               C 241 308, 222 285, 225 260
+               C 228 235, 248 220, 268 222
+               C 288 224, 300 240, 298 258
+               C 296 276, 282 285, 268 282
+               C 254 279, 248 268, 252 258" stroke="rgba(201,169,110,0.22)" stroke-width="1.2" fill="none" />
+
+				<!-- Outer whorl 1 -->
+				<path d="M250 250
+               C 230 170, 170 145, 130 175
+               C 90 205, 85 265, 110 305
+               C 135 345, 190 365, 238 352
+               C 286 339, 320 302, 325 258
+               C 330 214, 308 175, 278 162
+               C 248 149, 215 158, 200 180" stroke="rgba(138,123,106,0.18)" stroke-width="1" fill="none" />
+
+				<!-- Outer whorl 2 -->
+				<path d="M250 250
+               C 200 130, 110 100, 70 148
+               C 30 196, 32 295, 75 348
+               C 118 401, 200 425, 272 408
+               C 344 391, 390 340, 395 275
+               C 400 210, 368 152, 322 128
+               C 276 104, 225 115, 200 145" stroke="rgba(95,139,76,0.1)" stroke-width="0.8" fill="none" />
+
+				<!-- Shell fill -->
+				<path d="M250 250
+               C 250 210, 290 195, 318 210
+               C 346 225, 355 258, 340 285
+               C 325 312, 295 322, 268 315
+               C 241 308, 222 285, 225 260
+               C 228 235, 248 220, 268 222
+               C 288 224, 300 240, 298 258
+               C 296 276, 282 285, 268 282
+               C 254 279, 248 268, 252 258
+               C 230 170, 170 145, 130 175
+               C 90 205, 85 265, 110 305
+               C 135 345, 190 365, 238 352
+               C 286 339, 320 302, 325 258" fill="url(#shellGrad)" stroke="none" />
+
+				<!-- Highlight gleam -->
+				<path d="M 195 175 C 205 165, 225 162, 238 170" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" stroke-linecap="round" fill="none" />
+				<path d="M 162 195 C 155 210, 152 230, 158 248" stroke="rgba(255,255,255,0.08)" stroke-width="1" stroke-linecap="round" fill="none" />
+
+				<!-- Snail body suggestion -->
+				<path d="M 110 320 C 140 340, 180 348, 200 342 C 205 340, 208 336, 204 332 C 195 320, 165 315, 140 318" stroke="rgba(95,139,76,0.2)" stroke-width="1" fill="rgba(47,93,58,0.06)" />
+
+				<!-- Tentacles -->
+				<line x1="196" y1="330" x2="175" y2="305" stroke="rgba(95,139,76,0.25)" stroke-width="0.8" stroke-linecap="round" />
+				<line x1="204" y1="328" x2="192" y2="300" stroke="rgba(95,139,76,0.25)" stroke-width="0.8" stroke-linecap="round" />
+				<circle cx="175" cy="304" r="2" fill="rgba(199,242,208,0.35)" />
+				<circle cx="192" cy="299" r="2" fill="rgba(199,242,208,0.35)" />
+
+				<!-- Dew drops on shell -->
+				<ellipse cx="165" cy="215" rx="3" ry="4" fill="rgba(199,242,208,0.3)" filter="url(#softGlow)" />
+				<ellipse cx="185" cy="195" rx="2" ry="3" fill="rgba(255,255,255,0.2)" />
+				<ellipse cx="300" cy="170" rx="4" ry="5" fill="rgba(199,242,208,0.2)" filter="url(#softGlow)" />
+			</svg>
+		</div>
+
+		<div class="scroll-hint">
+			<div class="scroll-line"></div>
+			<span class="scroll-label">Scroll</span>
+		</div>
+	</section>
+
+	<!-- ===== TRAIL DIVIDER ===== -->
+	<div class="trail-section" id="trail-section">
+		<svg width="100%" height="200" viewBox="0 0 1400 200" preserveAspectRatio="none" style="position:absolute;inset:0;">
+			<defs>
+				<linearGradient id="trailGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+					<stop offset="0%" stop-color="transparent" />
+					<stop offset="20%" stop-color="rgba(199,242,208,0.25)" />
+					<stop offset="60%" stop-color="rgba(95,139,76,0.3)" />
+					<stop offset="85%" stop-color="rgba(199,242,208,0.15)" />
+					<stop offset="100%" stop-color="transparent" />
+				</linearGradient>
+				<filter id="trailBlur">
+					<feGaussianBlur stdDeviation="1.5" />
+				</filter>
+			</defs>
+			<path class="trail-path" id="snail-trail" d="M-50 100 C 100 100, 150 80, 250 95 C 350 110, 400 130, 520 105 C 640 80, 700 95, 800 100 C 900 105, 980 120, 1100 95 C 1220 70, 1320 100, 1450 100" stroke="url(#trailGrad)" stroke-width="3" fill="none" filter="url(#trailBlur)" />
+			<!-- Shimmer trail -->
+			<path class="trail-path" id="snail-trail-2" d="M-50 100 C 100 100, 150 80, 250 95 C 350 110, 400 130, 520 105 C 640 80, 700 95, 800 100 C 900 105, 980 120, 1100 95 C 1220 70, 1320 100, 1450 100" stroke="rgba(255,255,255,0.06)" stroke-width="8" fill="none" filter="url(#trailBlur)" />
+		</svg>
+	</div>
+<style>
+a:link {
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
+}
+</style>
+	<!-- ===== MANIFESTO ===== -->
+	<section id="manifesto">
+		<div class="manifesto-quote reveal">
+			"Best website<br> I have ever used<br> <span>to play games.</span>"
+		</div>
+		<div class="manifesto-body">
+			<div class="section-label">The Philosophy</div>
+			<p class="reveal reveal-delay-1">
+				In the age of advanced blockers.
+			</p>
+			<p class="reveal reveal-delay-2">
+				We make websites that you can use to play games easilly.
+				<a href="https://fallacious0.dedyn.io/select/"> GAMES MENU </a>
+			</p>
+
+				<div class="data-row reveal reveal-delay-2">
+					<span class="data-num">1k+</span>
+					<span class="data-label">returning users<br>excluding our old<br>websites</span>
+				</div>
+				
+				</section>
+
+	<!-- ===== FEATURES ===== -->
+	<section id="features">
+		<h2 class="features-title reveal">
+			More<br>
+			<em>information.</em>
+		</h2>
+
+		<div class="cards-grid">
+			<a href="https://fallacious0.dedyn.io/articles">
+			<div class="feature-card reveal">
+				<svg class="card-glyph" viewBox="0 0 44 44" fill="none">
+					<circle cx="22" cy="22" r="10" stroke="rgba(95,139,76,0.6)" stroke-width="1" />
+					<path d="M22 12 C18 16, 14 18, 12 22 C10 26, 12 30, 16 32 C20 34, 26 33, 30 29 C34 25, 34 19, 30 15" stroke="rgba(199,242,208,0.4)" stroke-width="0.8" fill="none" />
+					<circle cx="22" cy="22" r="3" fill="rgba(199,242,208,0.25)" />
+					<ellipse cx="22" cy="6" rx="2.5" ry="3" fill="rgba(95,139,76,0.3)" />
+					<ellipse cx="36" cy="14" rx="2.5" ry="3" fill="rgba(95,139,76,0.2)" transform="rotate(60 36 14)" />
+				</svg>
+				<h3 class="card-title">Articles</h3>
+				<p class="card-body">About us,guides and interesting information.</p>
+				<span class="card-num">01</span>
+			</div>
+			</a>
+       	<a href="https://fallacious0.dedyn.io/select">
+			<div class="feature-card reveal reveal-delay-1">
+				<svg class="card-glyph" viewBox="0 0 44 44" fill="none">
+					<path d="M8 36 C8 20, 14 12, 22 10 C30 8, 38 16, 38 28" stroke="rgba(95,139,76,0.5)" stroke-width="1" fill="none" />
+					<path d="M14 36 C14 24, 18 18, 22 16 C26 14, 32 18, 32 28" stroke="rgba(199,242,208,0.3)" stroke-width="0.8" fill="none" />
+					<line x1="8" y1="36" x2="38" y2="36" stroke="rgba(47,93,58,0.6)" stroke-width="1" />
+					<circle cx="22" cy="22" r="4" fill="rgba(95,139,76,0.2)" stroke="rgba(199,242,208,0.3)" stroke-width="0.5" />
+				</svg>
+				<h3 class="card-title">Games</h3>
+				<p class="card-body">Explore our vast collection,with more to come in the future.</p>
+				<span class="card-num">02</span>
+			</div>
+			</a>
+      <a href="https://fallacious0.dedyn.io/updates">
+			<div class="feature-card reveal reveal-delay-2">
+				<svg class="card-glyph" viewBox="0 0 44 44" fill="none">
+					<path d="M22 8 L26 18 L36 18 L28 25 L31 35 L22 29 L13 35 L16 25 L8 18 L18 18 Z" stroke="rgba(201,169,110,0.35)" stroke-width="0.8" fill="rgba(201,169,110,0.06)" />
+					<path d="M22 12 L25 20 L33 20 L27 24 L29 32 L22 28" stroke="rgba(199,242,208,0.2)" stroke-width="0.5" fill="none" />
+					<circle cx="22" cy="22" r="2" fill="rgba(201,169,110,0.3)" />
+				</svg>
+				<h3 class="card-title">Changelog</h3>
+				<p class="card-body">You can see here what updates we made and how much this website changed over time.</p>
+				<span class="card-num">03</span>
+			</div>
+    </a>
+		</div>
+ </section>
+
+	<!-- ===== SPECIMEN ===== -->
+	<section id="specimen">
+		<div class="specimen-bg"></div>
+		<div class="specimen-content">
+			<div class="specimen-visual reveal">
+				<!-- Macro illustration -->
+				<svg viewBox="0 0 400 420" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:400px;">
+					<defs>
+						<radialGradient id="bg1" cx="50%" cy="50%" r="50%">
+							<stop offset="0%" stop-color="#1a2f1e" stop-opacity="0.8" />
+							<stop offset="100%" stop-color="#0a1a10" stop-opacity="0" />
+						</radialGradient>
+						<radialGradient id="shellFill" cx="35%" cy="30%" r="65%">
+							<stop offset="0%" stop-color="#c9a96e" stop-opacity="0.3" />
+							<stop offset="50%" stop-color="#8a7b6a" stop-opacity="0.15" />
+							<stop offset="100%" stop-color="#3b2f24" stop-opacity="0.05" />
+						</radialGradient>
+						<radialGradient id="bodyFill" cx="50%" cy="30%" r="60%">
+							<stop offset="0%" stop-color="#6b9c58" stop-opacity="0.35" />
+							<stop offset="100%" stop-color="#2f5d3a" stop-opacity="0.1" />
+						</radialGradient>
+						<filter id="glow2">
+							<feGaussianBlur stdDeviation="4" result="b" />
+							<feComposite in="SourceGraphic" in2="b" operator="over" />
+						</filter>
+						<filter id="dewFilter">
+							<feGaussianBlur stdDeviation="0.8" />
+						</filter>
+					</defs>
+
+					<!-- Background atmosphere -->
+					<ellipse cx="200" cy="210" rx="180" ry="190" fill="url(#bg1)" />
+
+					<!-- Moss bed background -->
+					<path d="M 20 340 C 60 310, 100 330, 140 315 C 180 300, 220 320, 260 308 C 300 296, 340 315, 380 310 L 380 420 L 20 420 Z" fill="rgba(18,38,22,0.8)" />
+
+					<!-- Moss texture bumps -->
+					<ellipse cx="50" cy="338" rx="20" ry="12" fill="rgba(47,93,58,0.6)" />
+					<ellipse cx="90" cy="332" rx="18" ry="10" fill="rgba(35,72,45,0.5)" />
+					<ellipse cx="130" cy="340" rx="22" ry="14" fill="rgba(47,93,58,0.7)" />
+					<ellipse cx="175" cy="330" rx="16" ry="10" fill="rgba(60,95,58,0.4)" />
+					<ellipse cx="215" cy="338" rx="24" ry="12" fill="rgba(47,93,58,0.6)" />
+					<ellipse cx="262" cy="332" rx="20" ry="11" fill="rgba(38,80,50,0.5)" />
+					<ellipse cx="305" cy="340" rx="18" ry="10" fill="rgba(47,93,58,0.65)" />
+					<ellipse cx="348" cy="334" rx="22" ry="12" fill="rgba(55,90,55,0.5)" />
+
+					<!-- Snail body -->
+					<path d="M 70 330 C 100 325, 155 318, 200 315 C 230 313, 250 318, 255 325 C 260 332, 245 340, 220 345 C 195 350, 155 348, 120 345 C 90 342, 65 338, 70 330 Z" fill="url(#bodyFill)" stroke="rgba(95,139,76,0.25)" stroke-width="0.8" />
+
+					<!-- Shell -->
+					<path d="M 200 190
+                 C 200 145, 245 125, 278 142
+                 C 311 159, 322 200, 308 232
+                 C 294 264, 262 278, 232 270
+                 C 202 262, 183 238, 186 210
+                 C 189 182, 212 168, 234 170
+                 C 256 172, 268 190, 266 210
+                 C 264 230, 248 242, 232 238
+                 C 216 234, 208 220, 212 208" fill="url(#shellFill)" stroke="rgba(201,169,110,0.3)" stroke-width="1" />
+
+					<!-- Shell spiral lines -->
+					<path d="M 200 190 C 185 152, 150 138, 128 155 C 106 172, 100 210, 116 242" stroke="rgba(138,123,106,0.2)" stroke-width="0.7" fill="none" />
+					<path d="M 200 190 C 168 125, 118 105, 88 130 C 58 155, 54 215, 78 260" stroke="rgba(95,139,76,0.12)" stroke-width="0.5" fill="none" />
+
+					<!-- Shell highlight -->
+					<path d="M 148 162 C 158 152, 178 148, 192 155" stroke="rgba(255,255,255,0.18)" stroke-width="1.5" stroke-linecap="round" fill="none" />
+					<path d="M 122 188 C 116 202, 115 220, 122 236" stroke="rgba(255,255,255,0.08)" stroke-width="1" stroke-linecap="round" fill="none" />
+
+					<!-- Head + tentacles -->
+					<ellipse cx="95" cy="318" rx="18" ry="10" fill="rgba(95,139,76,0.3)" />
+					<path d="M 90 310 C 80 292, 74 278, 68 268" stroke="rgba(95,139,76,0.4)" stroke-width="1.2" stroke-linecap="round" fill="none" />
+					<path d="M 100 308 C 96 290, 92 274, 88 262" stroke="rgba(95,139,76,0.4)" stroke-width="1.2" stroke-linecap="round" fill="none" />
+					<circle cx="68" cy="266" r="3.5" fill="rgba(199,242,208,0.5)" filter="url(#glow2)" />
+					<circle cx="88" cy="260" r="3.5" fill="rgba(199,242,208,0.5)" filter="url(#glow2)" />
+					<!-- Eye shine -->
+					<circle cx="67" cy="265" r="1" fill="rgba(255,255,255,0.7)" />
+					<circle cx="87" cy="259" r="1" fill="rgba(255,255,255,0.7)" />
+
+					<!-- Slime trail -->
+					<path d="M 70 335 C 55 338, 38 340, 20 338" stroke="rgba(199,242,208,0.15)" stroke-width="6" stroke-linecap="round" fill="none" filter="url(#dewFilter)" />
+					<path d="M 70 335 C 55 338, 38 340, 20 338" stroke="rgba(255,255,255,0.06)" stroke-width="2" stroke-linecap="round" fill="none" />
+
+					<!-- Dew drops on moss -->
+					<ellipse cx="155" cy="345" rx="3" ry="4" fill="rgba(199,242,208,0.35)" filter="url(#dewFilter)" />
+					<ellipse cx="290" cy="338" rx="4" ry="5" fill="rgba(199,242,208,0.3)" filter="url(#dewFilter)" />
+					<ellipse cx="340" cy="342" rx="2.5" ry="3.5" fill="rgba(255,255,255,0.2)" />
+					<ellipse cx="42" cy="336" rx="3" ry="4" fill="rgba(199,242,208,0.25)" />
+
+					<!-- Floating spores / dust -->
+					<circle cx="140" cy="180" r="1.5" fill="rgba(199,242,208,0.3)">
+						<animate attributeName="cy" values="180;170;180" dur="4s" repeatCount="indefinite" />
+						<animate attributeName="opacity" values="0.3;0.6;0.3" dur="4s" repeatCount="indefinite" />
+					</circle>
+					<circle cx="300" cy="150" r="1" fill="rgba(201,169,110,0.4)">
+						<animate attributeName="cy" values="150;138;150" dur="5s" repeatCount="indefinite" />
+						<animate attributeName="opacity" values="0.4;0.7;0.4" dur="5s" repeatCount="indefinite" />
+					</circle>
+					<circle cx="88" cy="220" r="1.2" fill="rgba(199,242,208,0.25)">
+						<animate attributeName="cy" values="220;208;220" dur="6s" repeatCount="indefinite" />
+						<animate attributeName="opacity" values="0.25;0.5;0.25" dur="6s" repeatCount="indefinite" />
+					</circle>
+					<circle cx="355" cy="210" r="1" fill="rgba(95,139,76,0.5)">
+						<animate attributeName="cy" values="210;198;210" dur="3.5s" repeatCount="indefinite" />
+						<animate attributeName="opacity" values="0.5;0.8;0.5" dur="3.5s" repeatCount="indefinite" />
+					</circle>
+
+					<!-- Fog wisps -->
+					<ellipse cx="200" cy="360" rx="150" ry="30" fill="rgba(219,231,216,0.03)" />
+					<ellipse cx="200" cy="380" rx="180" ry="25" fill="rgba(219,231,216,0.02)" />
+				</svg>
+			</div>
+
+			<div class="reveal reveal-delay-1">
+				<div class="glass-panel">
+					<p class="specimen-name">Why should you choose us?</p>
+					<h2 class="specimen-title">
+						About<br><em>us.</em>
+					</h2>
+					<p class="specimen-desc">
+						We are new but that doesn't mean we are bad,give us a chance and you won't regret it..
+					</p>
+					<ul class="spec-list">
+						<li>Fallacious0 is a free online gaming platform where players can enjoy</li>
+						<li>browser games instantly. Discover multiplayer games, horror games,</li>
+						<li>action games, racing games, puzzle games, indie games, and survival games.</li>
+						
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- ===== GALLERY STRIP ===== -->
+	<section id="gallery" style="padding:0;">
+		<div class="gallery-strip">
+
+			<div class="gallery-cell" style="background:linear-gradient(135deg,#0a1a10 0%,#162b1a 100%);">
+				<div class="gallery-cell-inner">
+					<svg viewBox="0 0 200 400" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
+						<defs>
+							<radialGradient id="mc1" cx="50%" cy="40%" r="60%">
+								<stop offset="0%" stop-color="#2f5d3a" stop-opacity="0.5" />
+								<stop offset="100%" stop-color="#0a1a10" stop-opacity="0" />
+							</radialGradient>
+						</defs>
+						<rect width="200" height="400" fill="url(#mc1)" />
+						<!-- Fern fronds -->
+						<path d="M 100 380 C 100 340, 95 300, 85 260 C 75 220, 65 195, 60 180" stroke="rgba(95,139,76,0.5)" stroke-width="1.5" fill="none" stroke-linecap="round" />
+						<path d="M 75 280 C 60 270, 45 268, 35 272" stroke="rgba(95,139,76,0.35)" stroke-width="1" fill="none" />
+						<path d="M 80 260 C 65 248, 52 244, 40 246" stroke="rgba(95,139,76,0.3)" stroke-width="0.8" fill="none" />
+						<path d="M 84 240 C 72 226, 60 222, 50 225" stroke="rgba(95,139,76,0.25)" stroke-width="0.7" fill="none" />
+						<path d="M 87 220 C 78 205, 68 200, 58 202" stroke="rgba(95,139,76,0.2)" stroke-width="0.6" fill="none" />
+						<path d="M 100 380 C 100 340, 105 300, 115 260 C 125 220, 135 195, 140 180" stroke="rgba(47,93,58,0.4)" stroke-width="1.5" fill="none" stroke-linecap="round" />
+						<path d="M 125 280 C 140 270, 155 268, 165 272" stroke="rgba(47,93,58,0.3)" stroke-width="1" fill="none" />
+						<!-- Dew -->
+						<ellipse cx="60" cy="272" rx="2.5" ry="3" fill="rgba(199,242,208,0.4)" />
+						<ellipse cx="165" cy="272" rx="2" ry="2.5" fill="rgba(199,242,208,0.3)" />
+					</svg>
+				</div>
+				<span class="gallery-label">Forest Floor</span>
+			</div>
+
+			<div class="gallery-cell" style="background:linear-gradient(160deg,#1a1208 0%,#241a12 100%);">
+				<div class="gallery-cell-inner">
+					<svg viewBox="0 0 200 400" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
+						<!-- Bark texture simulation -->
+						<rect width="200" height="400" fill="#120d08" />
+						<line x1="30" y1="0" x2="25" y2="400" stroke="rgba(80,60,40,0.3)" stroke-width="4" />
+						<line x1="70" y1="0" x2="68" y2="400" stroke="rgba(60,45,30,0.25)" stroke-width="6" />
+						<line x1="120" y1="0" x2="125" y2="400" stroke="rgba(80,60,40,0.2)" stroke-width="3" />
+						<line x1="160" y1="0" x2="158" y2="400" stroke="rgba(70,52,35,0.28)" stroke-width="5" />
+						<line x1="50" y1="100" x2="170" y2="110" stroke="rgba(60,45,30,0.15)" stroke-width="2" />
+						<line x1="20" y1="220" x2="180" y2="215" stroke="rgba(80,60,40,0.12)" stroke-width="2" />
+						<!-- Moss patches on bark -->
+						<ellipse cx="45" cy="180" rx="18" ry="12" fill="rgba(47,93,58,0.4)" />
+						<ellipse cx="140" cy="260" rx="22" ry="15" fill="rgba(35,72,45,0.35)" />
+						<ellipse cx="90" cy="340" rx="15" ry="10" fill="rgba(47,93,58,0.3)" />
+						<!-- Snail on bark -->
+						<path d="M 90 200 C 90 185, 105 178, 118 184 C 131 190, 135 205, 128 217 C 121 229, 107 233, 96 228 C 85 223, 80 210, 85 200 C 88 193, 95 190, 103 191" stroke="rgba(201,169,110,0.35)" stroke-width="0.8" fill="rgba(201,169,110,0.06)" />
+						<ellipse cx="80" cy="225" rx="12" ry="6" fill="rgba(95,139,76,0.25)" />
+						<line x1="78" y1="220" x2="70" y2="210" stroke="rgba(95,139,76,0.4)" stroke-width="0.7" stroke-linecap="round" />
+						<line x1="82" y1="219" x2="78" y2="207" stroke="rgba(95,139,76,0.4)" stroke-width="0.7" stroke-linecap="round" />
+						<circle cx="70" cy="209" r="2" fill="rgba(199,242,208,0.5)" />
+						<circle cx="78" cy="206" r="2" fill="rgba(199,242,208,0.5)" />
+					</svg>
+				</div>
+				<span class="gallery-label">Ancient Bark</span>
+			</div>
+
+			<div class="gallery-cell" style="background:linear-gradient(170deg,#0f1f16 0%,#1a2f20 100%);">
+				<div class="gallery-cell-inner">
+					<svg viewBox="0 0 200 400" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
+						<defs>
+							<radialGradient id="mc3" cx="50%" cy="70%" r="60%">
+								<stop offset="0%" stop-color="#2f5d3a" stop-opacity="0.6" />
+								<stop offset="100%" stop-color="#0f1f16" stop-opacity="0" />
+							</radialGradient>
+						</defs>
+						<rect width="200" height="400" fill="url(#mc3)" />
+						<!-- Water droplets on glass -->
+						<ellipse cx="40" cy="80" rx="5" ry="7" fill="rgba(199,242,208,0.25)" stroke="rgba(199,242,208,0.15)" stroke-width="0.5" />
+						<ellipse cx="75" cy="55" rx="4" ry="5.5" fill="rgba(199,242,208,0.2)" />
+						<ellipse cx="120" cy="95" rx="6" ry="8" fill="rgba(199,242,208,0.22)" stroke="rgba(199,242,208,0.1)" stroke-width="0.5" />
+						<ellipse cx="160" cy="65" rx="3.5" ry="5" fill="rgba(199,242,208,0.18)" />
+						<ellipse cx="30" cy="150" rx="4" ry="6" fill="rgba(199,242,208,0.2)" />
+						<ellipse cx="170" cy="140" rx="5" ry="7" fill="rgba(199,242,208,0.22)" />
+						<ellipse cx="95" cy="130" rx="3" ry="4" fill="rgba(255,255,255,0.15)" />
+						<!-- Highlight on each drop -->
+						<ellipse cx="38" cy="77" rx="1.5" ry="2" fill="rgba(255,255,255,0.5)" />
+						<ellipse cx="119" cy="91" rx="2" ry="2.5" fill="rgba(255,255,255,0.45)" />
+						<ellipse cx="158" cy="62" rx="1.2" ry="1.5" fill="rgba(255,255,255,0.4)" />
+						<!-- Drip trails -->
+						<path d="M 40 87 C 39 100, 37 115, 36 130" stroke="rgba(199,242,208,0.12)" stroke-width="1" fill="none" stroke-linecap="round" />
+						<path d="M 120 103 C 119 118, 117 135, 116 152" stroke="rgba(199,242,208,0.1)" stroke-width="0.8" fill="none" stroke-linecap="round" />
+						<!-- Fog -->
+						<ellipse cx="100" cy="380" rx="120" ry="40" fill="rgba(219,231,216,0.06)" />
+						<ellipse cx="100" cy="350" rx="100" ry="30" fill="rgba(219,231,216,0.04)" />
+					</svg>
+				</div>
+				<span class="gallery-label">Morning Dew</span>
+			</div>
+
+			<div class="gallery-cell" style="background:linear-gradient(145deg,#080f0b 0%,#141e10 100%);">
+				<div class="gallery-cell-inner">
+					<svg viewBox="0 0 200 400" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
+						<defs>
+							<radialGradient id="bio" cx="50%" cy="50%" r="50%">
+								<stop offset="0%" stop-color="#1e4028" stop-opacity="0.7" />
+								<stop offset="100%" stop-color="#080f0b" stop-opacity="0" />
+							</radialGradient>
+						</defs>
+						<rect width="200" height="400" fill="url(#bio)" />
+						<!-- Bioluminescent spores -->
+						<circle cx="60" cy="120" r="4" fill="rgba(95,139,76,0.4)">
+							<animate attributeName="r" values="4;6;4" dur="3s" repeatCount="indefinite" />
+							<animate attributeName="opacity" values="0.4;0.8;0.4" dur="3s" repeatCount="indefinite" />
+						</circle>
+						<circle cx="140" cy="80" r="3" fill="rgba(199,242,208,0.5)">
+							<animate attributeName="r" values="3;5;3" dur="4s" repeatCount="indefinite" />
+							<animate attributeName="opacity" values="0.5;0.9;0.5" dur="4s" repeatCount="indefinite" />
+						</circle>
+						<circle cx="100" cy="200" r="5" fill="rgba(95,139,76,0.35)">
+							<animate attributeName="r" values="5;7;5" dur="2.5s" repeatCount="indefinite" />
+							<animate attributeName="opacity" values="0.35;0.7;0.35" dur="2.5s" repeatCount="indefinite" />
+						</circle>
+						<circle cx="50" cy="280" r="3.5" fill="rgba(199,242,208,0.4)">
+							<animate attributeName="r" values="3.5;5.5;3.5" dur="5s" repeatCount="indefinite" />
+							<animate attributeName="opacity" values="0.4;0.7;0.4" dur="5s" repeatCount="indefinite" />
+						</circle>
+						<circle cx="155" cy="240" r="4" fill="rgba(95,139,76,0.45)">
+							<animate attributeName="r" values="4;6;4" dur="3.8s" repeatCount="indefinite" />
+							<animate attributeName="opacity" values="0.45;0.8;0.45" dur="3.8s" repeatCount="indefinite" />
+						</circle>
+						<circle cx="30" cy="170" r="2.5" fill="rgba(199,242,208,0.35)">
+							<animate attributeName="r" values="2.5;4;2.5" dur="4.5s" repeatCount="indefinite" />
+							<animate attributeName="opacity" values="0.35;0.6;0.35" dur="4.5s" repeatCount="indefinite" />
+						</circle>
+						<circle cx="170" cy="320" r="3" fill="rgba(95,139,76,0.4)">
+							<animate attributeName="r" values="3;5;3" dur="3.2s" repeatCount="indefinite" />
+							<animate attributeName="opacity" values="0.4;0.75;0.4" dur="3.2s" repeatCount="indefinite" />
+						</circle>
+					</svg>
+				</div>
+				<span class="gallery-label">Bioluminescence</span>
+			</div>
+
+			<div class="gallery-cell" style="background:linear-gradient(155deg,#121a10 0%,#0e1a12 100%);">
+				<div class="gallery-cell-inner">
+					<svg viewBox="0 0 200 400" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
+						<!-- Macro shell detail -->
+						<rect width="200" height="400" fill="#0c1510" />
+						<path d="M 100 300
+                   C 100 240, 135 215, 162 228
+                   C 189 241, 198 275, 185 302
+                   C 172 329, 146 340, 122 333
+                   C 98 326, 82 306, 85 284
+                   C 88 262, 106 250, 122 252
+                   C 138 254, 148 265, 146 280
+                   C 144 295, 133 302, 122 299" stroke="rgba(201,169,110,0.5)" stroke-width="1.5" fill="rgba(201,169,110,0.08)" />
+						<path d="M 100 300 C 80 220, 45 195, 30 215 C 15 235, 18 285, 38 318" stroke="rgba(138,123,106,0.3)" stroke-width="1" fill="none" />
+						<path d="M 100 300 C 65 180, 15 148, -8 178" stroke="rgba(95,139,76,0.15)" stroke-width="0.7" fill="none" />
+						<!-- Macro highlight strips -->
+						<path d="M 52 230 C 62 218, 80 212, 95 217" stroke="rgba(255,255,255,0.2)" stroke-width="2" stroke-linecap="round" fill="none" />
+						<path d="M 30 260 C 25 274, 24 292, 30 308" stroke="rgba(255,255,255,0.1)" stroke-width="1.5" stroke-linecap="round" fill="none" />
+						<!-- Iridescence overlay -->
+						<path d="M 80 240 C 100 235, 130 238, 150 250 C 165 260, 168 275, 160 285" stroke="rgba(199,242,208,0.12)" stroke-width="8" fill="none" stroke-linecap="round" />
+						<!-- Spore dust -->
+						<circle cx="40" cy="150" r="1.5" fill="rgba(199,242,208,0.4)" />
+						<circle cx="160" cy="120" r="1" fill="rgba(201,169,110,0.5)" />
+						<circle cx="80" cy="100" r="1.2" fill="rgba(199,242,208,0.3)" />
+					</svg>
+				</div>
+				<span class="gallery-label">Shell Study</span>
+			</div>
+
+		</div>
+	</section>
+
+	<!-- ===== CLOSING CTA ===== -->
+	<section id="closing">
+		<p class="closing-eyebrow reveal">Fallacious0.dedyn.io - Note that link</p>
+		<h2 class="closing-title reveal">
+			The Enjoyment<br>
+			<em>awaits.</em>
+		</h2>
+		<p class="closing-sub reveal">Unlimited Games. For you.</p>
+		<div class="reveal">
+			<a href="#hero" class="closing-cta">
+				<span class="pulse-dot"></span>
+				Join the Colony
+			</a>
+		</div>
+	</section>
+
+	<!-- ===== FOOTER ===== -->
+	<footer>
+		<span class="footer-brand">Fallacious0</span>
+		<span class="footer-copy">© 2026 — Free online browser games</span>
+	</footer>
+
+	<script>
+		// ==============================
+		// CURSOR
+		// ==============================
+		const cursor = document.getElementById('cursor');
+		const cursorRing = document.getElementById('cursor-ring');
+		let mx = -100,
+			my = -100,
+			rx = -100,
+			ry = -100;
+		document.addEventListener('mousemove', e => {
+			mx = e.clientX;
+			my = e.clientY;
+			cursor.style.left = mx + 'px';
+			cursor.style.top = my + 'px';
+		});
+		(function trackRing() {
+			rx += (mx - rx) * 0.12;
+			ry += (my - ry) * 0.12;
+			cursorRing.style.left = rx + 'px';
+			cursorRing.style.top = ry + 'px';
+			requestAnimationFrame(trackRing);
+		})();
+		document.querySelectorAll('a, button').forEach(el => {
+			el.addEventListener('mouseenter', () => {
+				cursor.style.transform = 'translate(-50%,-50%) scale(1.8)';
+				cursorRing.style.transform = 'translate(-50%,-50%) scale(1.5)';
+				cursorRing.style.borderColor = 'rgba(199,242,208,0.5)';
+			});
+			el.addEventListener('mouseleave', () => {
+				cursor.style.transform = 'translate(-50%,-50%) scale(1)';
+				cursorRing.style.transform = 'translate(-50%,-50%) scale(1)';
+				cursorRing.style.borderColor = 'rgba(199,242,208,0.3)';
+			});
+		});
+		// ==============================
+		// SPORE PARTICLES
+		// ==============================
+		const sporeCanvas = document.getElementById('spore-canvas');
+		const sCtx = sporeCanvas.getContext('2d');
+		let spores = [];
+		let W, H;
+
+		function resizeSpore() {
+			W = sporeCanvas.width = window.innerWidth;
+			H = sporeCanvas.height = window.innerHeight;
+		}
+		resizeSpore();
+		window.addEventListener('resize', resizeSpore);
+		class Spore {
+			constructor(x, y) {
+				this.x = x;
+				this.y = y;
+				this.life = 1;
+				this.decay = 0.015 + Math.random() * 0.02;
+				this.r = 1.5 + Math.random() * 2.5;
+				this.vx = (Math.random() - 0.5) * 0.6;
+				this.vy = -0.3 - Math.random() * 0.5;
+				this.green = Math.random() > 0.4;
+			}
+			update() {
+				this.x += this.vx;
+				this.y += this.vy;
+				this.vy *= 0.99;
+				this.life -= this.decay;
+			}
+			draw(ctx) {
+				const alpha = this.life * 0.55;
+				const color = this.green ?
+					`rgba(95,139,76,${alpha})` :
+					`rgba(199,242,208,${alpha})`;
+				ctx.beginPath();
+				ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+				ctx.fillStyle = color;
+				ctx.shadowBlur = 8;
+				ctx.shadowColor = this.green ? 'rgba(95,139,76,0.4)' : 'rgba(199,242,208,0.4)';
+				ctx.fill();
+				ctx.shadowBlur = 0;
+			}
+		}
+		document.addEventListener('mousemove', e => {
+			if (Math.random() > 0.55) return;
+			spores.push(new Spore(e.clientX, e.clientY));
+			if (spores.length > 120) spores.shift();
+		});
+
+		function animateSpores() {
+			sCtx.clearRect(0, 0, W, H);
+			spores = spores.filter(s => s.life > 0);
+			spores.forEach(s => {
+				s.update();
+				s.draw(sCtx);
+			});
+			requestAnimationFrame(animateSpores);
+		}
+		animateSpores();
+		// ==============================
+		// FOG CANVAS
+		// ==============================
+		const fogCanvas = document.getElementById('fog-canvas');
+		const fCtx = fogCanvas.getContext('2d');
+		let fogW, fogH;
+
+		function resizeFog() {
+			fogW = fogCanvas.width = fogCanvas.offsetWidth;
+			fogH = fogCanvas.height = fogCanvas.offsetHeight;
+		}
+		resizeFog();
+		window.addEventListener('resize', resizeFog);
+		let fogTime = 0;
+		const fogLayers = Array.from({
+			length: 5
+		}, (_, i) => ({
+			x: Math.random() * fogW,
+			y: fogH * (0.35 + Math.random() * 0.5),
+			r: 120 + Math.random() * 200,
+			speed: 0.08 + Math.random() * 0.12,
+			phase: Math.random() * Math.PI * 2,
+			alpha: 0.025 + Math.random() * 0.025
+		}));
+
+		function drawFog() {
+			fCtx.clearRect(0, 0, fogW, fogH);
+			fogTime += 0.003;
+			fogLayers.forEach((layer, i) => {
+				const xOff = Math.sin(fogTime * layer.speed + layer.phase) * 60;
+				const yOff = Math.cos(fogTime * layer.speed * 0.7 + layer.phase) * 20;
+				const grad = fCtx.createRadialGradient(
+					layer.x + xOff, layer.y + yOff, 0,
+					layer.x + xOff, layer.y + yOff, layer.r
+				);
+				grad.addColorStop(0, `rgba(199,242,208,${layer.alpha})`);
+				grad.addColorStop(0.5, `rgba(219,231,216,${layer.alpha * 0.5})`);
+				grad.addColorStop(1, 'rgba(219,231,216,0)');
+				fCtx.beginPath();
+				fCtx.arc(layer.x + xOff, layer.y + yOff, layer.r, 0, Math.PI * 2);
+				fCtx.fillStyle = grad;
+				fCtx.fill();
+			});
+			requestAnimationFrame(drawFog);
+		}
+		drawFog();
+		// ==============================
+		// SCROLL REVEALS
+		// ==============================
+		const revealEls = document.querySelectorAll('.reveal');
+		const revealObs = new IntersectionObserver(entries => {
+			entries.forEach(e => {
+				if (e.isIntersecting) {
+					e.target.classList.add('visible');
+				}
+			});
+		}, {
+			threshold: 0.12,
+			rootMargin: '0px 0px -40px 0px'
+		});
+		revealEls.forEach(el => revealObs.observe(el));
+		// ==============================
+		// SNAIL TRAIL ANIMATION
+		// ==============================
+		const trailObs = new IntersectionObserver(entries => {
+			entries.forEach(e => {
+				if (e.isIntersecting) {
+					document.querySelectorAll('.trail-path').forEach(p => p.classList.add('animate'));
+				}
+			});
+		}, {
+			threshold: 0.5
+		});
+		const trailSection = document.getElementById('trail-section');
+		if (trailSection) trailObs.observe(trailSection);
+		// ==============================
+		// PARALLAX HERO ELEMENTS
+		// ==============================
+		const heroShell = document.querySelector('.hero-shell');
+		const heroContent = document.querySelector('.hero-content');
+		let lastScrollY = 0;
+		let ticking = false;
+		window.addEventListener('scroll', () => {
+			lastScrollY = window.scrollY;
+			if (!ticking) {
+				requestAnimationFrame(() => {
+					const sy = lastScrollY;
+					if (heroShell) heroShell.style.transform = `translateY(calc(-50% + ${sy * 0.18}px)) scale(${1 - sy * 0.0002})`;
+					if (heroContent) heroContent.style.transform = `translateY(${sy * 0.08}px)`;
+					ticking = false;
+				});
+				ticking = true;
+			}
+		});
+	</script>
+</body>
+
+</html>
+    
+  </body>
+  
+</html>
