@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Fallacious0 | Articles</title>
 
-<!-- FONT -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
@@ -15,7 +14,7 @@
 ========================= */
 
 body {
-  cursor: none; /* hide default cursor */
+  cursor: none;
 }
 
 /* inner dot */
@@ -46,6 +45,17 @@ body {
 }
 
 /* =========================
+   TRAIL CANVAS
+========================= */
+
+#trail {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9997;
+}
+
+/* =========================
    BASE
 ========================= */
 
@@ -56,7 +66,6 @@ body {
   color: #dbe7d8;
 }
 
-/* glow background */
 body::before {
   content: "";
   position: fixed;
@@ -120,13 +129,10 @@ nav {
 .hero h1 {
   font-size: 3rem;
   color: #c7f2d0;
-  margin-bottom: 10px;
 }
 
 .hero p {
   color: rgba(219,231,216,0.7);
-  max-width: 700px;
-  margin: auto;
 }
 
 /* =========================
@@ -141,7 +147,7 @@ nav {
 }
 
 /* =========================
-   ARTICLE CARDS
+   CARDS
 ========================= */
 
 .card {
@@ -151,13 +157,7 @@ nav {
   padding: 20px;
   text-decoration: none;
   color: inherit;
-
   backdrop-filter: blur(18px);
-
-  box-shadow:
-    0 10px 30px rgba(0,0,0,0.25),
-    inset 0 0 20px rgba(199,242,208,0.03);
-
   transition: 0.3s;
   cursor: none;
 }
@@ -165,19 +165,6 @@ nav {
 .card:hover {
   transform: translateY(-6px);
   border-color: rgba(199,242,208,0.35);
-  box-shadow:
-    0 0 40px rgba(47,93,58,0.25);
-}
-
-.card h2 {
-  color: #c7f2d0;
-  font-size: 1.1rem;
-  margin-bottom: 10px;
-}
-
-.card p {
-  color: rgba(219,231,216,0.65);
-  font-size: 0.9rem;
 }
 
 /* =========================
@@ -200,8 +187,8 @@ nav {
   border-radius: 12px;
   background: #c7f2d0;
   color: #07140c;
-  cursor: pointer;
   font-weight: 600;
+  cursor: pointer;
 }
 
 /* =========================
@@ -216,21 +203,6 @@ footer {
   background: rgba(17, 24, 17, 0.7);
 }
 
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 768px) {
-  .hero h1 {
-    font-size: 1.8rem;
-  }
-
-  nav {
-    flex-direction: column;
-    gap: 10px;
-  }
-}
-
 </style>
 </head>
 
@@ -240,67 +212,68 @@ footer {
 <div id="cursor"></div>
 <div id="cursor-ring"></div>
 
+<!-- TRAIL -->
+<canvas id="trail"></canvas>
+
 <nav>
   <a class="logo" href="https://fallacious0.dedyn.io/">🌲 Fallacious0</a>
-
-  <a href="#">
-    <button class="nav-button">Don’t Click This Button</button>
-  </a>
+  <button class="nav-button">Don’t Click This Button</button>
 </nav>
 
 <main class="container">
 
   <section class="hero">
     <h1>Fallacious0 Articles</h1>
-    <p>Guides, lore breakdowns, and browser game insights from horror to FPS to sandbox games.</p>
+    <p>Guides, lore breakdowns, and browser game insights.</p>
   </section>
 
   <div class="grid">
 
     <a class="card" href="/articles/eaglercraft-guide.html">
       <h2>Eaglercraft Minecraft Guide</h2>
-      <p>Play Minecraft directly in your browser with no downloads required.</p>
+      <p>Play Minecraft in your browser.</p>
     </a>
 
     <a class="card" href="/articles/fnaf-complete-guide.html">
-      <h2>Five Nights at Freddy’s Guide</h2>
-      <p>Full breakdown of FNAF games, lore, and gameplay mechanics.</p>
+      <h2>FNAF Guide</h2>
+      <p>Full lore breakdown.</p>
     </a>
 
     <a class="card" href="/articles/friday-night-funkin-guide.html">
-      <h2>Friday Night Funkin’ Guide</h2>
-      <p>Rhythm battles, mods, and gameplay tips for FNF.</p>
+      <h2>FNF Guide</h2>
+      <p>Rhythm battles explained.</p>
     </a>
 
     <a class="card" href="/articles/ultrakill-overview.html">
       <h2>ULTRAKILL Overview</h2>
-      <p>Fast-paced FPS gameplay guide and mechanics explained.</p>
+      <p>Fast FPS mechanics.</p>
     </a>
 
     <a class="card" href="/articles/undertale-lore.html">
-      <h2>Undertale Lore Explained</h2>
-      <p>Story paths, characters, and secrets of Undertale and Undertale Yellow.</p>
+      <h2>Undertale Lore</h2>
+      <p>Story paths explained.</p>
     </a>
 
   </div>
 
   <section class="cta">
-    <h2>Play Games on Fallacious0</h2>
-    <p>Jump into your favorite browser games instantly.</p>
+    <h2>Play Games</h2>
+    <p>Jump into browser games instantly.</p>
     <a href="https://fallacious0.dedyn.io/">
-      <button>🎮 Go to Homepage</button>
+      <button>🎮 Go Home</button>
     </a>
   </section>
 
 </main>
 
 <footer>
-  © 2026 Fallacious0 • All Rights Reserved
+  © 2026 Fallacious0
 </footer>
 
 <script>
+
 /* =========================
-   CURSOR SCRIPT
+   CURSOR
 ========================= */
 
 const cursor = document.getElementById("cursor");
@@ -340,6 +313,74 @@ document.querySelectorAll("a, button").forEach(el => {
     ring.style.transform = "translate(-50%,-50%) scale(1)";
   });
 });
+
+/* =========================
+   SPORE TRAIL
+========================= */
+
+const canvas = document.getElementById("trail");
+const ctx = canvas.getContext("2d");
+
+let w, h;
+
+function resize() {
+  w = canvas.width = window.innerWidth;
+  h = canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener("resize", resize);
+
+let spores = [];
+
+class Spore {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+    this.life = 1;
+    this.decay = 0.02 + Math.random() * 0.02;
+    this.r = 1 + Math.random() * 2;
+    this.vx = (Math.random() - 0.5) * 0.6;
+    this.vy = -Math.random() * 0.6;
+  }
+
+  update() {
+    this.x += this.vx;
+    this.y += this.vy;
+    this.life -= this.decay;
+  }
+
+  draw() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(199,242,208,${this.life * 0.5})`;
+    ctx.shadowBlur = 8;
+    ctx.shadowColor = "rgba(95,139,76,0.5)";
+    ctx.fill();
+    ctx.shadowBlur = 0;
+  }
+}
+
+document.addEventListener("mousemove", (e) => {
+  if (Math.random() > 0.6) return;
+
+  spores.push(new Spore(e.clientX, e.clientY));
+  if (spores.length > 120) spores.shift();
+});
+
+function loop() {
+  ctx.clearRect(0, 0, w, h);
+
+  spores = spores.filter(s => s.life > 0);
+
+  spores.forEach(s => {
+    s.update();
+    s.draw();
+  });
+
+  requestAnimationFrame(loop);
+}
+loop();
+
 </script>
 
 </body>
