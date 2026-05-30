@@ -1,0 +1,7 @@
+{
+    "parent": "block/column_side",
+    "textures": {
+        "end": "blocks/crimson_log_top",
+        "side": "blocks/crimson_log"
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "axis=y":    { "model": "stripped_jungle_log" },
+        "axis=z":     { "model": "stripped_jungle_log_side" },
+        "axis=x":     { "model": "stripped_jungle_log_side", "y": 90 },
+        "axis=none":   { "model": "oak_bark" }
+    }
+}

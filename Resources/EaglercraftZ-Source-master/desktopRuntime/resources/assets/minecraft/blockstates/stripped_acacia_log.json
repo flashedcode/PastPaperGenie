@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "axis=y":    { "model": "stripped_acacia_log" },
+        "axis=z":     { "model": "stripped_acacia_log_side" },
+        "axis=x":     { "model": "stripped_acacia_log_side", "y": 90 },
+        "axis=none":   { "model": "oak_bark" }
+    }
+}
