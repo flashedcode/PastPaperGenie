@@ -1,274 +1,400 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
-  <!-- META -->
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Fallacious0 | Updates & Changelog</title>
 
-  <title>Fallacious0 | Updates & Changelog</title>
+<link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
-  <!-- FONT AWESOME -->
+<style>
 
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+/* =========================
+   CURSOR
+========================= */
 
-  <!-- Required for games to run -->
+body {
+  cursor: none;
+}
 
-  <script async
-    src="https://www.googletagmanager.com/gtag/js?id=G-TE6DN1C5LV">
-  </script>
+/* cursor dot */
+#cursor {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background: #c7f2d0;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 12px rgba(199,242,208,0.6);
+  transition: transform 0.15s ease;
+}
 
-  <script>
-    window.dataLayer = window.dataLayer || [];
+/* cursor ring */
+#cursor-ring {
+  position: fixed;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(199,242,208,0.3);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: transform 0.2s ease;
+}
 
-    function gtag() {
-      dataLayer.push(arguments);
-    }
+/* =========================
+   TRAIL
+========================= */
 
-    gtag('js', new Date());
-    gtag('config', 'G-TE6DN1C5LV');
-  </script>
-  <meta name="google-adsense-account"
-    content="ca-pub-9701529284798825">
-  <!-- CSS -->
+#trail {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9997;
+}
 
-  <style>
+/* =========================
+   BASE (MOSS THEME)
+========================= */
 
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      font-family:Arial, sans-serif;
-    }
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: #07140c;
+  color: #dbe7d8;
+  overflow-x: hidden;
+}
 
-    body{
-      background:#0f172a;
-      color:white;
-      line-height:1.6;
-    }
+/* soft moss glow background */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(95,139,76,0.12), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(199,242,208,0.08), transparent 45%);
+  pointer-events: none;
+}
 
-    /* NAVBAR */
+/* =========================
+   NAV
+========================= */
 
-    nav{
-      background:#111827;
-      padding:18px 40px;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      box-shadow:0 2px 10px rgba(0,0,0,0.3);
-    }
+nav {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 40px;
+  background: rgba(17, 26, 19, 0.6);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(199,242,208,0.12);
+}
 
-    .logo{
-      text-decoration:none;
-      color:#38bdf8;
-      font-size:1.4rem;
-      font-weight:bold;
-    }
+.logo {
+  text-decoration:none;
+  color:#c7f2d0;
+  font-weight:bold;
+  letter-spacing:0.08em;
+}
 
-    .nav-button{
-      background:#38bdf8;
-      color:#0f172a;
-      border:none;
-      padding:12px 18px;
-      border-radius:12px;
-      font-weight:bold;
-      cursor:pointer;
-      transition:0.2s ease;
-    }
+.nav-button {
+  background: rgba(199,242,208,0.08);
+  border: 1px solid rgba(199,242,208,0.25);
+  color:#c7f2d0;
+  padding:10px 16px;
+  border-radius:999px;
+  cursor:pointer;
+  transition:0.3s;
+}
 
-    .nav-button:hover{
-      transform:translateY(-2px);
-      background:#7dd3fc;
-    }
+.nav-button:hover {
+  background: rgba(199,242,208,0.18);
+}
 
-    /* PAGE */
+/* =========================
+   PAGE
+========================= */
 
-    .container{
-      max-width:900px;
-      margin:auto;
-      padding:60px 20px;
-    }
+.container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 5rem 6vw;
+}
 
-    .page-title{
-      text-align:center;
-      margin-bottom:15px;
-      color:#38bdf8;
-      font-size:3rem;
-    }
+.page-title {
+  text-align:center;
+  font-size:2.8rem;
+  color:#c7f2d0;
+  letter-spacing:0.12em;
+}
 
-    .subtitle{
-      text-align:center;
-      color:#cbd5e1;
-      margin-bottom:50px;
-    }
+.subtitle {
+  text-align:center;
+  color:rgba(219,231,216,0.6);
+  margin-bottom:3rem;
+}
 
-    /* CHANGELOG CARDS */
+/* =========================
+   GRID
+========================= */
 
-    .update-card{
-      background:#111827;
-      padding:30px;
-      border-radius:18px;
-      margin-bottom:25px;
-      box-shadow:0 4px 14px rgba(0,0,0,0.3);
-      transition:0.25s ease;
-    }
+.update-grid {
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap:1.5rem;
+}
 
-    .update-card:hover{
-      transform:translateY(-4px);
-      box-shadow:0 10px 25px rgba(56,189,248,0.25);
-    }
+/* =========================
+   CARDS
+========================= */
 
-    .update-version{
-      color:#38bdf8;
-      margin-bottom:15px;
-      font-size:1.5rem;
-    }
+.update-card {
+  position: relative;
+  padding: 1.5rem;
+  border-radius: 18px;
 
-    .update-card p{
-      color:#d1d5db;
-    }
+  background: rgba(47, 93, 58, 0.12);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(199, 242, 208, 0.12);
 
-    footer{
-      margin-top:60px;
-      background:#111827;
-      padding:30px;
-      text-align:center;
-      color:#94a3b8;
-    }
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.25),
+    inset 0 0 25px rgba(199,242,208,0.03);
 
-    footer a{
-      color:#38bdf8;
-      text-decoration:none;
-      font-weight:bold;
-    }
+  transition: 0.35s ease;
+  overflow: hidden;
+  cursor: none;
+}
 
-  </style>
+/* shimmer */
+.update-card::before {
+  content: "";
+  position:absolute;
+  inset:0;
+  background: linear-gradient(135deg, rgba(199,242,208,0.08), transparent 60%);
+  opacity:0;
+  transition:0.3s;
+}
 
+.update-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  border-color: rgba(199,242,208,0.35);
+  box-shadow:
+    0 0 40px rgba(47,93,58,0.25),
+    0 0 90px rgba(47,93,58,0.12);
+}
+
+.update-card:hover::before {
+  opacity:1;
+}
+
+.update-version {
+  color:#c7f2d0;
+  font-size:1.2rem;
+  margin-bottom:0.5rem;
+}
+
+.update-card p {
+  color:rgba(219,231,216,0.7);
+  font-size:0.9rem;
+  line-height:1.5;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+  text-align:center;
+  padding:2rem;
+  margin-top:4rem;
+  color:rgba(219,231,216,0.5);
+  background: rgba(17, 26, 19, 0.5);
+}
+
+footer a {
+  color:#c7f2d0;
+  text-decoration:none;
+}
+
+</style>
 </head>
 
 <body>
 
-  <!-- NAVIGATION -->
+<!-- CURSOR -->
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
 
-  <nav>
+<!-- TRAIL -->
+<canvas id="trail"></canvas>
 
-    <a href="https://fallacious0.dedyn.io/" class="logo">
-      <i class="fa-solid fa-mountain"></i>
-      Fallacious0
-    </a>
+<nav>
+  <a class="logo" href="https://fallacious0.dedyn.io/">
+    <i class="fa-solid fa-mountain"></i> Fallacious0
+  </a>
 
-    <a href="https://depthschokedirected.com/rniicts9q4?key=d1b41715480408113831053122cdae9c">
-      <button class="nav-button">
-        <i class="fa-regular fa-bookmark"></i>
-        Don't Click This Button
-      </button>
-    </a>
+  <button class="nav-button">Don't Click This Button</button>
+</nav>
 
-  </nav>
+<main class="container">
 
-  <!-- MAIN CONTENT -->
+  <h1 class="page-title">Updates & Changelog</h1>
+  <p class="subtitle">Track website improvements, fixes, and new features.</p>
 
-  <main class="container">
-
-    <h1 class="page-title">Updates & Changelog</h1>
-
-    <p class="subtitle">
-      Track website improvements, fixes, and new features.
-    </p>
-
-    <!-- VERSION 1 -->
+  <div class="update-grid">
 
     <div class="update-card">
-
       <h2 class="update-version">Version 1</h2>
-
-      <p>
-        Added the foundation code template from CodePen and built the first
-        version of the website layout.
-      </p>
-
+      <p>Added foundation template and initial layout structure.</p>
     </div>
 
-    <!-- VERSION 2 -->
-
     <div class="update-card">
-
       <h2 class="update-version">Version 2</h2>
-
-      <p>
-        Improved the website design, changed the code structure,
-        and added smoother animations.
-      </p>
-
+      <p>Improved design system, smoother animations, cleaner layout.</p>
     </div>
 
-    <!-- VERSION 3 -->
-
     <div class="update-card">
-
       <h2 class="update-version">Version 3</h2>
-
-      <p>
-        Added games, About Us page, and the Updates/Changelog section.
-      </p>
-
+      <p>Added games page, articles page, and navigation system.</p>
     </div>
 
-    <!-- VERSION 4 -->
-
     <div class="update-card">
-
       <h2 class="update-version">Version 4</h2>
-
-      <p>
-        Fixed bugs, improved stability, optimized page loading,
-        and cleaned up parts of the code.
-      </p>
-</div>
-    <!-- VERSION 5 -->
+      <p>Bug fixes, performance improvements, and UI cleanup.</p>
+    </div>
 
     <div class="update-card">
-
       <h2 class="update-version">Version 5</h2>
-
-      <p>
-        Fixed bugs, improved stability,added relevant images, added 20 more games and reimagined ui of About us,Updates and Games page..
-      </p>
-
-      
+      <p>Major UI overhaul: Moss Glass redesign, more games, improved layout consistency.</p>
     </div>
+
+  </div>
+
+</main>
+
+<footer>
+  <a href="https://fallacious0.dedyn.io/">Fallacious0</a>
+  <p>© 2026 Fallacious0</p>
+</footer>
+
 <script>
-  atOptions = {
-    'key' : '322917da0c9fb7f9639e0d47374eec0c',
-    'format' : 'iframe',
-    'height' : 90,
-    'width' : 728,
-    'params' : {}
-  };
+
+/* =========================
+   CURSOR
+========================= */
+
+const cursor = document.getElementById("cursor");
+const ring = document.getElementById("cursor-ring");
+
+let mx = 0, my = 0;
+let rx = 0, ry = 0;
+
+document.addEventListener("mousemove", (e) => {
+  mx = e.clientX;
+  my = e.clientY;
+
+  cursor.style.left = mx + "px";
+  cursor.style.top = my + "px";
+});
+
+function animateRing() {
+  rx += (mx - rx) * 0.15;
+  ry += (my - ry) * 0.15;
+
+  ring.style.left = rx + "px";
+  ring.style.top = ry + "px";
+
+  requestAnimationFrame(animateRing);
+}
+animateRing();
+
+/* hover effect */
+document.querySelectorAll("a, button").forEach(el => {
+  el.addEventListener("mouseenter", () => {
+    cursor.style.transform = "translate(-50%,-50%) scale(1.8)";
+    ring.style.transform = "translate(-50%,-50%) scale(1.5)";
+  });
+
+  el.addEventListener("mouseleave", () => {
+    cursor.style.transform = "translate(-50%,-50%) scale(1)";
+    ring.style.transform = "translate(-50%,-50%) scale(1)";
+  });
+});
+
+/* =========================
+   SPORE TRAIL
+========================= */
+
+const canvas = document.getElementById("trail");
+const ctx = canvas.getContext("2d");
+
+let w, h;
+
+function resize() {
+  w = canvas.width = window.innerWidth;
+  h = canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener("resize", resize);
+
+let spores = [];
+
+class Spore {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+    this.life = 1;
+    this.decay = 0.02 + Math.random() * 0.02;
+    this.r = 1 + Math.random() * 2;
+    this.vx = (Math.random() - 0.5) * 0.6;
+    this.vy = -Math.random() * 0.6;
+  }
+
+  update() {
+    this.x += this.vx;
+    this.y += this.vy;
+    this.life -= this.decay;
+  }
+
+  draw() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(199,242,208,${this.life * 0.5})`;
+    ctx.shadowBlur = 8;
+    ctx.shadowColor = "rgba(95,139,76,0.5)";
+    ctx.fill();
+    ctx.shadowBlur = 0;
+  }
+}
+
+document.addEventListener("mousemove", (e) => {
+  if (Math.random() > 0.6) return;
+
+  spores.push(new Spore(e.clientX, e.clientY));
+  if (spores.length > 120) spores.shift();
+});
+
+function loop() {
+  ctx.clearRect(0, 0, w, h);
+
+  spores = spores.filter(s => s.life > 0);
+
+  spores.forEach(s => {
+    s.update();
+    s.draw();
+  });
+
+  requestAnimationFrame(loop);
+}
+loop();
+
 </script>
-<script src="https://depthschokedirected.com/322917da0c9fb7f9639e0d47374eec0c/invoke.js"></script>
-
-  </main>
-
-  <!-- FOOTER -->
-
-  <footer>
-
-    <a href="https://fallacious0.dedyn.io/">
-      <i class="fa-solid fa-mountain"></i>
-      Fallacious0
-    </a>
-
-    <p style="margin-top:15px;">
-      © 2026 Fallacious0 • All Rights Reserved
-    </p>
-
-  </footer>
-
-<script src="./script.js"></script>
 
 </body>
 </html>

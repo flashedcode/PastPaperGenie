@@ -1,286 +1,387 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Fallacious0 | Articles</title>
 
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-  <title>Fallacious0 | Articles & Gaming Guides 2026</title>
+<style>
 
-  <meta name="description"
-    content="Read gaming guides, lore breakdowns, and browser game articles on Fallacious0. Explore FNAF, Eaglercraft, ULTRAKILL, Undertale, and more." />
+/* =========================
+   CURSOR
+========================= */
 
-  <meta name="keywords"
-    content="Fallacious0 articles, gaming guides, FNAF guide, Eaglercraft guide, FNF guide, ULTRAKILL overview, Undertale lore, browser games blog" />
+body {
+  cursor: none;
+}
 
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+/* inner dot */
+#cursor {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background: #c7f2d0;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 12px rgba(199,242,208,0.6);
+  transition: transform 0.15s ease;
+}
 
-  <script async
-    src="https://www.googletagmanager.com/gtag/js?id=G-TE6DN1C5LV"></script>
+/* outer ring */
+#cursor-ring {
+  position: fixed;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(199,242,208,0.3);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: transform 0.2s ease;
+}
 
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-TE6DN1C5LV');
-  </script>
+/* =========================
+   TRAIL CANVAS
+========================= */
 
-  <meta name="google-adsense-account" content="ca-pub-9701529284798825">
+#trail {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9997;
+}
 
-  <style>
+/* =========================
+   BASE
+========================= */
 
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      font-family:Arial, sans-serif;
-    }
+body {
+  margin: 0;
+  font-family: 'Poppins', system-ui, sans-serif;
+  background: #07140c;
+  color: #dbe7d8;
+}
 
-    body{
-      background:#0f172a;
-      color:white;
-      line-height:1.7;
-    }
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(95,139,76,0.12), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(199,242,208,0.08), transparent 45%);
+  pointer-events: none;
+}
 
-    nav{
-      background:#111827;
-      padding:18px 40px;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      box-shadow:0 2px 10px rgba(0,0,0,0.3);
-    }
+/* =========================
+   NAV
+========================= */
 
-    .logo{
-      text-decoration:none;
-      color:#38bdf8;
-      font-size:1.4rem;
-      font-weight:bold;
-    }
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 40px;
+  background: rgba(17, 24, 17, 0.7);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(199,242,208,0.1);
+}
 
-    .nav-button{
-      background:#38bdf8;
-      color:#0f172a;
-      border:none;
-      padding:12px 18px;
-      border-radius:12px;
-      font-weight:bold;
-      cursor:pointer;
-      transition:0.2s ease;
-    }
+.logo {
+  text-decoration: none;
+  color: #c7f2d0;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
 
-    .nav-button:hover{
-      transform:translateY(-2px);
-      background:#7dd3fc;
-    }
+.nav-button {
+  background: rgba(199,242,208,0.08);
+  border: 1px solid rgba(199,242,208,0.25);
+  color: #c7f2d0;
+  padding: 10px 14px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+}
 
-    .container{
-      max-width:1000px;
-      margin:auto;
-      padding:60px 20px;
-    }
+.nav-button:hover {
+  background: rgba(199,242,208,0.18);
+}
 
-    .hero{
-      text-align:center;
-      margin-bottom:50px;
-    }
+/* =========================
+   LAYOUT
+========================= */
 
-    .hero h1{
-      font-size:3rem;
-      color:#38bdf8;
-      margin-bottom:10px;
-    }
+.container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 60px 20px;
+}
 
-    .hero p{
-      color:#cbd5e1;
-      max-width:700px;
-      margin:auto;
-    }
+.hero {
+  text-align: center;
+  margin-bottom: 50px;
+}
 
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
-      gap:20px;
-      margin-top:40px;
-    }
+.hero h1 {
+  font-size: 3rem;
+  color: #c7f2d0;
+}
 
-    .card{
-      background:#111827;
-      padding:25px;
-      border-radius:18px;
-      box-shadow:0 4px 14px rgba(0,0,0,0.3);
-      transition:0.25s ease;
-      text-decoration:none;
-      color:white;
-      display:block;
-    }
+.hero p {
+  color: rgba(219,231,216,0.7);
+}
 
-    .card:hover{
-      transform:translateY(-5px);
-      box-shadow:0 10px 25px rgba(56,189,248,0.25);
-    }
+/* =========================
+   GRID
+========================= */
 
-    .card h2{
-      color:#38bdf8;
-      font-size:1.2rem;
-      margin-bottom:10px;
-    }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-top: 40px;
+}
 
-    .card p{
-      color:#cbd5e1;
-      font-size:0.95rem;
-    }
+/* =========================
+   CARDS
+========================= */
 
-    .cta{
-      background:#38bdf8;
-      color:#0f172a;
-      padding:40px;
-      border-radius:18px;
-      text-align:center;
-      margin-top:50px;
-    }
+.card {
+  background: rgba(47, 93, 58, 0.12);
+  border: 1px solid rgba(199,242,208,0.12);
+  border-radius: 18px;
+  padding: 20px;
+  text-decoration: none;
+  color: inherit;
+  backdrop-filter: blur(18px);
+  transition: 0.3s;
+  cursor: none;
+}
 
-    .cta button{
-      margin-top:15px;
-      padding:14px 22px;
-      border:none;
-      border-radius:12px;
-      background:#0f172a;
-      color:white;
-      cursor:pointer;
-    }
+.card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(199,242,208,0.35);
+}
 
-    footer{
-      margin-top:60px;
-      background:#111827;
-      padding:30px;
-      text-align:center;
-      color:#94a3b8;
-    }
+/* =========================
+   CTA
+========================= */
 
-    footer a{
-      color:#38bdf8;
-      text-decoration:none;
-      font-weight:bold;
-    }
+.cta {
+  margin-top: 50px;
+  background: rgba(199,242,208,0.08);
+  border: 1px solid rgba(199,242,208,0.2);
+  padding: 40px;
+  border-radius: 18px;
+  text-align: center;
+}
 
-  </style>
+.cta button {
+  margin-top: 15px;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 12px;
+  background: #c7f2d0;
+  color: #07140c;
+  font-weight: 600;
+  cursor: pointer;
+}
 
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+  margin-top: 60px;
+  padding: 30px;
+  text-align: center;
+  color: rgba(219,231,216,0.5);
+  background: rgba(17, 24, 17, 0.7);
+}
+
+</style>
 </head>
 
 <body>
 
-  <!-- NAV -->
+<!-- CURSOR -->
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
 
-  <nav>
+<!-- TRAIL -->
+<canvas id="trail"></canvas>
 
-    <a href="https://fallacious0.dedyn.io/" class="logo">
-      <i class="fa-solid fa-mountain"></i>
-      Fallacious0
+<nav>
+  <a class="logo" href="https://fallacious0.dedyn.io/">🌲 Fallacious0</a>
+  <button class="nav-button">Don’t Click This Button</button>
+</nav>
+
+<main class="container">
+
+  <section class="hero">
+    <h1>Fallacious0 Articles</h1>
+    <p>Guides, lore breakdowns, and browser game insights.</p>
+  </section>
+
+  <div class="grid">
+
+    <a class="card" href="/articles/eaglercraft-guide.html">
+      <h2>Eaglercraft Minecraft Guide</h2>
+      <p>Play Minecraft in your browser.</p>
     </a>
 
-    <a href="https://depthschokedirected.com/rniicts9q4?key=d1b41715480408113831053122cdae9c">
-      <button class="nav-button">
-        <i class="fa-regular fa-bookmark"></i>
-        Don't Click This Button
-      </button>
+    <a class="card" href="/articles/fnaf-complete-guide.html">
+      <h2>FNAF Guide</h2>
+      <p>Full lore breakdown.</p>
     </a>
 
-  </nav>
+    <a class="card" href="/articles/friday-night-funkin-guide.html">
+      <h2>FNF Guide</h2>
+      <p>Rhythm battles explained.</p>
+    </a>
 
-  <!-- AD SLOT -->
+    <a class="card" href="/articles/ultrakill-overview.html">
+      <h2>ULTRAKILL Overview</h2>
+      <p>Fast FPS mechanics.</p>
+    </a>
 
-  <script async="async" data-cfasync="false"
-    src="https://depthschokedirected.com/f1901fdf687b1b83b08f43b7ec4b0d03/invoke.js">
-  </script>
+    <a class="card" href="/articles/undertale-lore.html">
+      <h2>Undertale Lore</h2>
+      <p>Story paths explained.</p>
+    </a>
 
-  <div id="container-f1901fdf687b1b83b08f43b7ec4b0d03"></div>
+  </div>
 
-  <!-- MAIN -->
-
-  <main class="container">
-
-    <section class="hero">
-      <h1>Fallacious0 Articles</h1>
-      <p>
-        Guides, lore breakdowns, and browser game insights. Explore everything from horror to FPS to sandbox games.
-      </p>
-    </section>
-
-    <div class="grid">
-
-      <a class="card" href="/articles/eaglercraft-guide.html">
-        <h2>Eaglercraft Minecraft Guide</h2>
-        <p>Play Minecraft directly in your browser with no downloads required.</p>
-      </a>
-
-      <a class="card" href="/articles/fnaf-complete-guide.html">
-        <h2>Five Nights at Freddy’s Guide</h2>
-        <p>Full breakdown of FNAF games, lore, and gameplay mechanics.</p>
-      </a>
-
-      <a class="card" href="/articles/friday-night-funkin-guide.html">
-        <h2>Friday Night Funkin’ Guide</h2>
-        <p>Rhythm battles, mods, and gameplay tips for FNF.</p>
-      </a>
-
-      <a class="card" href="/articles/ultrakill-overview.html">
-        <h2>ULTRAKILL Overview</h2>
-        <p>Fast-paced FPS gameplay guide and mechanics explained.</p>
-      </a>
-
-      <a class="card" href="/articles/undertale-lore.html">
-        <h2>Undertale Lore Explained</h2>
-        <p>Story paths, characters, and secrets of Undertale and Undertale Yellow.</p>
-      </a>
-
-    </div>
-
-    <section class="cta">
-
-      <h2>Play Games on Fallacious0</h2>
-      <p>Jump into your favorite browser games instantly.</p>
-
-      <a href="https://fallacious0.dedyn.io/">
-        <button>🎮 Go to Homepage</button>
-      </a>
-
-    </section>
-<script>
-  atOptions = {
-    'key' : '322917da0c9fb7f9639e0d47374eec0c',
-    'format' : 'iframe',
-    'height' : 90,
-    'width' : 728,
-    'params' : {}
-  };
-</script>
-<script src="https://depthschokedirected.com/322917da0c9fb7f9639e0d47374eec0c/invoke.js"></script>
-
-  </main>
-
-  <!-- FOOTER -->
-
-  <footer>
-
+  <section class="cta">
+    <h2>Play Games</h2>
+    <p>Jump into browser games instantly.</p>
     <a href="https://fallacious0.dedyn.io/">
-      <i class="fa-solid fa-mountain"></i>
-      Fallacious0
+      <button>🎮 Go Home</button>
     </a>
+  </section>
 
-    <p style="margin-top:15px;">
-      © 2026 Fallacious0 • All Rights Reserved
-    </p>
+</main>
 
-  </footer>
+<footer>
+  © 2026 Fallacious0
+</footer>
+
+<script>
+
+/* =========================
+   CURSOR
+========================= */
+
+const cursor = document.getElementById("cursor");
+const ring = document.getElementById("cursor-ring");
+
+let mx = 0, my = 0;
+let rx = 0, ry = 0;
+
+document.addEventListener("mousemove", (e) => {
+  mx = e.clientX;
+  my = e.clientY;
+
+  cursor.style.left = mx + "px";
+  cursor.style.top = my + "px";
+});
+
+function animateRing() {
+  rx += (mx - rx) * 0.15;
+  ry += (my - ry) * 0.15;
+
+  ring.style.left = rx + "px";
+  ring.style.top = ry + "px";
+
+  requestAnimationFrame(animateRing);
+}
+animateRing();
+
+/* hover effect */
+document.querySelectorAll("a, button").forEach(el => {
+  el.addEventListener("mouseenter", () => {
+    cursor.style.transform = "translate(-50%,-50%) scale(1.8)";
+    ring.style.transform = "translate(-50%,-50%) scale(1.5)";
+  });
+
+  el.addEventListener("mouseleave", () => {
+    cursor.style.transform = "translate(-50%,-50%) scale(1)";
+    ring.style.transform = "translate(-50%,-50%) scale(1)";
+  });
+});
+
+/* =========================
+   SPORE TRAIL
+========================= */
+
+const canvas = document.getElementById("trail");
+const ctx = canvas.getContext("2d");
+
+let w, h;
+
+function resize() {
+  w = canvas.width = window.innerWidth;
+  h = canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener("resize", resize);
+
+let spores = [];
+
+class Spore {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+    this.life = 1;
+    this.decay = 0.02 + Math.random() * 0.02;
+    this.r = 1 + Math.random() * 2;
+    this.vx = (Math.random() - 0.5) * 0.6;
+    this.vy = -Math.random() * 0.6;
+  }
+
+  update() {
+    this.x += this.vx;
+    this.y += this.vy;
+    this.life -= this.decay;
+  }
+
+  draw() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(199,242,208,${this.life * 0.5})`;
+    ctx.shadowBlur = 8;
+    ctx.shadowColor = "rgba(95,139,76,0.5)";
+    ctx.fill();
+    ctx.shadowBlur = 0;
+  }
+}
+
+document.addEventListener("mousemove", (e) => {
+  if (Math.random() > 0.6) return;
+
+  spores.push(new Spore(e.clientX, e.clientY));
+  if (spores.length > 120) spores.shift();
+});
+
+function loop() {
+  ctx.clearRect(0, 0, w, h);
+
+  spores = spores.filter(s => s.life > 0);
+
+  spores.forEach(s => {
+    s.update();
+    s.draw();
+  });
+
+  requestAnimationFrame(loop);
+}
+loop();
+
+</script>
 
 </body>
-
 </html>
-```
-
-
-
