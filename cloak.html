@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fallacious0</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Space+Mono:wght@400;700&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;cursor:none}
+:root{--bg:#04040e;--c1:#00e5ff;--c2:#ae45ff;--c3:#ff1870;--c4:#00ff9d;--c5:#ffd60a;--dim:#5d6080;--f1:'Orbitron',monospace;--f2:'Exo 2',sans-serif;--f3:'Space Mono',monospace}
+body{background:var(--bg);color:#c8ccee;font-family:var(--f2);min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+@keyframes gridMove{0%{background-position:0 0}100%{background-position:60px 60px}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+@keyframes ripple{to{width:180px;height:180px;opacity:0}}
+@keyframes panelIn{from{opacity:0;transform:translateY(12px) scale(0.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes keyHint{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+
+.btn{font-family:var(--f1);font-size:9px;font-weight:700;letter-spacing:2px;padding:12px 26px;border-radius:6px;border:1px solid;transition:all 0.3s;position:relative;overflow:hidden;cursor:none;display:inline-flex;align-items:center;gap:8px}
+.btn::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity 0.3s;border-radius:5px}
+.btn:hover::before{opacity:1}
+.btn:hover{transform:translateY(-2px)}
+.btn-cyan{color:var(--c1);border-color:rgba(0,229,255,0.4)}
+.btn-cyan::before{background:rgba(0,229,255,0.1)}
+.btn-cyan:hover{box-shadow:0 0 22px rgba(0,229,255,0.3)}
+.btn-purple{color:var(--c2);border-color:rgba(174,69,255,0.4)}
+.btn-purple::before{background:rgba(174,69,255,0.1)}
+.btn-purple:hover{box-shadow:0 0 22px rgba(174,69,255,0.3)}
+.btn-green{color:var(--c4);border-color:rgba(0,255,157,0.4)}
+.btn-green::before{background:rgba(0,255,157,0.1)}
+.btn-green:hover{box-shadow:0 0 22px rgba(0,255,157,0.25)}
+.btn-red{color:var(--c3);border-color:rgba(255,24,112,0.4)}
+.btn-red::before{background:rgba(255,24,112,0.1)}
+.btn-red:hover{box-shadow:0 0 22px rgba(255,24,112,0.3)}
+
+.disguise-opt{padding:11px 16px;border:1px solid rgba(255,255,255,0.07);border-radius:7px;background:rgba(255,255,255,0.02);cursor:none;transition:all 0.3s;display:flex;align-items:center;gap:10px;text-align:left;width:100%}
+.disguise-opt:hover{border-color:rgba(0,229,255,0.25);background:rgba(0,229,255,0.04);transform:translateX(3px)}
+.disguise-opt.active{border-color:rgba(0,229,255,0.45);background:rgba(0,229,255,0.08)}
+
+input[type=text]{width:100%;padding:11px 14px;background:rgba(255,255,255,0.03);border:1px solid rgba(0,229,255,0.15);border-radius:7px;color:#e4e8ff;font-family:var(--f2);font-size:13px;outline:none;transition:border-color 0.3s,box-shadow 0.3s;cursor:none}
+input[type=text]:focus{border-color:rgba(0,229,255,0.4);box-shadow:0 0 18px rgba(0,229,255,0.08)}
+input[type=text]::placeholder{color:var(--dim)}
+
+@media(hover:none){*{cursor:auto!important}#cdot,#cring{display:none!important}}
+@media(max-width:560px){.main-panel{padding:28px 20px!important}.btn-row{flex-direction:column!important}}
+</style>
+</head>
+<body>
+
+<div id="cdot" style="position:fixed;top:0;left:0;width:7px;height:7px;background:var(--c1);border-radius:50%;pointer-events:none;z-index:10001;box-shadow:0 0 10px var(--c1),0 0 22px rgba(0,229,255,0.5);transform:translate(-50%,-50%);"></div>
+<div id="cring" style="position:fixed;top:0;left:0;width:30px;height:30px;border:1.5px solid rgba(0,229,255,0.65);border-radius:50%;pointer-events:none;z-index:10000;transform:translate(-50%,-50%);transition:width 0.25s,height 0.25s,border-color 0.25s,background 0.25s;"></div>
+
+<!-- BG -->
+<div style="position:fixed;inset:0;pointer-events:none;z-index:0;">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(0,229,255,0.07) 0%,transparent 55%),radial-gradient(ellipse at 80% 30%,rgba(174,69,255,0.065) 0%,transparent 50%);"></div>
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(0,229,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,0.025) 1px,transparent 1px);background-size:60px 60px;animation:gridMove 28s linear infinite;"></div>
+  <div style="position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(0,229,255,0.05) 0%,transparent 70%);top:10%;right:5%;animation:float 8s ease-in-out infinite;pointer-events:none;"></div>
+</div>
+
+<!-- MAIN PANEL -->
+<div class="main-panel" style="position:relative;z-index:2;width:100%;max-width:540px;margin:0 20px;background:rgba(255,255,255,0.025);border:1px solid rgba(0,229,255,0.12);border-radius:16px;padding:40px 36px;animation:panelIn 0.55s ease both;backdrop-filter:blur(12px);">
+
+  <!-- Header -->
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:32px;">
+    <div style="width:36px;height:36px;border:1.5px solid rgba(0,229,255,0.4);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:17px;">🛡️</div>
+    <div>
+      <div style="font-family:var(--f1);font-size:14px;font-weight:900;letter-spacing:2px;color:#e4e8ff;">TAB CLOAK</div>
+      <div style="font-family:var(--f3);font-size:9px;letter-spacing:2px;color:var(--dim);margin-top:2px;">STEALTH SETTINGS</div>
+    </div>
+    <div style="margin-left:auto;display:flex;align-items:center;gap:7px;">
+      <span style="width:7px;height:7px;border-radius:50%;background:var(--c4);box-shadow:0 0 8px var(--c4);animation:blink 2s ease-in-out infinite;"></span>
+      <span style="font-family:var(--f3);font-size:9px;letter-spacing:2px;color:var(--c4);">ACTIVE</span>
+    </div>
+  </div>
+
+  <!-- Section 1: Open cloaked -->
+  <div style="margin-bottom:26px;">
+    <div style="font-family:var(--f3);font-size:9px;letter-spacing:3px;color:var(--c1);margin-bottom:14px;display:flex;align-items:center;gap:8px;">
+      <span style="width:14px;height:1px;background:var(--c1);display:inline-block;box-shadow:0 0 5px var(--c1);"></span>
+      STEP 1 — OPEN CLOAKED TAB
+    </div>
+    <p style="font-family:var(--f2);font-size:13px;color:var(--dim);line-height:1.75;margin-bottom:16px;">Opens the site in a new <code style="font-family:var(--f3);color:var(--c1);background:rgba(0,229,255,0.08);padding:2px 7px;border-radius:3px;font-size:11px;">about:blank</code> popup. The URL bar shows nothing. Full site loads inside via iframe.</p>
+    <button class="btn btn-cyan" onclick="openCloaked()" style="width:100%;justify-content:center;padding:14px;">
+      <span style="position:relative;">⚡ OPEN IN ABOUT:BLANK</span>
+    </button>
+  </div>
+
+  <div style="height:1px;background:linear-gradient(90deg,transparent,rgba(0,229,255,0.15),transparent);margin-bottom:26px;"></div>
+
+  <!-- Section 2: Tab disguise -->
+  <div style="margin-bottom:26px;">
+    <div style="font-family:var(--f3);font-size:9px;letter-spacing:3px;color:var(--c2);margin-bottom:14px;display:flex;align-items:center;gap:8px;">
+      <span style="width:14px;height:1px;background:var(--c2);display:inline-block;box-shadow:0 0 5px var(--c2);"></span>
+      STEP 2 — DISGUISE THIS TAB
+    </div>
+    <p style="font-family:var(--f2);font-size:13px;color:var(--dim);line-height:1.75;margin-bottom:14px;">Choose what the title and favicon of this tab should look like:</p>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px;">
+      <button class="disguise-opt active" id="d1" onclick="setDisguise('Google Classroom','https://ssl.gstatic.com/classroom/favicon.png','d1')">
+        <span style="font-size:18px;">📗</span>
+        <div><div style="font-family:var(--f2);font-size:13px;font-weight:600;color:#e4e8ff;">Google Classroom</div><div style="font-family:var(--f3);font-size:9px;color:var(--dim);margin-top:1px;">classroom.google.com</div></div>
+      </button>
+      <button class="disguise-opt" id="d2" onclick="setDisguise('Khan Academy','https://www.khanacademy.org/favicon.ico','d2')">
+        <span style="font-size:18px;">🎓</span>
+        <div><div style="font-family:var(--f2);font-size:13px;font-weight:600;color:#e4e8ff;">Khan Academy</div><div style="font-family:var(--f3);font-size:9px;color:var(--dim);margin-top:1px;">khanacademy.org</div></div>
+      </button>
+      <button class="disguise-opt" id="d3" onclick="setDisguise('Google Docs','https://ssl.gstatic.com/docs/documents/images/kix-favicon7.ico','d3')">
+        <span style="font-size:18px;">📄</span>
+        <div><div style="font-family:var(--f2);font-size:13px;font-weight:600;color:#e4e8ff;">Google Docs</div><div style="font-family:var(--f3);font-size:9px;color:var(--dim);margin-top:1px;">docs.google.com</div></div>
+      </button>
+      <button class="disguise-opt" id="d4" onclick="setDisguise('Duolingo','https://www.duolingo.com/favicon.ico','d4')">
+        <span style="font-size:18px;">🦜</span>
+        <div><div style="font-family:var(--f2);font-size:13px;font-weight:600;color:#e4e8ff;">Duolingo</div><div style="font-family:var(--f3);font-size:9px;color:var(--dim);margin-top:1px;">duolingo.com</div></div>
+      </button>
+    </div>
+    <!-- Custom title input -->
+    <div style="display:flex;gap:8px;">
+      <input type="text" id="customTitle" placeholder="Or type a custom tab title…" oninput="setCustomTitle(this.value)">
+      <button class="btn btn-purple" onclick="applyCustomTitle()" style="padding:11px 18px;white-space:nowrap;font-size:8px;">SET</button>
+    </div>
+  </div>
+
+  <div style="height:1px;background:linear-gradient(90deg,transparent,rgba(174,69,255,0.15),transparent);margin-bottom:26px;"></div>
+
+  <!-- Section 3: Panic key -->
+  <div style="margin-bottom:26px;">
+    <div style="font-family:var(--f3);font-size:9px;letter-spacing:3px;color:var(--c4);margin-bottom:14px;display:flex;align-items:center;gap:8px;">
+      <span style="width:14px;height:1px;background:var(--c4);display:inline-block;box-shadow:0 0 5px var(--c4);"></span>
+      STEP 3 — PANIC KEY
+    </div>
+    <p style="font-family:var(--f2);font-size:13px;color:var(--dim);line-height:1.75;margin-bottom:14px;">Press <kbd style="font-family:var(--f3);font-size:10px;color:var(--c4);background:rgba(0,255,157,0.1);border:1px solid rgba(0,255,157,0.3);padding:3px 9px;border-radius:4px;animation:keyHint 2s ease-in-out infinite;display:inline-block;">ESC</kbd> anytime to instantly redirect this tab to your chosen panic URL:</p>
+    <div style="display:flex;gap:8px;">
+      <input type="text" id="panicUrl" value="https://classroom.google.com" placeholder="Panic redirect URL">
+      <button class="btn btn-green" onclick="savePanicUrl()" style="padding:11px 18px;white-space:nowrap;font-size:8px;">SAVE</button>
+    </div>
+    <div id="panicSaved" style="font-family:var(--f3);font-size:9px;letter-spacing:2px;color:var(--c4);margin-top:8px;opacity:0;transition:opacity 0.3s;">✓ SAVED</div>
+  </div>
+
+  <div style="height:1px;background:linear-gradient(90deg,transparent,rgba(0,255,157,0.12),transparent);margin-bottom:26px;"></div>
+
+  <!-- Section 4: Redirect this tab -->
+  <div>
+    <div style="font-family:var(--f3);font-size:9px;letter-spacing:3px;color:var(--c3);margin-bottom:14px;display:flex;align-items:center;gap:8px;">
+      <span style="width:14px;height:1px;background:var(--c3);display:inline-block;box-shadow:0 0 5px var(--c3);"></span>
+      EMERGENCY — REDIRECT NOW
+    </div>
+    <p style="font-family:var(--f2);font-size:13px;color:var(--dim);line-height:1.75;margin-bottom:14px;">Instantly navigate this tab away. No trace left in the address bar.</p>
+    <div class="btn-row" style="display:flex;gap:8px;flex-wrap:wrap;">
+      <button class="btn btn-red" onclick="redirect('https://classroom.google.com')" style="flex:1;justify-content:center;">📗 CLASSROOM</button>
+      <button class="btn btn-red" onclick="redirect('https://www.khanacademy.org')" style="flex:1;justify-content:center;">🎓 KHAN ACADEMY</button>
+      <button class="btn btn-red" onclick="redirect('https://google.com')" style="flex:1;justify-content:center;">🔍 GOOGLE</button>
+    </div>
+  </div>
+
+  <!-- Footer hint -->
+  <div style="margin-top:28px;padding:14px;background:rgba(0,0,0,0.2);border-radius:8px;display:flex;align-items:center;gap:10px;border:1px solid rgba(255,255,255,0.04);">
+    <span style="font-size:14px;animation:keyHint 2s ease-in-out infinite;display:inline-block;">⌨️</span>
+    <span style="font-family:var(--f3);font-size:9px;letter-spacing:1.5px;color:var(--dim);">PRESS <kbd style="color:var(--c1);border:1px solid rgba(0,229,255,0.3);padding:2px 6px;border-radius:3px;background:rgba(0,229,255,0.07);">ESC</kbd> ANYTIME TO PANIC REDIRECT · CLOAK SETTINGS SAVE TO THIS SESSION</kbd></span>
+  </div>
+</div>
+
+<!-- ADD THIS TO ALL YOUR PAGES — paste the script below just before </body> on each page -->
+<!-- ===================================================================================== -->
+<!--
+  INSTALLATION: Copy the <script> block below and paste before </body> on every page.
+  The floating 🛡️ button will appear on every page to open the cloak panel.
+-->
+
+<script>
+/* =============================================
+   FALLACIOUS0 — TAB CLOAK CORE
+   Paste everything inside this comment block
+   into every page's <script> section.
+   ============================================= */
+
+let panicUrl = localStorage.getItem('f0_panic') || 'https://classroom.google.com';
+
+// ── Open in about:blank ────────────────────────────────
+function openCloaked() {
+  const target = window.location.href.includes('cloak')
+    ? window.location.origin + '/'
+    : window.location.href;
+
+  const w = window.open('about:blank', '_blank');
+  if (!w) { alert('Allow popups for this site to use the cloak!'); return; }
+
+  w.document.open();
+  w.document.write(
+    '<!DOCTYPE html><html><head>' +
+    '<style>*{margin:0;padding:0;border:0;overflow:hidden}</style>' +
+    '</head><body>' +
+    '<iframe src="' + target + '" ' +
+    'style="position:fixed;top:0;left:0;width:100vw;height:100vh;border:none;" ' +
+    'allowfullscreen></iframe>' +
+    '</body></html>'
+  );
+  w.document.close();
+
+  // Flash confirmation
+  const btn = document.querySelector('[onclick="openCloaked()"]');
+  if (btn) {
+    const orig = btn.innerHTML;
+    btn.innerHTML = '<span style="position:relative;color:#00ff9d;">✓ OPENED IN ABOUT:BLANK</span>';
+    btn.style.borderColor = 'rgba(0,255,157,0.5)';
+    setTimeout(() => { btn.innerHTML = orig; btn.style.borderColor = ''; }, 2200);
+  }
+}
+
+// ── Disguise tab title / favicon ──────────────────────
+function setDisguise(title, icon, activeId) {
+  document.title = title;
+  let link = document.querySelector("link[rel~='icon']");
+  if (!link) { link = document.createElement('link'); link.rel = 'icon'; document.head.appendChild(link); }
+  link.href = icon;
+
+  document.querySelectorAll('.disguise-opt').forEach(el => el.classList.remove('active'));
+  if (activeId) document.getElementById(activeId)?.classList.add('active');
+}
+
+function setCustomTitle(val) { /* live preview — full apply on SET */ }
+function applyCustomTitle() {
+  const v = document.getElementById('customTitle')?.value?.trim();
+  if (v) { document.title = v; document.querySelectorAll('.disguise-opt').forEach(el => el.classList.remove('active')); }
+}
+
+// ── Panic key (ESC) ───────────────────────────────────
+function savePanicUrl() {
+  const v = document.getElementById('panicUrl')?.value?.trim();
+  if (v) {
+    panicUrl = v;
+    localStorage.setItem('f0_panic', v);
+    const saved = document.getElementById('panicSaved');
+    if (saved) { saved.style.opacity = '1'; setTimeout(() => saved.style.opacity = '0', 1800); }
+  }
+}
+function redirect(url) { window.location.replace(url || panicUrl); }
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') window.location.replace(panicUrl);
+});
+
+// ── Load saved panic URL ──────────────────────────────
+window.addEventListener('load', () => {
+  const el = document.getElementById('panicUrl');
+  if (el && localStorage.getItem('f0_panic')) el.value = localStorage.getItem('f0_panic');
+});
+
+// ── Custom cursor ─────────────────────────────────────
+const dot = document.getElementById('cdot'), ring = document.getElementById('cring');
+if (dot && ring) {
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; dot.style.left = mx + 'px'; dot.style.top = my + 'px'; });
+  (function anim() { rx += (mx - rx) * 0.11; ry += (my - ry) * 0.11; ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; requestAnimationFrame(anim); })();
+  document.querySelectorAll('a,button,input').forEach(el => {
+    el.addEventListener('mouseenter', () => { ring.style.width = '44px'; ring.style.height = '44px'; ring.style.borderColor = 'rgba(0,229,255,0.9)'; ring.style.background = 'rgba(0,229,255,0.07)'; });
+    el.addEventListener('mouseleave', () => { ring.style.width = '30px'; ring.style.height = '30px'; ring.style.borderColor = 'rgba(0,229,255,0.65)'; ring.style.background = 'transparent'; });
+  });
+}
+
+// ── Apply Google Classroom disguise on load (default) ─
+setDisguise('Google Classroom', 'https://ssl.gstatic.com/classroom/favicon.png', 'd1');
+
+/* END CLOAK CORE */
+</script>
+
+</body>
+</html>
