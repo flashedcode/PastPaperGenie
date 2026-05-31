@@ -8,6 +8,7 @@
 <meta name="keywords" content="Fallacious0 updates, browser games changelog, new games added, site updates, browser games news, Fallacious0 changelog">
 <meta name="author" content="Fallacious0">
 <meta name="robots" content="index, follow">
+<meta name="indexnow-key" content="f0a3c8e2b7d94f1e6a5c2b8d3e7f0a4c">
 <meta name="theme-color" content="#00ff9d">
 <link rel="canonical" href="https://fallacious0.dedyn.io/updates/">
 <meta property="og:type" content="website">
@@ -106,7 +107,6 @@ a{text-decoration:none;color:inherit}
   <a href="/select/" class="nav-link" style="font-size:18px;letter-spacing:4px;">GAMES</a>
   <a href="/articles/" class="nav-link" style="font-size:18px;letter-spacing:4px;">ARTICLES</a>
   <a href="/updates/" class="nav-link active" style="font-size:18px;letter-spacing:4px;">UPDATES</a>
-  <a href="/about-us/" class="nav-link" style="font-size:18px;letter-spacing:4px;">ABOUT</a>
 </div>
 
 <!-- Fixed BG -->
@@ -125,7 +125,6 @@ a{text-decoration:none;color:inherit}
     <a href="/select/" class="nav-link">GAMES</a>
     <a href="/articles/" class="nav-link">ARTICLES</a>
     <a href="/updates/" class="nav-link active" style="color:var(--c4);--c1:var(--c4);">UPDATES</a>
-    <a href="/about-us/" class="nav-link">ABOUT</a>
   </div>
   <div class="nav-desktop" style="font-family:var(--f5);font-size:9px;letter-spacing:2px;color:var(--c4);padding:7px 14px;border:1px solid rgba(0,255,157,0.2);border-radius:4px;display:flex;align-items:center;gap:6px;"><span style="width:6px;height:6px;border-radius:50%;background:var(--c4);box-shadow:0 0 8px var(--c4);animation:blink 2s ease-in-out infinite;"></span> LIVE LOG</div>
   <div id="ham" style="display:none;flex-direction:column;gap:5px;padding:6px;z-index:9100;cursor:none;" onclick="toggleMenu()">
@@ -332,15 +331,7 @@ a{text-decoration:none;color:inherit}
 
       </div><!-- end tl-wrap -->
 
-      <!-- Suggest a game CTA -->
-      <div style="max-width:820px;margin:28px auto 0;padding:28px 32px;border:1px solid rgba(0,255,157,0.1);border-radius:12px;background:rgba(0,255,157,0.02);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:18px;" class="reveal">
-        <div>
-          <div style="font-family:var(--f2);font-size:14px;font-weight:700;color:#e4e8ff;margin-bottom:5px;">Want to suggest a game?</div>
-          <div style="font-family:var(--f2);font-size:13px;color:var(--dim);">Join the community and drop your request. We add games regularly.</div>
         </div>
-        <a href="/about-us/" style="display:inline-flex;align-items:center;gap:9px;padding:11px 24px;border:1px solid rgba(0,255,157,0.3);color:var(--c4);font-family:var(--f1);font-size:9px;font-weight:700;letter-spacing:2px;border-radius:5px;transition:all 0.3s;white-space:nowrap;"
-          onmouseenter="this.style.background='rgba(0,255,157,0.08)';this.style.boxShadow='0 0 18px rgba(0,255,157,0.15)'"
-          onmouseleave="this.style.background='transparent';this.style.boxShadow='none'">CONTACT US →</a>
       </div>
 
     </div>
@@ -355,7 +346,6 @@ a{text-decoration:none;color:inherit}
         <a href="/select/" style="font-family:var(--f3);font-size:9px;letter-spacing:2px;color:var(--dim);transition:color 0.3s;" onmouseenter="this.style.color='#00e5ff'" onmouseleave="this.style.color='var(--dim)'">GAMES</a>
         <a href="/articles/" style="font-family:var(--f3);font-size:9px;letter-spacing:2px;color:var(--dim);transition:color 0.3s;" onmouseenter="this.style.color='#00e5ff'" onmouseleave="this.style.color='var(--dim)'">ARTICLES</a>
         <a href="/updates/" style="font-family:var(--f3);font-size:9px;letter-spacing:2px;color:var(--c4);">UPDATES</a>
-        <a href="/about-us/" style="font-family:var(--f3);font-size:9px;letter-spacing:2px;color:var(--dim);transition:color 0.3s;" onmouseenter="this.style.color='#00e5ff'" onmouseleave="this.style.color='var(--dim)'">ABOUT</a>
       </div>
       <div style="font-family:var(--f3);font-size:9px;color:#2e3056;letter-spacing:1px;">© 2025 FALLACIOUS0 · ALL GAMES REMAIN PROPERTY OF THEIR RESPECTIVE OWNERS</div>
     </div>
@@ -392,5 +382,151 @@ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
 function toggleMenu(){const m=document.getElementById('mmenu');m.style.display=m.style.display==='flex'?'none':'flex';}
 </script>
+
+<!-- ═══ CLOAK SYSTEM ═══ -->
+<style>
+#cloak-btn{position:fixed;bottom:22px;right:22px;z-index:8000;width:42px;height:42px;background:rgba(4,4,14,0.9);border:1px solid rgba(0,229,255,0.22);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:19px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:all 0.3s;cursor:none;box-shadow:0 4px 20px rgba(0,0,0,0.45)}
+#cloak-btn:hover{border-color:rgba(0,229,255,0.6);box-shadow:0 0 22px rgba(0,229,255,0.22),0 4px 20px rgba(0,0,0,0.4)}
+#cloak-overlay{position:fixed;inset:0;background:rgba(2,2,12,0.84);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);z-index:8500;display:none;align-items:center;justify-content:center;padding:16px}
+#cloak-overlay.cpopen{display:flex}
+#cloak-panel{background:#06061a;border:1px solid rgba(0,229,255,0.14);border-radius:14px;padding:30px 28px;width:100%;max-width:470px;max-height:90vh;overflow-y:auto;position:relative;animation:cpIn 0.28s cubic-bezier(0.175,0.885,0.32,1.275)}
+@keyframes cpIn{from{opacity:0;transform:scale(0.94) translateY(10px)}to{opacity:1;transform:scale(1) translateY(0)}}
+#cloak-panel::-webkit-scrollbar{width:3px}#cloak-panel::-webkit-scrollbar-thumb{background:rgba(0,229,255,0.3);border-radius:2px}
+.cp-x{position:absolute;top:13px;right:15px;background:none;border:none;color:rgba(100,110,160,0.7);font-size:18px;cursor:none;transition:color 0.2s;line-height:1;font-family:monospace}
+.cp-x:hover{color:#ff1870}
+.cp-lbl{font-family:"Orbitron",monospace;font-size:8px;font-weight:700;letter-spacing:3px;display:flex;align-items:center;gap:8px;margin-bottom:11px}
+.cp-lbl::before{content:"";display:inline-block;width:12px;height:1px;flex-shrink:0}
+.cp-sec{margin-bottom:20px}
+.cp-div{height:1px;background:linear-gradient(90deg,transparent,rgba(0,229,255,0.1),transparent);margin:0 0 20px}
+.do{flex:1;min-width:110px;padding:9px 11px;border:1px solid rgba(255,255,255,0.06);border-radius:7px;background:rgba(255,255,255,0.018);cursor:none;transition:all 0.22s;display:flex;align-items:center;gap:8px}
+.do:hover{border-color:rgba(0,229,255,0.28);background:rgba(0,229,255,0.04);transform:translateY(-1px)}
+.do.cpact{border-color:rgba(0,229,255,0.48);background:rgba(0,229,255,0.08)}
+.do-n{font-family:"Exo 2","Raleway","Syne",sans-serif;font-size:11.5px;font-weight:600;color:#e0e4ff}
+.do-s{font-family:"Space Mono",monospace;font-size:8px;color:#4a4d6e}
+.cp-in{width:100%;padding:10px 13px;background:rgba(255,255,255,0.03);border:1px solid rgba(0,229,255,0.14);border-radius:7px;color:#e4e8ff;font-family:"Exo 2","Raleway",sans-serif;font-size:13px;outline:none;transition:border-color 0.3s;cursor:none}
+.cp-in:focus{border-color:rgba(0,229,255,0.38)}
+.cp-in::placeholder{color:#3a3d5a}
+.cp-b{font-family:"Orbitron",monospace;font-size:8px;font-weight:700;letter-spacing:1.5px;padding:10px 15px;border-radius:5px;border:1px solid;background:transparent;cursor:none;transition:all 0.22s;white-space:nowrap;flex-shrink:0}
+.cp-b:hover{transform:translateY(-1px)}
+.cp-bc{color:#00e5ff;border-color:rgba(0,229,255,0.38)}.cp-bc:hover{background:rgba(0,229,255,0.09);box-shadow:0 0 14px rgba(0,229,255,0.18)}
+.cp-bg{color:#00ff9d;border-color:rgba(0,255,157,0.38)}.cp-bg:hover{background:rgba(0,255,157,0.07);box-shadow:0 0 14px rgba(0,255,157,0.14)}
+.cp-br{color:#ff1870;border-color:rgba(255,24,112,0.32)}.cp-br:hover{background:rgba(255,24,112,0.07)}
+@keyframes cpblink{0%,100%{opacity:1}50%{opacity:0.25}}
+</style>
+
+<button id="cloak-btn" onclick="cpOpen()" title="Tab Cloak" aria-label="Open tab cloak settings">🛡️</button>
+
+<div id="cloak-overlay" onclick="if(event.target===this)cpClose()">
+ <div id="cloak-panel">
+  <button class="cp-x" onclick="cpClose()">✕</button>
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:22px;">
+   <div style="font-size:20px;">🛡️</div>
+   <div>
+    <div style="font-family:'Orbitron',monospace;font-size:13px;font-weight:900;letter-spacing:2px;color:#e4e8ff;">TAB CLOAK</div>
+    <div style="font-family:'Space Mono',monospace;font-size:8.5px;letter-spacing:2px;color:#4a4d6e;margin-top:2px;">STEALTH SETTINGS</div>
+   </div>
+   <div style="margin-left:auto;display:flex;align-items:center;gap:6px;">
+    <span style="width:6px;height:6px;border-radius:50%;background:#00ff9d;box-shadow:0 0 7px #00ff9d;display:inline-block;animation:cpblink 2s ease-in-out infinite;"></span>
+    <span style="font-family:'Space Mono',monospace;font-size:8px;letter-spacing:2px;color:#00ff9d;">ACTIVE</span>
+   </div>
+  </div>
+
+  <div class="cp-sec">
+   <div class="cp-lbl" style="color:#00e5ff;--before-bg:#00e5ff;">OPEN CLOAKED TAB</div>
+   <p style="font-family:'Exo 2',sans-serif;font-size:12px;color:#4a4d6e;line-height:1.75;margin-bottom:11px;">Opens this site inside an <code style="font-family:'Space Mono',monospace;color:#00e5ff;background:rgba(0,229,255,0.08);padding:1px 6px;border-radius:3px;font-size:10px;">about:blank</code> popup — URL bar stays empty.</p>
+   <button class="cp-b cp-bc" id="cpOpenBtn" onclick="cpDoOpen(this)" style="width:100%;padding:13px;font-size:9px;letter-spacing:2px;">⚡ &nbsp;OPEN IN ABOUT:BLANK</button>
+  </div>
+
+  <div class="cp-div"></div>
+
+  <div class="cp-sec">
+   <div class="cp-lbl" style="color:#ae45ff;">DISGUISE THIS TAB</div>
+   <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;">
+    <button class="do cpact" id="do1" onclick="cpDis('Google Classroom','https://ssl.gstatic.com/classroom/favicon.png','do1')"><span style="font-size:16px;">📗</span><div><div class="do-n">Classroom</div><div class="do-s">google.com</div></div></button>
+    <button class="do" id="do2" onclick="cpDis('Khan Academy','https://www.khanacademy.org/favicon.ico','do2')"><span style="font-size:16px;">🎓</span><div><div class="do-n">Khan Academy</div><div class="do-s">khanacademy.org</div></div></button>
+    <button class="do" id="do3" onclick="cpDis('Google Docs','https://ssl.gstatic.com/docs/documents/images/kix-favicon7.ico','do3')"><span style="font-size:16px;">📄</span><div><div class="do-n">Google Docs</div><div class="do-s">docs.google.com</div></div></button>
+    <button class="do" id="do4" onclick="cpDis('Duolingo','https://www.duolingo.com/favicon.ico','do4')"><span style="font-size:16px;">🦜</span><div><div class="do-n">Duolingo</div><div class="do-s">duolingo.com</div></div></button>
+   </div>
+   <div style="display:flex;gap:8px;">
+    <input class="cp-in" id="cp-ctitle" placeholder="Or type a custom title…">
+    <button class="cp-b cp-bc" onclick="cpCustom()">SET</button>
+   </div>
+  </div>
+
+  <div class="cp-div"></div>
+
+  <div class="cp-sec">
+   <div class="cp-lbl" style="color:#00ff9d;">PANIC KEY &mdash; ESC</div>
+   <p style="font-family:'Exo 2',sans-serif;font-size:12px;color:#4a4d6e;line-height:1.75;margin-bottom:10px;">Press <kbd style="font-family:'Space Mono',monospace;color:#00e5ff;border:1px solid rgba(0,229,255,0.3);padding:2px 7px;border-radius:3px;background:rgba(0,229,255,0.07);">ESC</kbd> anywhere to instantly redirect this tab to:</p>
+   <div style="display:flex;gap:8px;">
+    <input class="cp-in" id="cp-purl" value="https://classroom.google.com" placeholder="Panic redirect URL…">
+    <button class="cp-b cp-bg" onclick="cpSavePanic()">SAVE</button>
+   </div>
+   <div id="cp-psaved" style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;color:#00ff9d;margin-top:7px;opacity:0;transition:opacity 0.3s;">✓ SAVED</div>
+  </div>
+
+  <div class="cp-div"></div>
+
+  <div class="cp-sec" style="margin-bottom:14px;">
+   <div class="cp-lbl" style="color:#ff1870;">EMERGENCY REDIRECT</div>
+   <div style="display:flex;gap:8px;flex-wrap:wrap;">
+    <button class="cp-b cp-br" onclick="cpRedir('https://classroom.google.com')">📗 CLASSROOM</button>
+    <button class="cp-b cp-br" onclick="cpRedir('https://www.khanacademy.org')">🎓 KHAN</button>
+    <button class="cp-b cp-br" onclick="cpRedir('https://google.com')">🔍 GOOGLE</button>
+   </div>
+  </div>
+
+  <div style="padding:11px 14px;background:rgba(0,0,0,0.22);border:1px solid rgba(255,255,255,0.04);border-radius:7px;font-family:'Space Mono',monospace;font-size:9px;color:#3a3d5a;letter-spacing:1.5px;display:flex;align-items:center;gap:9px;">
+   ⌨️ &nbsp;<span>PRESS <kbd style="color:#00e5ff;border:1px solid rgba(0,229,255,0.28);padding:1px 6px;border-radius:3px;background:rgba(0,229,255,0.06);font-family:inherit;">ESC</kbd> ANYTIME — WORKS ACROSS ALL PAGES</span>
+  </div>
+ </div>
+</div>
+
+<script>
+(function(){
+var _cp=localStorage.getItem('f0_panic')||'https://classroom.google.com';
+var el=document.getElementById('cp-purl');if(el)el.value=_cp;
+// Default disguise
+cpDis('Google Classroom','https://ssl.gstatic.com/classroom/favicon.png','do1');
+
+function cpOpen(){document.getElementById('cloak-overlay').classList.add('cpopen');document.body.style.overflow='hidden';}
+function cpClose(){document.getElementById('cloak-overlay').classList.remove('cpopen');document.body.style.overflow='';}
+function cpDoOpen(btn){
+  var w=window.open('about:blank','_blank');
+  if(!w){alert('Please allow popups for this site first.');return;}
+  w.document.open();
+  w.document.write('<!DOCTYPE html><html><head><style>*{margin:0;padding:0;border:0;overflow:hidden}</style></head><body><iframe src="'+location.href+'" style="position:fixed;top:0;left:0;width:100vw;height:100vh;border:none;" allowfullscreen></iframe></body></html>');
+  w.document.close();
+  var o=btn.innerHTML;btn.innerHTML='<span style="color:#00ff9d;">✓ OPENED IN ABOUT:BLANK</span>';
+  setTimeout(function(){btn.innerHTML=o;},2200);
+}
+function cpDis(t,i,id){
+  document.title=t;
+  var l=document.querySelector("link[rel~='icon']");
+  if(!l){l=document.createElement('link');l.rel='icon';document.head.appendChild(l);}
+  l.href=i;
+  document.querySelectorAll('.do').forEach(function(e){e.classList.remove('cpact');});
+  var a=document.getElementById(id);if(a)a.classList.add('cpact');
+}
+function cpCustom(){
+  var v=(document.getElementById('cp-ctitle')||{}).value||'';
+  if(v.trim()){document.title=v.trim();document.querySelectorAll('.do').forEach(function(e){e.classList.remove('cpact');});}
+}
+function cpSavePanic(){
+  var v=(document.getElementById('cp-purl')||{}).value||'';
+  if(v.trim()){_cp=v.trim();localStorage.setItem('f0_panic',_cp);var s=document.getElementById('cp-psaved');if(s){s.style.opacity='1';setTimeout(function(){s.style.opacity='0';},1800);}}
+}
+function cpRedir(u){window.location.replace(u||_cp);}
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'){
+    if(document.getElementById('cloak-overlay').classList.contains('cpopen')){cpClose();}
+    else{window.location.replace(_cp);}
+  }
+});
+window.cpOpen=cpOpen;window.cpClose=cpClose;window.cpDoOpen=cpDoOpen;
+window.cpDis=cpDis;window.cpCustom=cpCustom;window.cpSavePanic=cpSavePanic;window.cpRedir=cpRedir;
+})();
+</script>
+
 </body>
 </html>
