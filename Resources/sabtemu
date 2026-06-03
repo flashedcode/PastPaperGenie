@@ -1,2 +1,10 @@
 
+<head><title>Fallacious0 studying website</title></head>
+<!-- CLOAK BUTTON — paste before </body> on every page -->
+<a href="/cloak.html" title="Settings" style="position:fixed;bottom:22px;right:22px;z-index:8000;width:40px;height:40px;background:rgba(4,4,14,0.85);border:1px solid rgba(0,229,255,0.2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;backdrop-filter:blur(10px);transition:all 0.3s;text-decoration:none;" onmouseenter="this.style.borderColor='rgba(0,229,255,0.55)';this.style.boxShadow='0 0 18px rgba(0,229,255,0.2)'" onmouseleave="this.style.borderColor='rgba(0,229,255,0.2)';this.style.boxShadow='none'">🛡️</a>
+<script>
+// ESC panic key — active on every page
+const _p=localStorage.getItem('f0_panic')||'https://classroom.google.com';
+document.addEventListener('keydown',e=>{if(e.key==='Escape')window.location.replace(_p);});
+</script>
 <iframe id=\"embed\" src=\"https:\/\/stealnow.io\/\" marginheight=\"0\" marginwidth=\"0\" scrolling=\"no\" allowfullscreen allow=\"autoplay;fullscreen\"><\/iframe>\n<button type=\"button\" id=\"closegame\" onclick=\"closeGame();\" ontouchmove=\"moveButton();\">\n    <svg id=\"iconarrow\" viewBox=\"6 0 14 24\"><path d=\"M9 19.91a2 2 0 0 1-1.403-3.424L12.15 12 7.597 7.514a2 2 0 1 1 2.806-2.85l6 5.91a2 2 0 0 1 0 2.85l-6 5.911A1.993 1.993 0 0 1 9 19.911z\"><\/path><\/svg>\n    <img id=\"iconsite\" src=\"images\/iconsite.png?2\" alt=\"GL\">\n<\/button>
