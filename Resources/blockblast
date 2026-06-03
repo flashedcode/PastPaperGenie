@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="robots" content="index, follow">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Play Block Blast Puzzle online for free. Match blocks in this Tetris-like game across challenging levels with vibrant graphics and immersive gameplay.">
+    <meta name="keywords" content="Block Blast Puzzle, Block Blast Puzzle.github.io, tetris game, block matching, free online game, clever apps">
+    <title>Play Block Blast Puzzle Fullscreen - Block Blast Online</title>
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="256x256">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="canonical" href="https://block-blasts-online.github.io/game/block-blast-puzzle.html">
+<link rel="stylesheet" href="/css/ads.css">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "VideoGame",
+      "name": "Block Blast Puzzle",
+      "url": "https://block-blasts-online.github.io/game/block-blast-puzzle.html",
+      "description": "Block Blast Puzzle is a Tetris-like game where you match colorful blocks so they disappear from the game screen. Unlock new realms and challenges as you progress, enjoying vibrant graphics and immersive gameplay.",
+      "applicationCategory": "Game",
+      "genre": [
+        "Puzzle",
+        "Arcade"
+      ],
+      "gamePlatform": [
+        "Desktop",
+        "Mobile",
+        "Tablet"
+      ],
+      "publisher": {
+        "@type": "Organization",
+        "name": "Clever Apps"
+      },
+      "datePublished": "2024-02-01",
+      "dateModified": "2024-11-01",
+      "inLanguage": "en",
+      "author": {
+        "@type": "Organization",
+        "name": "Clever Apps"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "8.5",
+        "bestRating": "10",
+        "worstRating": "0",
+        "ratingCount": "34912"
+      },
+      "playMode": "https://schema.org/SinglePlayer"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "Block Blast Puzzle",
+      "url": "https://block-blasts-online.github.io/game/block-blast-puzzle.html",
+      "description": "A Tetris-like puzzle game where players match colorful blocks to clear lines and advance through challenging levels.",
+      "applicationCategory": "Game",
+      "operatingSystem": [
+        "Web Browser",
+        "Android"
+      ],
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "8.5",
+        "bestRating": "10",
+        "worstRating": "0",
+        "ratingCount": "34912"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://block-blasts-online.github.io/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Block Blast Puzzle",
+          "item": "https://block-blasts-online.github.io/game/block-blast-puzzle.html"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GQC91FSX0C"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GQC91FSX0C');
+</script><script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "w2a11ocknc");
+</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8167890867484030"
+     crossorigin="anonymous"></script></head>
+<body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8 max-w-6xl">
+        <header class="flex flex-col md:flex-row justify-between items-center bg-blue-600 text-white p-4 rounded-lg mb-6">
+            <div class="logo mb-4 md:mb-0">
+                <span class="text-2xl font-bold"><a href="/" class="hover:text-blue-200">Block-Blast-Online.github.io</a></span>
+                <span class="text-sm ml-2 block md:inline-block">Free Online Puzzle Games</span>
+            </div>
+            <!-- Search Bar -->
+            <div class="relative w-full md:w-auto">
+                <input id="searchBar" type="text" placeholder="Search games..." 
+                    class="bg-white text-black rounded-full px-4 py-2 w-full md:w-64 focus:outline-none focus:ring-2 focus:ring-yellow-500 transition duration-300">
+                <button id="searchButton" 
+                    class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-4 py-1 rounded-full transition duration-300">
+                    Search
+                </button>
+            </div>
+        </header>
+        
+        <!-- Search Results -->
+        <div id="searchResults" class="bg-white rounded-lg shadow-md p-6 mb-6 hidden">
+            <h3 class="text-xl font-semibold mb-4">Search Results</h3>
+            <div id="resultsList" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4"></div>
+        </div>
+        
+        <script>
+            const games = [
+                { name: "Ball Blast", url: "/game/ball-blast.html", img: "/images/games/ball-blast.jpeg" },
+                { name: "Basket Bros", url: "/game/basket-bros.html", img: "/images/games/basket-bros.avif" },
+                { name: "Basket Random", url: "/game/basket-random-unblocked.html", img: "/images/games/basket-random.avif" },
+                { name: "Block Blast 3D", url: "/game/block-blast-3d.html", img: "/images/games/block-blast-3d.avif" },
+                { name: "Block Blast Puzzle", url: "/game/block-blast-puzzle.html", img: "/images/games/block-blast-puzzle.jpeg" },
+                { name: "Block Breaker", url: "/game/block-breaker.html", img: "/images/games/block-breaker.jpg" },
+                { name: "Block Champ", url: "/game/block-champ.html", img: "/images/games/block-champ.jpeg" },
+                { name: "Color Block Jam", url: "/game/color-block-jam.html", img: "/images/games/color-block-jam.png" },
+                { name: "Space Waves", url: "/game/space-waves.html", img: "/images/games/space-waves.avif" },
+                { name: "Space Huggers", url: "/game/spacehuggers.html", img: "/images/games/spacehuggers.jpg" },
+                { name: "Trixie Subway Surfers", url: "/game/trixie-subway-surfers.html", img: "/images/games/trixie-subway-surfers.avif" },
+                { name: "Wood Blocks", url: "/game/wood-blocks.html", img: "/images/games/wood-blocks.jpeg" }
+            ];
+        
+            const fallbackGames = [
+                { name: "Dumb Ways to Die", url: "/game/space-waves.html", img: "/images/games/space-waves.avif" },
+                { name: "Sand Tetris", url: "/game/spacehuggers.html", img: "/images/games/spacehuggers.jpg" },
+                { name: "World's Hardest Game", url: "/game/block-champ.html", img: "/images/games/block-champ.jpeg" }
+            ];
+        
+            const searchBar = document.getElementById("searchBar");
+            const searchButton = document.getElementById("searchButton");
+            const searchResults = document.getElementById("searchResults");
+            const resultsList = document.getElementById("resultsList");
+        
+            searchButton.addEventListener("click", () => {
+                const query = searchBar.value.trim().toLowerCase();
+                resultsList.innerHTML = ""; // Clear previous results
+                searchResults.classList.remove("hidden");
+        
+                const filteredGames = games.filter(game => game.name.toLowerCase().includes(query));
+        
+                if (filteredGames.length > 0) {
+                    filteredGames.forEach(game => {
+                        const gameCard = `
+                            <a href="${game.url}" class="block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300">
+                                <img src="${game.img}" alt="${game.name}" class="w-full h-32 object-cover">
+                                <div class="p-3 flex justify-between items-center">
+                                    <h3 class="font-semibold">${game.name}</h3>
+                                </div>
+                            </a>
+                        `;
+                        resultsList.innerHTML += gameCard;
+                    });
+                } else {
+                    const noResultsMessage = `<p class="text-gray-700 mb-4">No games found. Here are some suggestions:</p>`;
+                    resultsList.innerHTML += noResultsMessage;
+        
+                    fallbackGames.forEach(game => {
+                        const fallbackCard = `
+                            <a href="${game.url}" class="block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300">
+                                <img src="${game.img}" alt="${game.name}" class="w-full h-32 object-cover">
+                                <div class="p-3 flex justify-between items-center">
+                                    <h3 class="font-semibold">${game.name}</h3>
+                                </div>
+                            </a>
+                        `;
+                        resultsList.innerHTML += fallbackCard;
+                    });
+                }
+            });
+        </script>
+        
+       <li class="n127">
+         <div class="n126 n171 horizontal" style="max-width: 75%; margin-bottom: 20px;">
+           <div class="n132"><script async="async" data-cfasync="false" src="https://pl29514668.effectivecpmnetwork.com/8ac7924cc3d0fb5e0aab38e08c01c047/invoke.js"></script><div id="container-8ac7924cc3d0fb5e0aab38e08c01c047"></div></div>
+             <span class="n129">Advertisement</span>
+            </div>
+        </li>
+
+        <div id="game" class="game-container w-full h-96 md:h-[600px] bg-black mb-6 rounded-lg overflow-hidden relative">
+          <iframe id="gameIframe" src="/game/p.html" class="w-full h-full" frameborder="0" allow="gamepad *;"></iframe>
+          <button id="fullscreenButton" class="absolute bottom-4 right-4 bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-2 px-4 rounded-lg transition duration-300">
+              Fullscreen
+          </button>
+      </div>
+      
+      <script>
+          const iframe = document.getElementById('gameIframe');
+          const fullscreenButton = document.getElementById('fullscreenButton');
+      
+          fullscreenButton.addEventListener('click', () => {
+              if (iframe.requestFullscreen) {
+                  iframe.requestFullscreen();
+              } else if (iframe.mozRequestFullScreen) { // Firefox
+                  iframe.mozRequestFullScreen();
+              } else if (iframe.webkitRequestFullscreen) { // Chrome, Safari, Opera
+                  iframe.webkitRequestFullscreen();
+              } else if (iframe.msRequestFullscreen) { // IE/Edge
+                  iframe.msRequestFullscreen();
+              }
+          });
+      </script>
+        
+        <h1 class="text-3xl font-bold text-center mb-6">Block Blast Puzzle</h1>
+        
+        <li class="n127">
+         <div class="n126 n171 horizontal" style="max-width: 75%; margin-bottom: 20px;">
+           <div class="n132"><script>
+            atOptions = {
+              'key' : '4b5e78adc91e3546a34a6123bfa8b5f9',
+              'format' : 'iframe',
+              'height' : 90,
+              'width' : 728,
+              'params' : {}
+            };</script><script src="https://www.highperformanceformat.com/4b5e78adc91e3546a34a6123bfa8b5f9/invoke.js"></script></div>
+             <span class="n129">Advertisement</span>
+            </div>
+        </li>
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="md:col-span-1">
+                    <div class="space-y-3">
+                        <div class="flex justify-between">
+                            <div class="font-semibold">Developer:</div>
+                            <div>Clever Apps</div>
+                        </div>
+                        <div class="flex justify-between">
+                            <div class="font-semibold">Rating:</div>
+                            <div><span class="text-yellow-500 font-bold">8.5</span> (34,912 votes)</div>
+                        </div>
+                        <div class="flex justify-between">
+                            <div class="font-semibold">Released:</div>
+                            <div>May 2024</div>
+                        </div>
+                        <div class="flex justify-between">
+                            <div class="font-semibold">Last Updated:</div>
+                            <div>November 2024</div>
+                        </div>
+                        <div class="flex justify-between">
+                            <div class="font-semibold">Technology:</div>
+                            <div>HTML5</div>
+                        </div>
+                        <div class="flex justify-between">
+                            <div class="font-semibold">Platform:</div>
+                            <div>Browser (desktop, mobile, tablet), App Store(Android)</div>
+                        </div>
+                        
+                        <div class="mt-6 flex flex-wrap gap-2">
+                            <div class="bg-blue-100 text-blue-800 text-sm px-3 py-1 rounded-full">Puzzle <span class="text-xs bg-blue-200 px-1 rounded-full">584</span></div>
+                            <div class="bg-blue-100 text-blue-800 text-sm px-3 py-1 rounded-full">Mobile <span class="text-xs bg-blue-200 px-1 rounded-full">545</span></div>
+                            <div class="bg-blue-100 text-blue-800 text-sm px-3 py-1 rounded-full">Tetris <span class="text-xs bg-blue-200 px-1 rounded-full">37</span></div>
+                            <div class="bg-blue-100 text-blue-800 text-sm px-3 py-1 rounded-full">Color <span class="text-xs bg-blue-200 px-1 rounded-full">172</span></div>
+                            <div class="bg-blue-100 text-blue-800 text-sm px-3 py-1 rounded-full">Logic <span class="text-xs bg-blue-200 px-1 rounded-full">455</span></div>
+                            <div class="bg-blue-100 text-blue-800 text-sm px-3 py-1 rounded-full">Mouse <span class="text-xs bg-blue-200 px-1 rounded-full">1,391</span></div>
+                            <div class="bg-blue-100 text-blue-800 text-sm px-3 py-1 rounded-full">Brain <span class="text-xs bg-blue-200 px-1 rounded-full">146</span></div>
+                            <div class="bg-blue-100 text-blue-800 text-sm px-3 py-1 rounded-full">Arcade <span class="text-xs bg-blue-200 px-1 rounded-full">343</span></div>
+                            <div class="bg-blue-100 text-blue-800 text-sm px-3 py-1 rounded-full">Block <span class="text-xs bg-blue-200 px-1 rounded-full">86</span></div>
+                        </div>
+                    </div>
+                </div>
+                    
+                <div class="md:col-span-2">
+                    <h2 lass="text-2xl font-semibold mb-4">About Block Blast Puzzle</h2>
+                    <p class="mb-4">Block Blast Puzzle is a Tetris-like game where you match colorful blocks so they disappear from the game screen. Unlock new realms and challenges as you progress, enjoying vibrant graphics and immersive gameplay. Prove your skills as a true puzzle master with every level you advance.</p>
+                        
+                    <h2 lass="text-2xl font-semibold mb-4">How to Play Block Blast Puzzle</h2>
+                    <p class="mb-4">There are a few tutorials throughout the game to help guide you with controls and strategy, but this may not be necessary as the game is fairly straightforward. You get a series of blocks in various geometric shapes placed on the side of the game screen. Click on the one you want to move and carry it to the game board.</p>
+                        
+                    <p class="mb-4">Each geometric shape may or may not fit together on the main game board - this is where your strategic eye comes in. Place each geometric shape on the board in a position to get one full line of gapless blocks. When you do this, that entire line will disappear.</p>
+                        
+                    <p class="mb-4">Various rounds will allow you to collect more points, as some blocks are bedazzled with jewels worth more. You may have prompted a few moves, like clearing the board or undoing your last move. Take the suggestion, as it usually gets you out of a jam.</p>
+                        
+                    <h2 lass="text-2xl font-semibold mb-4">Release Date</h2>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li>February 2024 (Android)</li>
+                        <li>May 2024 (HTML5)</li>
+                    </ul>
+                        
+                    <h2>Platforms</h2>
+                    <ul>
+                        <li>Web browser (desktop and mobile)</li>
+                        <li>Android</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <h3 class="text-xl font-semibold mb-4">Controls</h3>
+            <p class="mb-2">Use the left mouse button to play. Click on blocks to select them and place them on the game board.</p>
+        </div>
+        
+        <section class="mb-10">
+            <h2 class="text-2xl font-bold mb-4 text-center bg-blue-600 text-white py-2 rounded-lg">TOP RATED BLOCK GAMES</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                <a href="/game/ball-blast.html" class="block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300">
+                    <img src="/images/games/ball-blast.jpeg" alt="Ball Blast - Free Online Game" class="w-full h-44 object-cover">
+                    <div class="p-3 flex justify-between items-center">
+                        <h3 class="font-semibold">Ball Blast</h3>
+                        <div class="text-yellow-500 font-bold">★ 8.7</div>
+                    </div>
+                </a>
+                <a href="/game/basket-bros.html" class="block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300">
+                    <div class="bg-yellow-400 text-black font-bold py-1 px-2 absolute">NEW GAME</div>
+                    <img src="/images/games/basket-bros.avif" alt="Basket Bros - Free Online Game" class="w-full h-44 object-cover">
+                    <div class="p-3 flex justify-between items-center">
+                        <h3 class="font-semibold">Basket Bros</h3>
+                        <div class="text-yellow-500 font-bold">★ 8.9</div>
+                    </div>
+                </a>
+                <a href="/game/basket-random-unblocked.html" class="block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300">
+                    <img src="/images/games/basket-random.avif" alt="Basket Random - Free Online Game" class="w-full h-44 object-cover">
+                    <div class="p-3 flex justify-between items-center">
+                        <h3 class="font-semibold">Basket Random</h3>
+                        <div class="text-yellow-500 font-bold">★ 8.8</div>
+                    </div>
+                </a>
+                <a href="/game/block-blast-3d.html" class="block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300">
+                    <div class="bg-yellow-400 text-black font-bold py-1 px-2 absolute">TOP RATED 🏆</div>
+                    <img src="/images/games/block-blast-3d.avif" alt="Block Blast 3D - Free Online Game" class="w-full h-44 object-cover">
+                    <div class="p-3 flex justify-between items-center">
+                        <h3 class="font-semibold">Block Blast 3D</h3>
+                        <div class="text-yellow-500 font-bold">★ 8.5</div>
+                    </div>
+                </a>
+                <a href="/game/block-blast-puzzle.html" class="block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300">
+                    <div class="bg-yellow-400 text-black font-bold py-1 px-2 absolute">TOP RATED 🏆</div>
+                    <img src="/images/games/block-blast-puzzle.jpeg" alt="Block Blast Puzzle - Free Online Game" class="w-full h-44 object-cover">
+                    <div class="p-3 flex justify-between items-center">
+                        <h3 class="font-semibold">Block Blast Puzzle</h3>
+                        <div class="text-yellow-500 font-bold">★ 8.5</div>
+                    </div>
+                </a>
+                <a href="/game/block-breaker.html" class="block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300">
+                    <img src="/images/games/block-breaker.jpg" alt="Block Breaker - Free Online Game" class="w-full h-44 object-cover">
+                    <div class="p-3 flex justify-between items-center">
+                        <h3 class="font-semibold">Block Breaker</h3>
+                        <div class="text-yellow-500 font-bold">★ 9.2</div>
+                    </div>
+                </a>
+                <a href="/game/block-champ.html" class="block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300">
+                    <img src="/images/games/block-champ.jpeg" alt="Block Champ - Free Online Game" class="w-full h-44 object-cover">
+                    <div class="p-3 flex justify-between items-center">
+                        <h3 class="font-semibold">Block Champ</h3>
+                        <div class="text-yellow-500 font-bold">★ 8.1</div>
+                    </div>
+                </a>
+                <a href="/game/color-block-jam.html" class="block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300">
+                    <div class="bg-yellow-400 text-black font-bold py-1 px-2 absolute">NEW GAME</div>
+                    <img src="/images/games/color-block-jam.png" alt="Color Block Jam - Free Online Game" class="w-full h-44 object-cover">
+                    <div class="p-3 flex justify-between items-center">
+                        <h3 class="font-semibold">Color Block Jam</h3>
+                        <div class="text-yellow-500 font-bold">★ 9.2</div>
+                    </div>
+                </a>
+                <a href="/game/space-waves.html" class="block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300">
+                    <img src="/images/games/space-waves.avif" alt="Space Waves - Free Online Game" class="w-full h-44 object-cover">
+                    <div class="p-3 flex justify-between items-center">
+                        <h3 class="font-semibold">Space Waves</h3>
+                        <div class="text-yellow-500 font-bold">★ 8.8</div>
+                    </div>
+                </a>
+                <a href="/game/spacehuggers.html" class="block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300">
+                    <img src="/images/games/spacehuggers.jpg" alt="Space Huggers - Free Online Game" class="w-full h-44 object-cover">
+                    <div class="p-3 flex justify-between items-center">
+                        <h3 class="font-semibold">SpaceHuggers</h3>
+                        <div class="text-yellow-500 font-bold">★ 8.1</div>
+                    </div>
+                </a>
+                <a href="/game/trixie-subway-surfers.html" class="block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300">
+                    <img src="/images/games/trixie-subway-surfers.avif" alt="Trixie Subway Surfers - Free Online Game" class="w-full h-44 object-cover">
+                    <div class="p-3 flex justify-between items-center">
+                        <h3 class="font-semibold">Trixie Subway Surfers</h3>
+                        <div class="text-yellow-500 font-bold">★ 9.6</div>
+                    </div>
+                </a>
+                <a href="/game/wood-blocks.html" class="block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300">
+                    <img src="/images/games/wood-blocks.jpeg" alt="Wood Blocks - Free Online Game" class="w-full h-44 object-cover">
+                    <div class="p-3 flex justify-between items-center">
+                        <h3 class="font-semibold">Wood Blocks</h3>
+                        <div class="text-yellow-500 font-bold">★ 9.1</div>
+                    </div>
+                </a>
+            </div>
+        </section>
+        
+        <footer class="bg-blue-600 text-white py-8 mt-8 rounded-lg">
+            <div class="container mx-auto px-4">
+                <!-- footer  -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-6">
+                    <div>
+                        <h4 class="text-xl font-bold mb-4">Block Blast</h4>
+                        <p class="text-blue-100 mb-4">Master the ultimate block-matching adventure with thrilling combos and mind-bending levels.</p>
+                        <a href="#game" class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-2 px-6 rounded-full transition duration-300 inline-block">PLAY NOW</a>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-xl font-bold mb-4">Quick Links</h4>
+                        <ul class="space-y-2">
+                            <li><a href="/" class="text-blue-100 hover:text-white transition duration-300">Home</a></li>
+                            <li><a href="/block-blast-solver.html" class="text-blue-100 hover:text-white transition duration-300">Block Blast Solver</a></li>
+                            <!-- <li><a href="/about-us.html" class="text-blue-100 hover:text-white transition duration-300">About Us</a></li>
+                            <li><a href="/contact.html" class="text-blue-100 hover:text-white transition duration-300">Contact</a></li> -->
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-xl font-bold mb-4">Popular Games</h4>
+                        <ul class="space-y-2">
+                            <li><a href="/game/block-blast-3d.html" class="text-blue-100 hover:text-white transition duration-300">Block Blast 3D</a></li>
+                            <li><a href="/game/block-blast-puzzle.html" class="text-blue-100 hover:text-white transition duration-300">Block Blast Puzzle</a></li>
+                            <li><a href="/game/block-breaker.html" class="text-blue-100 hover:text-white transition duration-300">Block Breaker</a></li>
+                            <li><a href="/game/trixie-subway-surfers.html" class="text-blue-100 hover:text-white transition duration-300">Trixie Subway Surfers</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- 底部链接栏 -->
+                <div class="border-t border-blue-400 pt-6 flex flex-col md:flex-row justify-between items-center">
+                    <div class="mb-4 md:mb-0">
+                        <p>&copy; 2026 Block Blast. All rights reserved.</p>
+                    </div>
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <a href="/privacy-policy.html" class="text-blue-100 hover:text-white transition duration-300">Privacy Policy</a>
+                        <span class="hidden md:inline text-blue-400">|</span>
+                        <a href="/terms-of-use.html" class="text-blue-100 hover:text-white transition duration-300">Terms of Use</a>
+                        <!-- <span class="hidden md:inline text-blue-400">|</span>
+                        <a href="/cookie-policy.html" class="text-blue-100 hover:text-white transition duration-300">Cookie Policy</a> -->
+                        <!-- <span class="hidden md:inline text-blue-400">|</span>
+                        <a href="/sitemap.html" class="text-blue-100 hover:text-white transition duration-300">Sitemap</a> -->
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W7TV5XXV"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    </div>
+</body>
+</html>
