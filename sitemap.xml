@@ -1,72 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-  <!-- Homepage -->
   <url>
     <loc>https://fallacious0.dedyn.io/</loc>
-    <priority>0.8</priority>
   </url>
-
-  <url>
-    <loc>https://fallacious0.dedyn.io/index.html</loc>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://fallacious0.dedyn.io/seo.html</loc>
-    <priority>0.6</priority>
-  </url>
-
-  <url>
-    <loc>https://fallacious0.dedyn.io/seo1.html</loc>
-    <priority>0.6</priority>
-  </url>
-
-  <!-- HIGH PRIORITY SECTION -->
   <url>
     <loc>https://fallacious0.dedyn.io/select/</loc>
-    <priority>1.0</priority>
   </url>
-
   <url>
     <loc>https://fallacious0.dedyn.io/Updates/</loc>
-    <priority>0.7</priority>
   </url>
-
-  <!-- Articles -->
   <url>
     <loc>https://fallacious0.dedyn.io/articles/index.html</loc>
-    <priority>0.7</priority>
   </url>
-
+</urlset><?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://fallacious0.dedyn.io/articles/best-free-browser-games.html-2026.html</loc>
-    <priority>0.7</priority>
+    <loc>https://fallacious0.dedyn.io/</loc>
   </url>
-
   <url>
-    <loc>https://fallacious0.dedyn.io/articles/eaglercraft-guide.html</loc>
-    <priority>0.7</priority>
+    <loc>https://fallacious0.dedyn.io/select/</loc>
   </url>
-
   <url>
-    <loc>https://fallacious0.dedyn.io/articles/fnaf-complete-guide.html</loc>
-    <priority>0.7</priority>
+    <loc>https://fallacious0.dedyn.io/Updates/</loc>
   </url>
-
   <url>
-    <loc>https://fallacious0.dedyn.io/articles/friday-night-funkin-guide.html</loc>
-    <priority>0.7</priority>
+    <loc>https://fallacious0.dedyn.io/articles/index.html</loc>
   </url>
-
-  <url>
-    <loc>https://fallacious0.dedyn.io/articles/ultrakill-overview.html</loc>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://fallacious0.dedyn.io/articles/undertale-lore.html</loc>
-    <priority>0.7</priority>
-  </url>
-
 </urlset>
