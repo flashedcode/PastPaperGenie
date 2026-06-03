@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-  <meta name="google-adsense-account" content="ca-pub-4807814255844437">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4807814255844437"
-     crossorigin="anonymous"></script>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fallacious0 — Best Studying website Verified by teachers - Select Subject </title>
+<title>Game Library · Fallacious0 — 25+ Free Browser Games, Instant Play</title>
 <meta name="description" content="Browse 25+ free browser games on Fallacious0. Play Minecraft, FNAF 1–UCN, Undertale, Friday Night Funkin, Doom, Half-Life, Kirka.io, Slope, Plants vs Zombies and more. No installs, no logins.">
 <meta name="keywords" content="browser games free, instant play games, Minecraft browser game, FNAF online, Undertale online, Friday Night Funkin browser, Doom online, Half-Life browser, Kirka.io, Slope game, Plants vs Zombies browser, Geometry Dash Lite, Buckshot Roulette, Amanda the Adventurer, eaglercraft">
 <meta name="author" content="Fallacious0">
@@ -116,7 +113,7 @@ a{text-decoration:none;color:inherit}
     <a href="/articles/" class="nav-link">ARTICLES</a>
     <a href="/updates/" class="nav-link">UPDATES</a>
   </div>
-  <div class="nav-desktop" style="font-family:var(--f3);font-size:9px;letter-spacing:2px;color:var(--c1);padding:7px 14px;border:1px solid rgba(0,229,255,0.2);border-radius:4px;">◈ 25 GAMES</div>
+  <div id="nav-badge" class="nav-desktop" style="font-family:var(--f3);font-size:9px;letter-spacing:2px;color:var(--c1);padding:7px 14px;border:1px solid rgba(0,229,255,0.2);border-radius:4px;">◈ 25 GAMES</div>
   <div id="ham" style="display:none;flex-direction:column;gap:5px;padding:6px;z-index:9100;cursor:none;" onclick="toggleMenu()">
     <span style="width:22px;height:2px;background:var(--c1);display:block;"></span>
     <span style="width:22px;height:2px;background:var(--c1);display:block;"></span>
@@ -129,7 +126,7 @@ a{text-decoration:none;color:inherit}
   <!-- HERO -->
   <section style="padding:56px 5% 42px;text-align:center;">
     <div style="max-width:1200px;margin:0 auto;">
-      <div style="font-family:var(--f3);font-size:10px;letter-spacing:5px;color:var(--c1);margin-bottom:12px;animation:slideUp 0.7s ease both;">▶ COMPLETE GAME LIBRARY</div>
+      <div data-countlabel style="font-family:var(--f3);font-size:10px;letter-spacing:5px;color:var(--c1);margin-bottom:12px;animation:slideUp 0.7s ease both;">▶ COMPLETE GAME LIBRARY</div>
       <h1 style="font-family:var(--f1);font-weight:900;font-size:clamp(30px,7vw,60px);letter-spacing:5px;background:linear-gradient(135deg,#fff 0%,#a0e8ff 40%,var(--c1) 70%);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:10px;animation:slideUp 0.7s ease 0.08s both;">GAME LIBRARY</h1>
       <p style="font-family:var(--f2);font-size:14px;color:var(--dim);margin-bottom:38px;letter-spacing:0.4px;animation:slideUp 0.7s ease 0.14s both;">Every game, instantly playable — no installs, no logins, no limits.</p>
       <!-- Search bar -->
@@ -140,7 +137,7 @@ a{text-decoration:none;color:inherit}
       </div>
       <!-- Category filters -->
       <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:20px;" class="reveal">
-        <button class="pill" id="pill-all" onclick="setFilter('all',this)" style="border-color:rgba(0,229,255,0.4);color:var(--c1);">ALL · 25</button>
+        <button class="pill" id="pill-all" onclick="setFilter('all',this)" style="border-color:rgba(0,229,255,0.4);color:var(--c1);">ALL · 0</button>
         <button class="pill" onclick="setFilter('sandbox',this)" style="">⬡ SANDBOX</button>
         <button class="pill" onclick="setFilter('horror',this)">☠ HORROR</button>
         <button class="pill" onclick="setFilter('shooter',this)">⊕ SHOOTER</button>
@@ -148,9 +145,10 @@ a{text-decoration:none;color:inherit}
         <button class="pill" onclick="setFilter('rhythm',this)">♪ RHYTHM</button>
         <button class="pill" onclick="setFilter('strategy',this)">◆ STRATEGY</button>
         <button class="pill" onclick="setFilter('platformer',this)">▲ PLATFORMER</button>
+        <button class="pill" onclick="setFilter('arcade',this)">◉ ARCADE</button>
       </div>
       <!-- Count -->
-      <div style="font-family:var(--f3);font-size:10px;letter-spacing:3px;color:var(--dim);margin-bottom:42px;" class="reveal">SHOWING <span id="gcount" style="color:var(--c1);">25</span> OF 25 GAMES</div>
+      <div style="font-family:var(--f3);font-size:10px;letter-spacing:3px;color:var(--dim);margin-bottom:42px;" class="reveal">SHOWING <span id="gcount" style="color:var(--c1);">0</span> OF <span id="gtotal">0</span> GAMES</div>
     </div>
   </section>
 
@@ -206,11 +204,16 @@ const GAMES=[
   {title:"Friday Night Funkin",desc:"Viral rhythm battle game. Out-rap rivals with sick beats and tight inputs.",cat:"rhythm",url:"/Resources/Friday Night Funkin.html",tag:""},
   {title:"Half-Life",desc:"Gordon Freeman's legendary journey through Black Mesa FPS. A timeless classic.",cat:"shooter",url:"/Half Life.html",tag:"CLASSIC"},
   {title:"Undertale Yellow",desc:"A full fan-made Undertale prequel with an original story, music, and characters.",cat:"rpg",url:"/Resources/Undertale Yellow.html",tag:"FAN MADE"},
-  {title:"Astra Client MC",desc:"Minecraft 1.12 — lightweight and plays smoothly in any browser.",cat:"sandbox",url:"/Resources/astrawasm",tag:"Modded"},
- 
+  {title:"Minecraft 1.12 JS",desc:"Pure JavaScript Minecraft 1.12 — lightweight and plays smoothly in any browser.",cat:"sandbox",url:"/Resources/1.12-u2-js.html",tag:""},
+  {title:"Tuff Client MC",desc:"Eaglercraft 1.12.2 WASM with Tuff Client modifications and improvements.",cat:"sandbox",url:"/Resources/Eaglercraft_IR_TuffClient_1.12.2wasm.html",tag:"MODDED"},
+  {title:"Astral WASM MC",desc:"Eaglercraft WASM — another blazing-fast Minecraft client build for the browser.",cat:"sandbox",url:"/Resources/astrawasm.html",tag:"NEW"},
+  {title:"BitLife",desc:"Make life choices every step of the way. How will your story end?",cat:"strategy",url:"/Resources/bitlife.html",tag:"NEW"},
+  {title:"Moto X3M",desc:"Race through insane obstacle courses on your motorbike. Don't wipe out.",cat:"platformer",url:"/Resources/moto.html",tag:"NEW"},
+  {title:"Paper.io",desc:"Claim territory and outmanoeuvre rivals in this addictive browser game.",cat:"arcade",url:"/Resources/paper.html",tag:"NEW"},
+  {title:"Subway Surfers",desc:"Run, dodge, and jump through endless tracks without getting caught.",cat:"arcade",url:"/Resources/sub.html",tag:"NEW"}
 ];
-const CC={sandbox:"#00e5ff",horror:"#ff1870",shooter:"#ff6b35",rpg:"#00ff9d",rhythm:"#ffd60a",strategy:"#ae45ff",platformer:"#4d9eff"};
-const BG_CC={sandbox:"rgba(0,229,255,0.06)",horror:"rgba(255,24,112,0.06)",shooter:"rgba(255,107,53,0.06)",rpg:"rgba(0,255,157,0.06)",rhythm:"rgba(255,214,10,0.06)",strategy:"rgba(174,69,255,0.06)",platformer:"rgba(77,158,255,0.06)"};
+const CC={sandbox:"#00e5ff",horror:"#ff1870",shooter:"#ff6b35",rpg:"#00ff9d",rhythm:"#ffd60a",strategy:"#ae45ff",platformer:"#4d9eff",arcade:"#ff9f43"};
+const BG_CC={sandbox:"rgba(0,229,255,0.06)",horror:"rgba(255,24,112,0.06)",shooter:"rgba(255,107,53,0.06)",rpg:"rgba(0,255,157,0.06)",rhythm:"rgba(255,214,10,0.06)",strategy:"rgba(174,69,255,0.06)",platformer:"rgba(77,158,255,0.06)",arcade:"rgba(255,159,67,0.06)"};
 let curCat='all',curQuery='';
 
 function buildCards(){
@@ -270,6 +273,27 @@ function handleSearch(val){
 function clearSearch(){curQuery='';document.getElementById('searchInput').value='';document.getElementById('clearBtn').style.opacity='0';filterGames();}
 
 buildCards();
+
+// ── Auto-count: write total to localStorage + update all displays ──────────
+(function(){
+  var total = GAMES.length;
+  localStorage.setItem('f0_gc', total);
+  // Nav badge
+  var nb = document.getElementById('nav-badge');
+  if(nb) nb.textContent = '◈ ' + total + ' GAMES';
+  // Hero label
+  var hl = document.querySelector('[data-countlabel]');
+  if(hl) hl.textContent = '▶ ' + total + ' GAMES AVAILABLE';
+  // ALL pill
+  var ap = document.getElementById('pill-all');
+  if(ap) ap.textContent = 'ALL · ' + total;
+  // Total span in count row
+  var gt = document.getElementById('gtotal');
+  if(gt) gt.textContent = total;
+  // gcount starts at total (all shown by default)
+  var gc = document.getElementById('gcount');
+  if(gc) gc.textContent = total;
+})();
 
 // Cursor
 const dot=document.getElementById('cdot'),ring=document.getElementById('cring');
