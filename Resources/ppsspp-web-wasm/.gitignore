@@ -1,0 +1,13 @@
+server/cert.pem
+server/key.pem
+/assets
+/build-wasm/
+/build-wasm-release/
+/public/
+**/__pycache__/
+*.pyc
+.DS_Store
+node_modules/
+wasm-page/.angular/
+wasm-page/dist/
+node_modules
