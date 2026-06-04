@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://fallacious0.dedyn.io/</loc>
@@ -10,20 +11,9 @@
     <loc>https://fallacious0.dedyn.io/Updates/</loc>
   </url>
   <url>
-    <loc>https://fallacious0.dedyn.io/articles/index.html</loc>
-  </url>
-</urlset><?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://fallacious0.dedyn.io/</loc>
+    <loc>https://fallacious0.dedyn.io/articles/</loc>
   </url>
   <url>
-    <loc>https://fallacious0.dedyn.io/select/</loc>
-  </url>
-  <url>
-    <loc>https://fallacious0.dedyn.io/Updates/</loc>
-  </url>
-  <url>
-    <loc>https://fallacious0.dedyn.io/articles/index.html</loc>
-  </url>
+    <loc>https://fallacious0.dedyn.io/Resources/</loc>
+  </url>  
 </urlset>
