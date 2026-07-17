@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Articles · Fallacious0</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Space+Mono:wght@400;700&family=Cinzel+Decorative:wght@400;700&family=Raleway:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;cursor:none}
+:root{--bg:#04040e;--c1:#00e5ff;--c2:#ae45ff;--c3:#ff1870;--c4:#00ff9d;--c5:#ffd60a;--txt:#c8ccee;--dim:#5d6080;--f1:'Orbitron',monospace;--f2:'Raleway',sans-serif;--f3:'Space Mono',monospace;--f4:'Cinzel Decorative',serif;--f5:'Playfair Display',serif}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:var(--f2);min-height:100vh;overflow-x:hidden;opacity:0;transition:opacity 0.5s}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:linear-gradient(var(--c2),var(--c1));border-radius:2px}
+a{text-decoration:none;color:inherit}
+@keyframes gridMove{0%{background-position:0 0}100%{background-position:60px 60px}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+@keyframes floatB{0%,100%{transform:translateY(0)}50%{transform:translateY(10px)}}
+@keyframes slideUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes scanRight{from{width:0}to{width:100%}}
+@keyframes borderGlow{0%,100%{border-color:rgba(0,229,255,0.07)}50%{border-color:rgba(0,229,255,0.15)}}
+@keyframes typeWrite{from{width:0}to{width:100%}}
+
+.nav-link{font-family:var(--f1);font-size:10px;font-weight:700;letter-spacing:2.5px;color:var(--dim);transition:color 0.3s;position:relative;padding-bottom:3px}
+.nav-link::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--c1);box-shadow:0 0 6px var(--c1);transition:width 0.35s}
+.nav-link:hover,.nav-link.active{color:var(--c1)}
+.nav-link:hover::after,.nav-link.active::after{width:100%}
+
+/* Featured article card */
+.feat-card{background:rgba(174,69,255,0.04);border:1px solid rgba(174,69,255,0.14);border-radius:14px;padding:44px 48px;position:relative;overflow:hidden;transition:transform 0.4s,box-shadow 0.4s,border-color 0.4s;display:block}
+.feat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--c2),var(--c1),var(--c2));transform:scaleX(0);transform-origin:left;transition:transform 0.5s ease}
+.feat-card:hover{transform:translateY(-6px);box-shadow:0 24px 60px rgba(174,69,255,0.1);border-color:rgba(174,69,255,0.35)}
+.feat-card:hover::before{transform:scaleX(1)}
+
+/* Article card */
+.art-card{display:block;padding:28px 30px 28px 34px;border:1px solid rgba(255,255,255,0.06);border-left:2px solid rgba(174,69,255,0.35);border-radius:10px;background:rgba(255,255,255,0.018);position:relative;overflow:hidden;transition:transform 0.35s,box-shadow 0.35s,border-left-color 0.35s}
+.art-card::after{content:'';position:absolute;inset:0;background:rgba(174,69,255,0.025);opacity:0;transition:opacity 0.35s}
+.art-card:hover{transform:translateY(-4px);box-shadow:0 14px 44px rgba(0,0,0,0.3)}
+.art-card:hover::after{opacity:1}
+
+.read-btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--f1);font-size:9px;font-weight:700;letter-spacing:2.5px;color:var(--c1);transition:gap 0.3s,opacity 0.3s;opacity:0.8}
+.read-btn:hover{gap:14px;opacity:1}
+
+.tag-pill{display:inline-flex;padding:4px 12px;border-radius:20px;font-family:var(--f3);font-size:9px;letter-spacing:2px;border:1px solid;font-weight:700}
+
+.reveal{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease}
+.revealed{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-20px);transition:opacity 0.6s ease,transform 0.6s ease}
+.reveal-left.revealed{opacity:1;transform:translateX(0)}
+
+.divider-line{height:1px;background:linear-gradient(90deg,transparent,rgba(174,69,255,0.3),rgba(0,229,255,0.3),transparent);margin:0 auto;opacity:0.6}
+
+@media(max-width:768px){.feat-inner{flex-direction:column!important}.art-grid-2{grid-template-columns:1fr!important}.nav-desktop{display:none!important}#ham{display:flex!important}*{cursor:auto!important}#cdot,#cring{display:none!important}}
+@media(hover:none){*{cursor:auto!important}#cdot,#cring{display:none!important}}
+</style>
+</head>
+<body>
+
+<div id="cdot" style="position:fixed;top:0;left:0;width:7px;height:7px;background:var(--c2);border-radius:50%;pointer-events:none;z-index:10001;box-shadow:0 0 10px var(--c2),0 0 22px rgba(174,69,255,0.5);transform:translate(-50%,-50%);"></div>
+<div id="cring" style="position:fixed;top:0;left:0;width:30px;height:30px;border:1.5px solid rgba(174,69,255,0.65);border-radius:50%;pointer-events:none;z-index:10000;transform:translate(-50%,-50%);transition:width 0.25s,height 0.25s,border-color 0.25s,background 0.25s;"></div>
+<div id="overlay" style="position:fixed;inset:0;background:var(--bg);z-index:9500;pointer-events:none;opacity:0;transition:opacity 0.4s;"></div>
+
+<div id="mmenu" style="display:none;position:fixed;inset:0;background:rgba(4,4,14,0.97);z-index:9000;flex-direction:column;align-items:center;justify-content:center;gap:28px;">
+  <button onclick="toggleMenu()" style="position:absolute;top:22px;right:22px;background:none;border:none;color:var(--c2);font-size:22px;cursor:none;">✕</button>
+  <a href="/" class="nav-link" style="font-size:18px;letter-spacing:4px;">HOME</a>
+  <a href="/select/" class="nav-link" style="font-size:18px;letter-spacing:4px;">GAMES</a>
+  <a href="/articles/" class="nav-link active" style="font-size:18px;letter-spacing:4px;">ARTICLES</a>
+  <a href="/updates/" class="nav-link" style="font-size:18px;letter-spacing:4px;">UPDATES</a>
+  <a href="/about-us/" class="nav-link" style="font-size:18px;letter-spacing:4px;">ABOUT</a>
+</div>
+
+<!-- Fixed BG -->
+<div style="position:fixed;inset:0;pointer-events:none;z-index:0;">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 25% 30%,rgba(174,69,255,0.08) 0%,transparent 55%),radial-gradient(ellipse at 75% 70%,rgba(0,229,255,0.065) 0%,transparent 50%),radial-gradient(ellipse at 50% 95%,rgba(255,24,112,0.04) 0%,transparent 40%);"></div>
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(174,69,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(174,69,255,0.025) 1px,transparent 1px);background-size:60px 60px;animation:gridMove 30s linear infinite;"></div>
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.03) 3px,rgba(0,0,0,0.03) 4px);"></div>
+  <div style="position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(174,69,255,0.055) 0%,transparent 70%);top:-5%;right:10%;animation:float 9s ease-in-out infinite;"></div>
+  <div style="position:absolute;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(0,229,255,0.045) 0%,transparent 70%);bottom:10%;left:5%;animation:floatB 11s ease-in-out infinite;"></div>
+</div>
+
+<nav style="position:fixed;top:0;left:0;right:0;z-index:500;height:64px;padding:0 5%;display:flex;align-items:center;justify-content:space-between;background:rgba(4,4,14,0.82);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid rgba(174,69,255,0.08);animation:borderGlow 4s ease-in-out infinite;">
+  <a href="/" style="font-family:var(--f4);font-size:17px;font-weight:700;color:#fff;text-shadow:0 0 18px rgba(0,229,255,0.4);">FALLACIOU<span style="color:var(--c1);text-shadow:0 0 14px var(--c1);">S0</span></a>
+  <div class="nav-desktop" style="display:flex;gap:34px;align-items:center;">
+    <a href="/" class="nav-link">HOME</a>
+    <a href="/select/" class="nav-link">GAMES</a>
+    <a href="/articles/" class="nav-link active" style="--c1:var(--c2);">ARTICLES</a>
+    <a href="/updates/" class="nav-link">UPDATES</a>
+    <a href="/about-us/" class="nav-link">ABOUT</a>
+  </div>
+  <div class="nav-desktop" style="font-family:var(--f3);font-size:9px;letter-spacing:2px;color:var(--c2);padding:7px 14px;border:1px solid rgba(174,69,255,0.2);border-radius:4px;">✦ 5 ARTICLES</div>
+  <div id="ham" style="display:none;flex-direction:column;gap:5px;padding:6px;z-index:9100;cursor:none;" onclick="toggleMenu()">
+    <span style="width:22px;height:2px;background:var(--c2);display:block;"></span>
+    <span style="width:22px;height:2px;background:var(--c2);display:block;"></span>
+    <span style="width:22px;height:2px;background:var(--c2);display:block;"></span>
+  </div>
+</nav>
+
+<div style="position:relative;z-index:2;padding-top:64px;">
+
+  <!-- HERO MASTHEAD -->
+  <section style="padding:60px 5% 50px;border-bottom:1px solid rgba(174,69,255,0.1);position:relative;overflow:hidden;">
+    <div style="position:absolute;bottom:0;left:5%;right:5%;height:1px;background:linear-gradient(90deg,transparent,var(--c2),var(--c1),transparent);opacity:0.35;"></div>
+    <div style="max-width:1100px;margin:0 auto;">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:28px;flex-wrap:wrap;">
+        <div>
+          <div style="font-family:var(--f3);font-size:10px;letter-spacing:5px;color:var(--c2);margin-bottom:14px;animation:slideUp 0.7s ease both;">✦ KNOWLEDGE BASE</div>
+          <h1 style="font-family:var(--f5);font-size:clamp(36px,7vw,68px);font-weight:700;font-style:italic;color:#e8e0ff;line-height:1.1;animation:slideUp 0.7s ease 0.1s both;">FALLACIOUS<span style="color:var(--c2);font-style:normal;"> 0</span></h1>
+          <div style="font-family:var(--f5);font-size:clamp(14px,2.5vw,18px);font-style:italic;color:var(--dim);margin-top:6px;animation:slideUp 0.7s ease 0.18s both;letter-spacing:0.5px;">Guides, lore breakdowns &amp; browser game insights</div>
+        </div>
+        <div style="text-align:right;animation:slideUp 0.7s ease 0.22s both;">
+          <div style="font-family:var(--f3);font-size:9px;letter-spacing:2px;color:var(--dim);margin-bottom:4px;">ISSUE NO.</div>
+          <div style="font-family:var(--f1);font-size:42px;font-weight:900;color:rgba(174,69,255,0.25);line-height:1;">001</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED ARTICLE -->
+  <section style="padding:60px 5% 40px;">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div style="font-family:var(--f3);font-size:10px;letter-spacing:4px;color:var(--dim);margin-bottom:22px;display:flex;align-items:center;gap:12px;" class="reveal">
+        <span style="display:inline-block;width:20px;height:1px;background:var(--c2);box-shadow:0 0 6px var(--c2);"></span>
+        FEATURED ARTICLE
+      </div>
+
+      <a href="/articles/eaglercraft-guide.html" class="feat-card reveal">
+        <div style="position:absolute;top:0;right:0;width:280px;height:100%;background:radial-gradient(circle at 80% 50%,rgba(174,69,255,0.08) 0%,transparent 65%);pointer-events:none;"></div>
+        <div class="feat-inner" style="display:flex;justify-content:space-between;align-items:flex-start;gap:32px;position:relative;">
+          <div style="flex:1;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;flex-wrap:wrap;">
+              <span class="tag-pill" style="color:var(--c1);border-color:rgba(0,229,255,0.35);background:rgba(0,229,255,0.07);">GUIDE</span>
+              <span class="tag-pill" style="color:var(--c2);border-color:rgba(174,69,255,0.35);background:rgba(174,69,255,0.07);">MINECRAFT</span>
+              <span style="font-family:var(--f3);font-size:9px;letter-spacing:2px;color:var(--dim);">5 MIN READ</span>
+            </div>
+            <h2 style="font-family:var(--f5);font-size:clamp(22px,4vw,36px);font-weight:700;color:#e8e0ff;margin-bottom:14px;line-height:1.25;">Eaglercraft Minecraft<br>Browser Guide</h2>
+            <p style="font-family:var(--f2);font-size:15px;color:var(--dim);line-height:1.8;max-width:540px;font-weight:400;">Everything you need to play Minecraft entirely in your browser. No installs, no launcher, no Java — just open the page and start building. A complete walkthrough of controls, versions, and tips.</p>
+            <div style="margin-top:28px;">
+              <span class="read-btn">READ FULL ARTICLE →</span>
+            </div>
+          </div>
+          <div style="flex-shrink:0;display:flex;flex-direction:column;align-items:flex-end;gap:8px;">
+            <div style="font-family:var(--f1);font-size:80px;font-weight:900;color:rgba(174,69,255,0.08);line-height:1;user-select:none;">01</div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <div class="divider-line reveal" style="max-width:1100px;width:90%;"></div>
+
+  <!-- ARTICLES GRID -->
+  <section style="padding:48px 5% 90px;">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div style="font-family:var(--f3);font-size:10px;letter-spacing:4px;color:var(--dim);margin-bottom:30px;display:flex;align-items:center;gap:12px;" class="reveal">
+        <span style="display:inline-block;width:20px;height:1px;background:var(--c2);box-shadow:0 0 6px var(--c2);"></span>
+        ALL ARTICLES
+      </div>
+
+      <div class="art-grid-2" style="display:grid;grid-template-columns:1fr 1fr;gap:18px;">
+
+        <!-- FNAF Guide -->
+        <a href="/articles/fnaf-complete-guide.html" class="art-card reveal"
+          onmouseenter="this.style.borderLeftColor='var(--c3)';this.style.boxShadow='0 14px 44px rgba(255,24,112,0.08)'"
+          onmouseleave="this.style.borderLeftColor='rgba(174,69,255,0.35)';this.style.boxShadow='none'">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap;">
+            <span class="tag-pill" style="color:var(--c3);border-color:rgba(255,24,112,0.35);background:rgba(255,24,112,0.07);">LORE</span>
+            <span class="tag-pill" style="color:var(--c3);border-color:rgba(255,24,112,0.2);background:transparent;">HORROR</span>
+            <span style="font-family:var(--f3);font-size:9px;letter-spacing:1.5px;color:var(--dim);margin-left:auto;">8 MIN</span>
+          </div>
+          <h3 style="font-family:var(--f5);font-size:22px;font-weight:700;color:#e8e0ff;margin-bottom:10px;line-height:1.3;">FNAF Complete Guide</h3>
+          <p style="font-family:var(--f2);font-size:13px;color:var(--dim);line-height:1.75;margin-bottom:18px;font-weight:400;">Full lore breakdown across every game — from the original Freddy's to UCN. Every animatronic, every theory, every twist explained.</p>
+          <span class="read-btn" style="color:var(--c3);">READ ARTICLE →</span>
+        </a>
+
+        <!-- FNF Guide -->
+        <a href="/articles/friday-night-funkin-guide.html" class="art-card reveal"
+          onmouseenter="this.style.borderLeftColor='var(--c5)';this.style.boxShadow='0 14px 44px rgba(255,214,10,0.07)'"
+          onmouseleave="this.style.borderLeftColor='rgba(174,69,255,0.35)';this.style.boxShadow='none'">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap;">
+            <span class="tag-pill" style="color:var(--c5);border-color:rgba(255,214,10,0.35);background:rgba(255,214,10,0.07);">GUIDE</span>
+            <span class="tag-pill" style="color:var(--c5);border-color:rgba(255,214,10,0.2);background:transparent;">RHYTHM</span>
+            <span style="font-family:var(--f3);font-size:9px;letter-spacing:1.5px;color:var(--dim);margin-left:auto;">4 MIN</span>
+          </div>
+          <h3 style="font-family:var(--f5);font-size:22px;font-weight:700;color:#e8e0ff;margin-bottom:10px;line-height:1.3;">FNF: Rhythm Battles Explained</h3>
+          <p style="font-family:var(--f2);font-size:13px;color:var(--dim);line-height:1.75;margin-bottom:18px;font-weight:400;">Arrow keys, scoring, weeks, mods — everything you need to start battling. From Daddy Dearest to the full Week 7 chaos guide.</p>
+          <span class="read-btn" style="color:var(--c5);">READ ARTICLE →</span>
+        </a>
+
+        <!-- ULTRAKILL Overview -->
+        <a href="/articles/ultrakill-overview.html" class="art-card reveal"
+          onmouseenter="this.style.borderLeftColor='#ff6b35';this.style.boxShadow='0 14px 44px rgba(255,107,53,0.07)'"
+          onmouseleave="this.style.borderLeftColor='rgba(174,69,255,0.35)';this.style.boxShadow='none'">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap;">
+            <span class="tag-pill" style="color:#ff6b35;border-color:rgba(255,107,53,0.35);background:rgba(255,107,53,0.07);">OVERVIEW</span>
+            <span class="tag-pill" style="color:#ff6b35;border-color:rgba(255,107,53,0.2);background:transparent;">SHOOTER</span>
+            <span style="font-family:var(--f3);font-size:9px;letter-spacing:1.5px;color:var(--dim);margin-left:auto;">6 MIN</span>
+          </div>
+          <h3 style="font-family:var(--f5);font-size:22px;font-weight:700;color:#e8e0ff;margin-bottom:10px;line-height:1.3;">ULTRAKILL Overview</h3>
+          <p style="font-family:var(--f2);font-size:13px;color:var(--dim);line-height:1.75;margin-bottom:18px;font-weight:400;">Fast FPS mechanics, movement tech, style ranking and blood mechanics — a breakdown of the most kinetic shooter you've ever played.</p>
+          <span class="read-btn" style="color:#ff6b35;">READ ARTICLE →</span>
+        </a>
+
+        <!-- Undertale Lore -->
+        <a href="/articles/undertale-lore.html" class="art-card reveal"
+          onmouseenter="this.style.borderLeftColor='var(--c4)';this.style.boxShadow='0 14px 44px rgba(0,255,157,0.07)'"
+          onmouseleave="this.style.borderLeftColor='rgba(174,69,255,0.35)';this.style.boxShadow='none'">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap;">
+            <span class="tag-pill" style="color:var(--c4);border-color:rgba(0,255,157,0.35);background:rgba(0,255,157,0.07);">STORY</span>
+            <span class="tag-pill" style="color:var(--c4);border-color:rgba(0,255,157,0.2);background:transparent;">RPG</span>
+            <span style="font-family:var(--f3);font-size:9px;letter-spacing:1.5px;color:var(--dim);margin-left:auto;">7 MIN</span>
+          </div>
+          <h3 style="font-family:var(--f5);font-size:22px;font-weight:700;color:#e8e0ff;margin-bottom:10px;line-height:1.3;">Undertale Lore Deep-Dive</h3>
+          <p style="font-family:var(--f2);font-size:13px;color:var(--dim);line-height:1.75;margin-bottom:18px;font-weight:400;">Pacifist, genocide, neutral — every route, every ending, and all the hidden secrets and lore you might have missed on your first run.</p>
+          <span class="read-btn" style="color:var(--c4);">READ ARTICLE →</span>
+        </a>
+
+      </div>
+
+      <!-- Back to games CTA -->
+      <div style="margin-top:60px;padding:32px 38px;border:1px solid rgba(0,229,255,0.1);border-radius:12px;background:rgba(0,229,255,0.02);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:18px;" class="reveal">
+        <div>
+          <div style="font-family:var(--f1);font-size:13px;font-weight:700;color:#e4e8ff;margin-bottom:6px;">Done reading? Time to play.</div>
+          <div style="font-family:var(--f2);font-size:13px;color:var(--dim);">Jump into any of our 25+ unblocked games, no installs needed.</div>
+        </div>
+        <a href="/select/" style="display:inline-flex;align-items:center;gap:9px;padding:12px 28px;border:1px solid rgba(0,229,255,0.35);color:var(--c1);font-family:var(--f1);font-size:9px;font-weight:700;letter-spacing:2px;border-radius:5px;transition:all 0.3s;white-space:nowrap;"
+          onmouseenter="this.style.background='rgba(0,229,255,0.1)';this.style.boxShadow='0 0 20px rgba(0,229,255,0.18)'"
+          onmouseleave="this.style.background='transparent';this.style.boxShadow='none'">▶ BROWSE GAMES →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="padding:44px 5% 28px;border-top:1px solid rgba(174,69,255,0.08);background:rgba(0,0,0,0.25);">
+    <div style="max-width:1200px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:22px;text-align:center;">
+      <a href="/" style="font-family:var(--f4);font-size:18px;color:#fff;text-shadow:0 0 18px rgba(0,229,255,0.4);">FALLACIOU<span style="color:var(--c1);">S0</span></a>
+      <div style="display:flex;gap:28px;flex-wrap:wrap;justify-content:center;">
+        <a href="/" style="font-family:var(--f3);font-size:9px;letter-spacing:2px;color:var(--dim);transition:color 0.3s;" onmouseenter="this.style.color='#00e5ff'" onmouseleave="this.style.color='var(--dim)'">HOME</a>
+        <a href="/select/" style="font-family:var(--f3);font-size:9px;letter-spacing:2px;color:var(--dim);transition:color 0.3s;" onmouseenter="this.style.color='#00e5ff'" onmouseleave="this.style.color='var(--dim)'">GAMES</a>
+        <a href="/articles/" style="font-family:var(--f3);font-size:9px;letter-spacing:2px;color:var(--c2);">ARTICLES</a>
+        <a href="/updates/" style="font-family:var(--f3);font-size:9px;letter-spacing:2px;color:var(--dim);transition:color 0.3s;" onmouseenter="this.style.color='#00e5ff'" onmouseleave="this.style.color='var(--dim)'">UPDATES</a>
+        <a href="/about-us/" style="font-family:var(--f3);font-size:9px;letter-spacing:2px;color:var(--dim);transition:color 0.3s;" onmouseenter="this.style.color='#00e5ff'" onmouseleave="this.style.color='var(--dim)'">ABOUT</a>
+      </div>
+      <div style="font-family:var(--f3);font-size:9px;color:#2e3056;letter-spacing:1px;">© 2025 FALLACIOUS0 · ALL GAMES REMAIN PROPERTY OF THEIR RESPECTIVE OWNERS</div>
+    </div>
+  </footer>
+</div>
+
+<script>
+// Cursor (purple theme for articles page)
+const dot=document.getElementById('cdot'),ring=document.getElementById('cring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});
+(function anim(){rx+=(mx-rx)*0.11;ry+=(my-ry)*0.11;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(anim);})();
+document.querySelectorAll('a,button').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{ring.style.width='44px';ring.style.height='44px';ring.style.borderColor='rgba(174,69,255,0.9)';ring.style.background='rgba(174,69,255,0.07)';});
+  el.addEventListener('mouseleave',()=>{ring.style.width='30px';ring.style.height='30px';ring.style.borderColor='rgba(174,69,255,0.65)';ring.style.background='transparent';});
+});
+
+// Page transitions
+document.querySelectorAll('a').forEach(a=>{
+  if(a.href&&a.origin===location.origin&&!a.target){
+    a.addEventListener('click',e=>{e.preventDefault();const ov=document.getElementById('overlay');ov.style.opacity='1';ov.style.pointerEvents='all';setTimeout(()=>{location.href=a.href;},380);});
+  }
+});
+
+setTimeout(()=>{document.body.style.opacity='1';},60);
+
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('revealed');});},{threshold:0.07});
+document.querySelectorAll('.reveal,.reveal-left').forEach(el=>obs.observe(el));
+
+function toggleMenu(){const m=document.getElementById('mmenu');m.style.display=m.style.display==='flex'?'none':'flex';}
+</script>
+</body>
+</html>
