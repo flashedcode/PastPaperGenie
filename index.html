@@ -3,7 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Past Paper Genie</title>
+<meta name="description" content="Past Paper Genie - Your ultimate GCSE past papers resource. Access GCSE Maths, Chemistry, Physics, Biology, English and more. Free past papers and exam questions.">
+<meta name="keywords" content="GCSE past papers, past papers, exam revision, GCSE Maths, GCSE Chemistry, GCSE Physics, GCSE Biology, GCSE English">
+<meta name="author" content="Past Paper Genie">
+<title>Past Paper Genie - GCSE Past Papers & Revision Resources</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:ital,wght@0,300;0,400;0,600;1,300&family=Space+Mono:wght@400;700&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
 <style>
@@ -103,23 +106,21 @@
 <!-- Mobile menu -->
 <div id="mmenu" style="display:none;position:fixed;inset:0;background:rgba(4,4,14,0.97);z-index:9000;flex-direction:column;align-items:center;justify-content:center;gap:28px;">
   <a href="/" class="nav-link active" style="font-size:18px;letter-spacing:4px;">HOME</a>
-  <a href="/select/" class="nav-link" style="font-size:18px;letter-spacing:4px;">GAMES</a>
-  <a href="/articles/" class="nav-link" style="font-size:18px;letter-spacing:4px;">ARTICLES</a>
-  <a href="/updates/" class="nav-link" style="font-size:18px;letter-spacing:4px;">UPDATES</a>
-  <a href="/about-us/" class="nav-link" style="font-size:18px;letter-spacing:4px;">ABOUT</a>
+  <a href="/pastpapers/" class="nav-link" style="font-size:18px;letter-spacing:4px;">PAST PAPERS</a>
+  <a href="/guides/" class="nav-link" style="font-size:18px;letter-spacing:4px;">GUIDES</a>
+  <a href="/about/" class="nav-link" style="font-size:18px;letter-spacing:4px;">ABOUT</a>
 </div>
 
 <!-- NAV -->
 <nav style="position:fixed;top:0;left:0;right:0;z-index:500;height:64px;padding:0 5%;display:flex;align-items:center;justify-content:space-between;background:rgba(4,4,14,0.82);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid rgba(0,229,255,0.07);animation:borderGlow 4s ease-in-out infinite;">
-  <a href="/" style="font-family:var(--f4);font-size:17px;font-weight:700;letter-spacing:1px;color:#fff;text-shadow:0 0 18px rgba(0,229,255,0.45);">FALLACIOU<span style="color:var(--c1);text-shadow:0 0 14px var(--c1);">S0</span></a>
+  <a href="/" style="font-family:var(--f4);font-size:17px;font-weight:700;letter-spacing:1px;color:#fff;text-shadow:0 0 18px rgba(0,229,255,0.45);">PAST PAPER<span style="color:var(--c1);text-shadow:0 0 14px var(--c1);">.</span>GE</a>
   <div class="nav-desktop" style="display:flex;gap:34px;align-items:center;">
     <a href="/" class="nav-link active">HOME</a>
-    <a href="/select/" class="nav-link">GAMES</a>
-    <a href="/articles/" class="nav-link">ARTICLES</a>
-    <a href="/updates/" class="nav-link">UPDATES</a>
-    <a href="/about-us/" class="nav-link">ABOUT</a>
+    <a href="/pastpapers/" class="nav-link">PAPERS</a>
+    <a href="/guides/" class="nav-link">GUIDES</a>
+    <a href="/about/" class="nav-link">ABOUT</a>
   </div>
-  <a href="/select/" class="nav-desktop" style="font-family:var(--f1);font-size:9px;font-weight:700;letter-spacing:2px;padding:8px 18px;border:1px solid rgba(0,229,255,0.35);color:var(--c1);border-radius:4px;transition:all 0.3s;" onmouseenter="this.style.background='rgba(0,229,255,0.1)';this.style.boxShadow='0 0 16px rgba(0,229,255,0.25)'" onmouseleave="this.style.background='transparent';this.style.boxShadow='none'">▶ PLAY NOW</a>
+  <a href="/pastpapers/" class="nav-desktop" style="font-family:var(--f1);font-size:9px;font-weight:700;letter-spacing:2px;padding:8px 18px;border:1px solid rgba(0,229,255,0.35);color:var(--c1);border-radius:4px;transition:all 0.3s;" onmouseenter="this.style.background='rgba(0,229,255,0.1)';this.style.boxShadow='0 0 16px rgba(0,229,255,0.25)'" onmouseleave="this.style.background='transparent';this.style.boxShadow='none'">▶ ACCESS PAPERS</a>
   <div id="ham" style="display:none;flex-direction:column;gap:5px;padding:6px;z-index:9100;" onclick="toggleMenu()">
     <span style="width:22px;height:2px;background:var(--c1);display:block;transition:all 0.3s;"></span>
     <span style="width:22px;height:2px;background:var(--c1);display:block;transition:all 0.3s;"></span>
@@ -132,13 +133,13 @@
 
   <!-- HERO -->
   <section style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 5% 70px;text-align:center;position:relative;">
-    <div class="hero-tag">▶ THE ULTIMATE UNBLOCKED GAMING HUB</div>
-    <h1 style="font-family:var(--f1);font-weight:900;font-size:clamp(38px,8vw,80px);letter-spacing:5px;line-height:1.05;background:linear-gradient(135deg,#ffffff 0%,#a0e8ff 30%,var(--c1) 55%,var(--c2) 85%);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:glitch 5s ease-in-out infinite,slideUp 0.8s ease 0.1s both;" class="hero-big">FALLACIOUS</h1>
-    <div style="font-family:var(--f1);font-weight:900;font-size:clamp(80px,20vw,160px);letter-spacing:8px;color:var(--c1);text-shadow:0 0 50px rgba(0,229,255,0.6),0 0 100px rgba(0,229,255,0.25),0 0 200px rgba(0,229,255,0.1);line-height:0.85;animation:slideUp 0.8s ease 0.15s both;" class="hero-zero">0</div>
-    <p style="max-width:520px;font-family:var(--f2);font-size:15px;font-weight:300;color:var(--dim);line-height:1.85;margin:36px auto 40px;letter-spacing:0.5px;animation:slideUp 0.8s ease 0.25s both;">Your ultimate destination for unblocked games. Play Minecraft, horror games, classic shooters and more — anywhere, instantly, for free.</p>
+    <div class="hero-tag">▶ YOUR ULTIMATE GCSE REVISION HUB</div>
+    <h1 style="font-family:var(--f1);font-weight:900;font-size:clamp(38px,8vw,80px);letter-spacing:5px;line-height:1.05;background:linear-gradient(135deg,#ffffff 0%,#a0e8ff 30%,var(--c1) 55%,var(--c2) 85%);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:glitch 5s ease-in-out infinite,slideUp 0.8s ease 0.1s both;" class="hero-big">PAST PAPER</h1>
+    <div style="font-family:var(--f1);font-weight:900;font-size:clamp(80px,20vw,160px);letter-spacing:8px;color:var(--c1);text-shadow:0 0 50px rgba(0,229,255,0.6),0 0 100px rgba(0,229,255,0.25),0 0 200px rgba(0,229,255,0.1);line-height:0.85;animation:slideUp 0.8s ease 0.15s both;" class="hero-zero">GENIE</div>
+    <p style="max-width:520px;font-family:var(--f2);font-size:15px;font-weight:300;color:var(--dim);line-height:1.85;margin:36px auto 40px;letter-spacing:0.5px;animation:slideUp 0.8s ease 0.25s both;">Access thousands of GCSE past papers and revision resources. Master Maths, Chemistry, Physics, Biology, English and more — all in one place.</p>
     <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;animation:slideUp 0.8s ease 0.35s both;">
-      <a href="/select/" class="cta-btn">⚡ &nbsp;BROWSE GAMES</a>
-      <a href="/articles/" style="display:inline-flex;align-items:center;gap:8px;padding:15px 38px;border:1px solid rgba(255,255,255,0.1);color:var(--dim);font-family:var(--f1);font-size:12px;font-weight:700;letter-spacing:3px;border-radius:6px;transition:all 0.3s;" onmouseenter="this.style.borderColor='rgba(174,69,255,0.5)';this.style.color='#ae45ff';this.style.boxShadow='0 0 20px rgba(174,69,255,0.15)'" onmouseleave="this.style.borderColor='rgba(255,255,255,0.1)';this.style.color='#6a6d8e';this.style.boxShadow='none'">📖 &nbsp;ARTICLES</a>
+      <a href="/pastpapers/" class="cta-btn">⚡ &nbsp;BROWSE SUBJECTS</a>
+      <a href="/guides/" style="display:inline-flex;align-items:center;gap:8px;padding:15px 38px;border:1px solid rgba(255,255,255,0.1);color:var(--dim);font-family:var(--f1);font-size:12px;font-weight:700;letter-spacing:3px;border-radius:6px;transition:all 0.3s;" onmouseenter="this.style.borderColor='rgba(174,69,255,0.5)';this.style.color='#ae45ff';this.style.boxShadow='0 0 20px rgba(174,69,255,0.15)'" onmouseleave="this.style.borderColor='rgba(255,255,255,0.1)';this.style.color='#6a6d8e';this.style.boxShadow='none'">📖 &nbsp;REVISION GUIDES</a>
     </div>
     <!-- Scroll hint -->
     <div style="position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;animation:pulse 2.5s ease-in-out infinite;pointer-events:none;">
@@ -151,113 +152,112 @@
   <section style="padding:0 5% 90px;">
     <div style="max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;" class="stat-grid">
       <div class="stat-box reveal" style="border-color:rgba(0,229,255,0.1);" onmouseenter="this.style.borderColor='rgba(0,229,255,0.35)'" onmouseleave="this.style.borderColor='rgba(0,229,255,0.1)'">
-        <div style="font-family:var(--f1);font-size:30px;font-weight:900;color:var(--c1);text-shadow:0 0 22px rgba(0,229,255,0.55);">25+</div>
-        <div style="font-family:var(--f3);font-size:9px;letter-spacing:2px;color:var(--dim);margin-top:6px;">GAMES</div>
+        <div style="font-family:var(--f1);font-size:30px;font-weight:900;color:var(--c1);text-shadow:0 0 22px rgba(0,229,255,0.55);">10+</div>
+        <div style="font-family:var(--f3);font-size:9px;letter-spacing:2px;color:var(--dim);margin-top:6px;">SUBJECTS</div>
       </div>
       <div class="stat-box reveal" style="border-color:rgba(174,69,255,0.1);" onmouseenter="this.style.borderColor='rgba(174,69,255,0.35)'" onmouseleave="this.style.borderColor='rgba(174,69,255,0.1)'">
-        <div style="font-family:var(--f1);font-size:30px;font-weight:900;color:var(--c2);text-shadow:0 0 22px rgba(174,69,255,0.55);">5</div>
-        <div style="font-family:var(--f3);font-size:9px;letter-spacing:2px;color:var(--dim);margin-top:6px;">ARTICLES</div>
+        <div style="font-family:var(--f1);font-size:30px;font-weight:900;color:var(--c2);text-shadow:0 0 22px rgba(174,69,255,0.55);">1000+</div>
+        <div style="font-family:var(--f3);font-size:9px;letter-spacing:2px;color:var(--dim);margin-top:6px;">PAPERS</div>
       </div>
       <div class="stat-box reveal" style="border-color:rgba(255,24,112,0.1);" onmouseenter="this.style.borderColor='rgba(255,24,112,0.35)'" onmouseleave="this.style.borderColor='rgba(255,24,112,0.1)'">
-        <div style="font-family:var(--f1);font-size:30px;font-weight:900;color:var(--c3);text-shadow:0 0 22px rgba(255,24,112,0.55);">0</div>
-        <div style="font-family:var(--f3);font-size:9px;letter-spacing:2px;color:var(--dim);margin-top:6px;">ADS</div>
+        <div style="font-family:var(--f1);font-size:30px;font-weight:900;color:var(--c3);text-shadow:0 0 22px rgba(255,24,112,0.55);">100% FREE</div>
+        <div style="font-family:var(--f3);font-size:9px;letter-spacing:2px;color:var(--dim);margin-top:6px;">NO PAYWALL</div>
       </div>
       <div class="stat-box reveal" style="border-color:rgba(0,255,157,0.1);" onmouseenter="this.style.borderColor='rgba(0,255,157,0.35)'" onmouseleave="this.style.borderColor='rgba(0,255,157,0.1)'">
-        <div style="font-family:var(--f1);font-size:30px;font-weight:900;color:var(--c4);text-shadow:0 0 22px rgba(0,255,157,0.55);">FREE</div>
-        <div style="font-family:var(--f3);font-size:9px;letter-spacing:2px;color:var(--dim);margin-top:6px;">ALWAYS</div>
+        <div style="font-family:var(--f1);font-size:30px;font-weight:900;color:var(--c4);text-shadow:0 0 22px rgba(0,255,157,0.55);">UPDATED</div>
+        <div style="font-family:var(--f3);font-size:9px;letter-spacing:2px;color:var(--dim);margin-top:6px;">REGULARLY</div>
       </div>
     </div>
   </section>
 
   <div class="glow-divider"></div>
 
-  <!-- FEATURED GAMES -->
+  <!-- FEATURED SUBJECTS -->
   <section style="padding:80px 5%;">
     <div style="max-width:1200px;margin:0 auto;">
       <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:50px;">
         <div>
-          <div class="section-label">TOP PICKS</div>
-          <div class="section-title">Featured Games</div>
+          <div class="section-label">TOP SUBJECTS</div>
+          <div class="section-title">FEATURED PAPERS</div>
         </div>
-        <a href="/select/" style="font-family:var(--f3);font-size:10px;letter-spacing:3px;color:var(--c1);display:flex;align-items:center;gap:8px;transition:gap 0.3s,opacity 0.3s;opacity:0.75;" onmouseenter="this.style.gap='14px';this.style.opacity='1'" onmouseleave="this.style.gap='8px';this.style.opacity='0.75'">VIEW ALL →</a>
+        <a href="/pastpapers/" style="font-family:var(--f3);font-size:10px;letter-spacing:3px;color:var(--c1);display:flex;align-items:center;gap:8px;transition:gap 0.3s,opacity 0.3s;opacity:0.75;" onmouseenter="this.style.gap='14px';this.style.opacity='1'" onmouseleave="this.style.gap='8px';this.style.opacity='0.75'">VIEW ALL →</a>
       </div>
       <div class="games-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;">
         <!-- Card 1 -->
         <div class="game-card reveal">
-          <div style="font-family:var(--f3);font-size:9px;letter-spacing:3px;color:var(--c1);opacity:0.75;margin-bottom:10px;">SANDBOX</div>
-          <h3 style="font-family:var(--f1);font-size:14px;font-weight:700;margin-bottom:8px;color:#e4e8ff;">Minecraft 1.20.4</h3>
-          <p style="font-family:var(--f2);font-size:13px;color:var(--dim);margin-bottom:20px;line-height:1.7;">Latest JS build. Full features, runs completely in-browser with no installs.</p>
-          <a href="https://fallacious0.dedyn.io/Resources/eag20.html" class="play-btn" target="_blank">▶ PLAY NOW</a>
+          <h3 style="font-family:var(--f1);font-size:14px;font-weight:700;margin-bottom:8px;color:#e4e8ff;">GCSE MATHS</h3>
+          <p style="font-family:var(--f2);font-size:13px;color:var(--dim);margin-bottom:20px;line-height:1.7;">Foundation & Higher papers from all exam boards. Algebra, geometry, statistics & more.</p>
+          <a href="/pastpapers/maths/" class="play-btn">▶ ACCESS PAPERS</a>
         </div>
         <!-- Card 2 -->
         <div class="game-card reveal">
-          <div style="font-family:var(--f3);font-size:9px;letter-spacing:3px;color:var(--c2);opacity:0.75;margin-bottom:10px;">HORROR</div>
-          <h3 style="font-family:var(--f1);font-size:14px;font-weight:700;margin-bottom:8px;color:#e4e8ff;">FNAF 1</h3>
-          <p style="font-family:var(--f2);font-size:13px;color:var(--dim);margin-bottom:20px;line-height:1.7;">Survive the night. The original Five Nights at Freddy's, unblocked.</p>
-          <a href="https://fallacious0.dedyn.io/Resources/Five Nights at Freddy's.html" class="play-btn" target="_blank" style="border-color:rgba(174,69,255,0.3);color:var(--c2);">▶ PLAY NOW</a>
+          <div style="font-family:var(--f3);font-size:9px;letter-spacing:3px;color:var(--c2);opacity:0.75;margin-bottom:10px;">SCIENCES</div>
+          <h3 style="font-family:var(--f1);font-size:14px;font-weight:700;margin-bottom:8px;color:#e4e8ff;">GCSE CHEMISTRY</h3>
+          <p style="font-family:var(--f2);font-size:13px;color:var(--dim);margin-bottom:20px;line-height:1.7;">Atomic structure, bonding, reactions & organic chemistry papers.</p>
+          <a href="/pastpapers/chemistry/" class="play-btn" style="border-color:rgba(174,69,255,0.3);color:var(--c2);">▶ ACCESS PAPERS</a>
         </div>
         <!-- Card 3 -->
         <div class="game-card reveal">
-          <div style="font-family:var(--f3);font-size:9px;letter-spacing:3px;color:var(--c3);opacity:0.75;margin-bottom:10px;">SHOOTER</div>
-          <h3 style="font-family:var(--f1);font-size:14px;font-weight:700;margin-bottom:8px;color:#e4e8ff;">Kirka.io</h3>
-          <p style="font-family:var(--f2);font-size:13px;color:var(--dim);margin-bottom:20px;line-height:1.7;">Fast-paced multiplayer first-person shooter in your browser.</p>
-          <a href="https://fallacious0.dedyn.io/Resources/kirka.html" class="play-btn" target="_blank" style="border-color:rgba(255,24,112,0.3);color:var(--c3);">▶ PLAY NOW</a>
+          <div style="font-family:var(--f3);font-size:9px;letter-spacing:3px;color:var(--c3);opacity:0.75;margin-bottom:10px;">SCIENCES</div>
+          <h3 style="font-family:var(--f1);font-size:14px;font-weight:700;margin-bottom:8px;color:#e4e8ff;">GCSE PHYSICS</h3>
+          <p style="font-family:var(--f2);font-size:13px;color:var(--dim);margin-bottom:20px;line-height:1.7;">Forces, energy, waves, electricity & astronomy past papers.</p>
+          <a href="/pastpapers/physics/" class="play-btn" style="border-color:rgba(255,24,112,0.3);color:var(--c3);">▶ ACCESS PAPERS</a>
         </div>
         <!-- Card 4 -->
         <div class="game-card reveal">
-          <div style="font-family:var(--f3);font-size:9px;letter-spacing:3px;color:var(--c4);opacity:0.75;margin-bottom:10px;">RPG</div>
-          <h3 style="font-family:var(--f1);font-size:14px;font-weight:700;margin-bottom:8px;color:#e4e8ff;">Undertale</h3>
-          <p style="font-family:var(--f2);font-size:13px;color:var(--dim);margin-bottom:20px;line-height:1.7;">Classic indie RPG where your choices define a universe's fate.</p>
-          <a href="https://fallacious0.dedyn.io/Resources/Undertale.html" class="play-btn" target="_blank" style="border-color:rgba(0,255,157,0.3);color:var(--c4);">▶ PLAY NOW</a>
+          <div style="font-family:var(--f3);font-size:9px;letter-spacing:3px;color:var(--c4);opacity:0.75;margin-bottom:10px;">SCIENCES</div>
+          <h3 style="font-family:var(--f1);font-size:14px;font-weight:700;margin-bottom:8px;color:#e4e8ff;">GCSE BIOLOGY</h3>
+          <p style="font-family:var(--f2);font-size:13px;color:var(--dim);margin-bottom:20px;line-height:1.7;">Cell biology, genetics, evolution & ecology exam papers.</p>
+          <a href="/pastpapers/biology/" class="play-btn" style="border-color:rgba(0,255,157,0.3);color:var(--c4);">▶ ACCESS PAPERS</a>
         </div>
         <!-- Card 5 -->
         <div class="game-card reveal">
-          <div style="font-family:var(--f3);font-size:9px;letter-spacing:3px;color:var(--c5);opacity:0.75;margin-bottom:10px;">RHYTHM</div>
-          <h3 style="font-family:var(--f1);font-size:14px;font-weight:700;margin-bottom:8px;color:#e4e8ff;">Friday Night Funkin</h3>
-          <p style="font-family:var(--f2);font-size:13px;color:var(--dim);margin-bottom:20px;line-height:1.7;">Rap battles and sick beats — the legendary rhythm battle game.</p>
-          <a href="https://fallacious0.dedyn.io/Resources/Friday Night Funkin.html" class="play-btn" target="_blank" style="border-color:rgba(255,214,10,0.3);color:var(--c5);">▶ PLAY NOW</a>
+          <div style="font-family:var(--f3);font-size:9px;letter-spacing:3px;color:var(--c5);opacity:0.75;margin-bottom:10px;">ENGLISH</div>
+          <h3 style="font-family:var(--f1);font-size:14px;font-weight:700;margin-bottom:8px;color:#e4e8ff;">GCSE ENGLISH</h3>
+          <p style="font-family:var(--f2);font-size:13px;color:var(--dim);margin-bottom:20px;line-height:1.7;">Literature, language & speaking/listening papers from all boards.</p>
+          <a href="/pastpapers/english/" class="play-btn" style="border-color:rgba(255,214,10,0.3);color:var(--c5);">▶ ACCESS PAPERS</a>
         </div>
         <!-- Card 6 -->
         <div class="game-card reveal">
-          <div style="font-family:var(--f3);font-size:9px;letter-spacing:3px;color:#ff6b35;opacity:0.75;margin-bottom:10px;">PLATFORMER</div>
-          <h3 style="font-family:var(--f1);font-size:14px;font-weight:700;margin-bottom:8px;color:#e4e8ff;">Geometry Dash Lite</h3>
-          <p style="font-family:var(--f2);font-size:13px;color:var(--dim);margin-bottom:20px;line-height:1.7;">Test your reflexes in this pulse-pounding rhythm platformer.</p>
-          <a href="https://fallacious0.dedyn.io/Resources/geolite.html" class="play-btn" target="_blank" style="border-color:rgba(255,107,53,0.3);color:#ff6b35;">▶ PLAY NOW</a>
+          <div style="font-family:var(--f3);font-size:9px;letter-spacing:3px;color:#ff6b35;opacity:0.75;margin-bottom:10px;">HUMANITIES</div>
+          <h3 style="font-family:var(--f1);font-size:14px;font-weight:700;margin-bottom:8px;color:#e4e8ff;">GCSE HISTORY</h3>
+          <p style="font-family:var(--f2);font-size:13px;color:var(--dim);margin-bottom:20px;line-height:1.7;">British, world & local history papers with source materials.</p>
+          <a href="/pastpapers/history/" class="play-btn" style="border-color:rgba(255,107,53,0.3);color:#ff6b35;">▶ ACCESS PAPERS</a>
         </div>
       </div>
       <div style="text-align:center;margin-top:48px;">
-        <a href="/select/" class="cta-btn" style="animation:none;">VIEW ALL 25+ GAMES →</a>
+        <a href="/pastpapers/" class="cta-btn" style="animation:none;">VIEW ALL 10+ SUBJECTS →</a>
       </div>
     </div>
   </section>
 
   <div class="glow-divider"></div>
 
-  <!-- ARTICLES -->
+  <!-- GUIDES & TIPS -->
   <section style="padding:80px 5%;background:rgba(174,69,255,0.018);">
     <div style="max-width:1200px;margin:0 auto;">
       <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:50px;">
         <div>
-          <div class="section-label" style="--c1:var(--c2);">KNOWLEDGE BASE</div>
-          <div class="section-title">Latest Articles</div>
+          <div class="section-label" style="--c1:var(--c2);">STUDY RESOURCES</div>
+          <div class="section-title">Revision Guides</div>
         </div>
-        <a href="/articles/" style="font-family:var(--f3);font-size:10px;letter-spacing:3px;color:var(--c2);display:flex;align-items:center;gap:8px;transition:gap 0.3s,opacity 0.3s;opacity:0.75;" onmouseenter="this.style.gap='14px';this.style.opacity='1'" onmouseleave="this.style.gap='8px';this.style.opacity='0.75'">READ ALL →</a>
+        <a href="/guides/" style="font-family:var(--f3);font-size:10px;letter-spacing:3px;color:var(--c2);display:flex;align-items:center;gap:8px;transition:gap 0.3s,opacity 0.3s;opacity:0.75;" onmouseenter="this.style.gap='14px';this.style.opacity='1'" onmouseleave="this.style.gap='8px';this.style.opacity='0.75'">READ ALL →</a>
       </div>
       <div class="art-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
-        <a href="/articles/eaglercraft-guide.html" class="art-card reveal">
-          <div style="font-family:var(--f3);font-size:9px;letter-spacing:3px;color:var(--c1);margin-bottom:10px;">GUIDE</div>
-          <h3 style="font-family:var(--f1);font-size:13px;font-weight:700;color:#e4e8ff;margin-bottom:10px;">Eaglercraft MC Guide</h3>
-          <p style="font-family:var(--f2);font-size:12px;color:var(--dim);line-height:1.7;">Play Minecraft completely in your browser. No downloads, no installs.</p>
+        <a href="/guides/maths-tips.html" class="art-card reveal">
+          <div style="font-family:var(--f3);font-size:9px;letter-spacing:3px;color:var(--c1);margin-bottom:10px;">MATHS</div>
+          <h3 style="font-family:var(--f1);font-size:13px;font-weight:700;color:#e4e8ff;margin-bottom:10px;">Maths Revision Tips</h3>
+          <p style="font-family:var(--f2);font-size:12px;color:var(--dim);line-height:1.7;">Master algebra, geometry & trigonometry with proven techniques.</p>
         </a>
-        <a href="/articles/fnaf-complete-guide.html" class="art-card reveal">
-          <div style="font-family:var(--f3);font-size:9px;letter-spacing:3px;color:var(--c3);margin-bottom:10px;">LORE</div>
-          <h3 style="font-family:var(--f1);font-size:13px;font-weight:700;color:#e4e8ff;margin-bottom:10px;">FNAF Complete Guide</h3>
-          <p style="font-family:var(--f2);font-size:12px;color:var(--dim);line-height:1.7;">Full lore breakdown for every game in the FNAF universe.</p>
+        <a href="/guides/science-strategy.html" class="art-card reveal">
+          <div style="font-family:var(--f3);font-size:9px;letter-spacing:3px;color:var(--c3);margin-bottom:10px;">SCIENCES</div>
+          <h3 style="font-family:var(--f1);font-size:13px;font-weight:700;color:#e4e8ff;margin-bottom:10px;">Science Exam Strategy</h3>
+          <p style="font-family:var(--f2);font-size:12px;color:var(--dim);line-height:1.7;">Ace Chemistry, Physics & Biology with smart exam techniques.</p>
         </a>
-        <a href="/articles/undertale-lore.html" class="art-card reveal">
-          <div style="font-family:var(--f3);font-size:9px;letter-spacing:3px;color:var(--c4);margin-bottom:10px;">STORY</div>
-          <h3 style="font-family:var(--f1);font-size:13px;font-weight:700;color:#e4e8ff;margin-bottom:10px;">Undertale Lore Deep-Dive</h3>
-          <p style="font-family:var(--f2);font-size:12px;color:var(--dim);line-height:1.7;">Every route, ending, and hidden secret fully explained.</p>
+        <a href="/guides/essay-writing.html" class="art-card reveal">
+          <div style="font-family:var(--f3);font-size:9px;letter-spacing:3px;color:var(--c4);margin-bottom:10px;">ENGLISH</div>
+          <h3 style="font-family:var(--f1);font-size:13px;font-weight:700;color:#e4e8ff;margin-bottom:10px;">Essay Writing Guide</h3>
+          <p style="font-family:var(--f2);font-size:12px;color:var(--dim);line-height:1.7;">Write high-scoring essays for English Literature & Language.</p>
         </a>
       </div>
     </div>
@@ -268,25 +268,25 @@
   <!-- CTA BANNER -->
   <section style="padding:90px 5%;text-align:center;">
     <div style="max-width:700px;margin:0 auto;" class="reveal">
-      <div style="font-family:var(--f3);font-size:10px;letter-spacing:5px;color:var(--c1);margin-bottom:20px;opacity:0.7;">READY TO PLAY?</div>
-      <h2 style="font-family:var(--f4);font-size:clamp(26px,5vw,44px);font-weight:700;color:#e4e8ff;margin-bottom:18px;line-height:1.3;">No Blocks. No Limits.<br><span style="color:var(--c1);">Just Games.</span></h2>
-      <p style="font-family:var(--f2);font-size:14px;color:var(--dim);line-height:1.8;margin-bottom:36px;">Access 25+ unblocked games instantly. No login, no downloads, no restrictions.</p>
-      <a href="/select/" class="cta-btn">⚡ &nbsp;ENTER THE ARCADE</a>
+      <div style="font-family:var(--f3);font-size:10px;letter-spacing:5px;color:var(--c1);margin-bottom:20px;opacity:0.7;">READY TO REVISE?</div>
+      <h2 style="font-family:var(--f4);font-size:clamp(26px,5vw,44px);font-weight:700;color:#e4e8ff;margin-bottom:18px;line-height:1.3;">Master Your GCSEs.<br><span style="color:var(--c1);">With Confidence.</span></h2>
+      <p style="font-family:var(--f2);font-size:14px;color:var(--dim);line-height:1.8;margin-bottom:36px;">Access 1000+ past papers across 10+ subjects. Completely free, no sign-up required.</p>
+      <a href="/pastpapers/" class="cta-btn">⚡ &nbsp;START REVISING</a>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer style="padding:44px 5% 28px;border-top:1px solid rgba(0,229,255,0.07);background:rgba(0,0,0,0.25);">
     <div style="max-width:1200px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:22px;text-align:center;">
-      <a href="/" style="font-family:var(--f4);font-size:18px;color:#fff;text-shadow:0 0 18px rgba(0,229,255,0.4);">FALLACIOU<span style="color:var(--c1);">S0</span></a>
+      <a href="/" style="font-family:var(--f4);font-size:18px;color:#fff;text-shadow:0 0 18px rgba(0,229,255,0.4);">PAST PAPER<span style="color:var(--c1);">.</span>GE</a>
       <div style="display:flex;gap:28px;flex-wrap:wrap;justify-content:center;">
         <a href="/" style="font-family:var(--f3);font-size:9px;letter-spacing:2px;color:var(--dim);transition:color 0.3s;" onmouseenter="this.style.color='#00e5ff'" onmouseleave="this.style.color='var(--dim)'">HOME</a>
-        <a href="/select/" style="font-family:var(--f3);font-size:9px;letter-spacing:2px;color:var(--dim);transition:color 0.3s;" onmouseenter="this.style.color='#00e5ff'" onmouseleave="this.style.color='var(--dim)'">GAMES</a>
-        <a href="/articles/" style="font-family:var(--f3);font-size:9px;letter-spacing:2px;color:var(--dim);transition:color 0.3s;" onmouseenter="this.style.color='#00e5ff'" onmouseleave="this.style.color='var(--dim)'">ARTICLES</a>
+        <a href="/pastpapers/" style="font-family:var(--f3);font-size:9px;letter-spacing:2px;color:var(--dim);transition:color 0.3s;" onmouseenter="this.style.color='#00e5ff'" onmouseleave="this.style.color='var(--dim)'">PAPERS</a>
+        <a href="/guides/" style="font-family:var(--f3);font-size:9px;letter-spacing:2px;color:var(--dim);transition:color 0.3s;" onmouseenter="this.style.color='#00e5ff'" onmouseleave="this.style.color='var(--dim)'">GUIDES</a>
         <a href="/updates/" style="font-family:var(--f3);font-size:9px;letter-spacing:2px;color:var(--dim);transition:color 0.3s;" onmouseenter="this.style.color='#00e5ff'" onmouseleave="this.style.color='var(--dim)'">UPDATES</a>
-        <a href="/about-us/" style="font-family:var(--f3);font-size:9px;letter-spacing:2px;color:var(--dim);transition:color 0.3s;" onmouseenter="this.style.color='#00e5ff'" onmouseleave="this.style.color='var(--dim)'">ABOUT</a>
+        <a href="/about/" style="font-family:var(--f3);font-size:9px;letter-spacing:2px;color:var(--dim);transition:color 0.3s;" onmouseenter="this.style.color='#00e5ff'" onmouseleave="this.style.color='var(--dim)'">ABOUT</a>
       </div>
-      <div style="font-family:var(--f3);font-size:9px;color:#2e3056;letter-spacing:1px;">© 2025 FALLACIOUS0 · ALL GAMES REMAIN PROPERTY OF THEIR RESPECTIVE OWNERS</div>
+      <div style="font-family:var(--f3);font-size:9px;color:#2e3056;letter-spacing:1px;">© 2025 PAST PAPER GENIE · EXAM PAPERS REMAIN PROPERTY OF THEIR RESPECTIVE EXAM BOARDS</div>
     </div>
   </footer>
 </div>
