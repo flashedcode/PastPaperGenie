@@ -1,7 +1,0 @@
-**
-!server/serve.py
-!wasm-page/
-!wasm-page/**
-wasm-page/.angular/
-wasm-page/dist/
-wasm-page/node_modules/

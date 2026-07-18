@@ -1,4 +1,0 @@
-[submodule "deps/ppsspp-wasm"]
-	path = deps/ppsspp-wasm
-	url = https://github.com/root-hunter/ppsspp-wasm.git
-	branch = wasm
