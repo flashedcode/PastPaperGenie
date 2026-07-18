@@ -80,7 +80,7 @@ a{text-decoration:none;color:inherit}
     <a href="/updates/" class="nav-link">UPDATES</a>
     <a href="/about-us/" class="nav-link">ABOUT</a>
   </div>
-  <div class="nav-desktop" style="font-family:var(--f3);font-size:9px;letter-spacing:2px;color:var(--c1);padding:7px 14px;border:1px solid rgba(0,229,255,0.2);border-radius:4px;">◈ 25 GAMES</div>
+  <div class="nav-desktop" id="nav-count" style="font-family:var(--f3);font-size:9px;letter-spacing:2px;color:var(--c1);padding:7px 14px;border:1px solid rgba(0,229,255,0.2);border-radius:4px;">◈ LOADING...</div>
   <div id="ham" style="display:none;flex-direction:column;gap:5px;padding:6px;z-index:9100;cursor:none;" onclick="toggleMenu()">
     <span style="width:22px;height:2px;background:var(--c1);display:block;"></span>
     <span style="width:22px;height:2px;background:var(--c1);display:block;"></span>
@@ -96,16 +96,18 @@ a{text-decoration:none;color:inherit}
       <div style="font-family:var(--f3);font-size:10px;letter-spacing:5px;color:var(--c1);margin-bottom:12px;animation:slideUp 0.7s ease both;">▶ COMPLETE GAME LIBRARY</div>
       <h1 style="font-family:var(--f1);font-weight:900;font-size:clamp(30px,7vw,60px);letter-spacing:5px;background:linear-gradient(135deg,#fff 0%,#a0e8ff 40%,var(--c1) 70%);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:10px;animation:slideUp 0.7s ease 0.08s both;">GAME LIBRARY</h1>
       <p style="font-family:var(--f2);font-size:14px;color:var(--dim);margin-bottom:38px;letter-spacing:0.4px;animation:slideUp 0.7s ease 0.14s both;">Every game, unblocked, instantly playable — no installs, no logins, no limits.</p>
+      
       <!-- Search bar -->
       <div style="position:relative;max-width:680px;margin:0 auto 26px;animation:slideUp 0.7s ease 0.2s both;" class="reveal">
         <span style="position:absolute;left:18px;top:50%;transform:translateY(-50%);color:var(--dim);font-size:19px;pointer-events:none;z-index:1;">⌕</span>
         <input class="search-input" id="searchInput" type="text" placeholder="Search by name, genre…" oninput="handleSearch(this.value)" onkeydown="if(event.key==='Escape'){clearSearch()}">
         <button id="clearBtn" onclick="clearSearch()" style="position:absolute;right:16px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--dim);font-size:16px;opacity:0;transition:opacity 0.3s;cursor:none;font-family:monospace;padding:4px;">✕</button>
       </div>
+
       <!-- Category filters -->
       <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:20px;" class="reveal">
-        <button class="pill" id="pill-all" onclick="setFilter('all',this)" style="border-color:rgba(0,229,255,0.4);color:var(--c1);">ALL · 25</button>
-        <button class="pill" onclick="setFilter('sandbox',this)" style="">⬡ SANDBOX</button>
+        <button class="pill" id="pill-all" onclick="setFilter('all',this)" style="border-color:rgba(0,229,255,0.4);color:var(--c1);">ALL GAMES</button>
+        <button class="pill" onclick="setFilter('sandbox',this)">⬡ SANDBOX</button>
         <button class="pill" onclick="setFilter('horror',this)">☠ HORROR</button>
         <button class="pill" onclick="setFilter('shooter',this)">⊕ SHOOTER</button>
         <button class="pill" onclick="setFilter('rpg',this)">◈ RPG</button>
@@ -113,8 +115,9 @@ a{text-decoration:none;color:inherit}
         <button class="pill" onclick="setFilter('strategy',this)">◆ STRATEGY</button>
         <button class="pill" onclick="setFilter('platformer',this)">▲ PLATFORMER</button>
       </div>
+
       <!-- Count -->
-      <div style="font-family:var(--f3);font-size:10px;letter-spacing:3px;color:var(--dim);margin-bottom:42px;" class="reveal">SHOWING <span id="gcount" style="color:var(--c1);">25</span> OF 25 GAMES</div>
+      <div style="font-family:var(--f3);font-size:10px;letter-spacing:3px;color:var(--dim);margin-bottom:42px;" class="reveal">SHOWING <span id="gcount" style="color:var(--c1);">0</span> OF <span id="totalcount">0</span> GAMES</div>
     </div>
   </section>
 
@@ -147,7 +150,8 @@ a{text-decoration:none;color:inherit}
 </div>
 
 <script>
-const GAMES=[
+// --- ORIGINAL PRE-FORMATTED TOP 25 GAMES ---
+const ORIGINAL_GAMES = [
   {title:"Minecraft 1.20.4 JS",desc:"Latest browser build with full 1.20.4 features. Run in any browser, no install.",cat:"sandbox",url:"https://fallacious0.dedyn.io/Resources/eag20.html",tag:"HOT"},
   {title:"Minecraft 1.12 WASM",desc:"WebAssembly-powered 1.12 — blazing fast performance in your browser.",cat:"sandbox",url:"https://fallacious0.dedyn.io/Resources/1.12-u2-wasm%20(2).html",tag:""},
   {title:"Kirka.io",desc:"Fast-paced multiplayer first-person shooter, no download required.",cat:"shooter",url:"https://fallacious0.dedyn.io/Resources/kirka.html",tag:"MULTI"},
@@ -174,6 +178,57 @@ const GAMES=[
   {title:"Minecraft 1.12 JS",desc:"Pure JavaScript Minecraft 1.12 — lightweight and plays smoothly in any browser.",cat:"sandbox",url:"https://fallacious0.dedyn.io/Resources/1.12-u2-js.html",tag:""},
   {title:"Tuff Client MC",desc:"Eaglercraft 1.12.2 WASM with Tuff Client modifications and improvements.",cat:"sandbox",url:"https://fallacious0.dedyn.io/Resources/Eaglercraft_IR_TuffClient_1.12.2wasm.html",tag:"MODDED"}
 ];
+
+// --- MASSIVE INJECTION SCRIPT ---
+// This processes your huge list, filters out the 25 you already custom-made, assigns categories, and formats the titles beautifully.
+const rawGamesList = [
+  "1.12-u2-wasm.html", "10-minutes-till-dawn", "100ng", "10minutestilldawn.html", "12minibattles.html", "1on1soccer.html", "1on1tennis.html", "1v1lol", "1v1space", "2020-game", "2048", "2048-multitask", "2048cupcakes.html", "3Dflightsimulator.html", "8ball", "8ball-billards-classic", "8ballclassic.html", "9007199254740992", "achievementunlocked", "adarkroom", "adrenalinechallenge", "ads.txt", "agariolite.html", "age-of-war", "ageofwar.html", "ageofwar2.html", "ages-of-conflict", "agesofconflict.html", "alien-invaders-io", "alienhominid", "align-4", "Amanda the Adventurer.html", "amongus.html", "angry.html", "angrybirds.html", "angrybirdsshowdown.html", "angrybirdsspace.html", "anti-terrorist-rush", "arcade-wizard", "asciispace", "aspiring-artist", "asteroids", "astrawasm.html", "astray", "avalanche", "awesome-tanks-2", "awesometanks.html", "awesometanks2.html", "backcountry", "backflip-dive-3d", "backrooms.html", "baconmaydie.html", "bad-ice-cream", "bad-ice-cream-2", "bad-ice-cream-3", "badicecream.html", "badicecream2.html", "badicecream3.html", "badparenting.html", "badpiggies.html", "baldis-basics", "baldisbasics.html", "baseballbros.html", "basket-bros-io", "basketball-io", "basketball-legends-2020", "basketball-stars", "basketballlegends.html", "basketballstars", "basketballstars.html", "basketbros.html", "basketrandom.html", "battleforgondor", "Beta_1.3.html", "bigredbutton", "binding-of-isaac", "bitlife", "bitlife.html", "bitplanes.htm", "blacholesquare", "blackholesquare", "blackknight", "blocky-snakes", "blockysnakes.html", "bloonstd", "bloonsTD.html", "bloonstd2", "bloonsTD2.html", "bloonsTD3.html", "bloonstd4", "bloonsTD4.html", "bloonsTD5.html", "bloxors", "bloxorz.html", "blumgiracers.html", "blumgirocket.html", "bobtherobber.html", "bobtherobber2.html", "bobtherobber5.html", "bounceback", "bouncymotors.html", "bowmasters.html", "boxel-rebound", "boxhead2play", "boxingrandom.htm", "brave-explorers", "breakingthebank", "breakingthebank.html", "breaklock", "breakout", "btd4", "bubbleshooter.html", "Buckshot Roulette.html", "burning-man-2", "candycrush.html", "cannon-basketball-4", "canyondefense", "captaincallisto", "capybaraclicker.html", "cardrawing.html", "carkingarena.html", "cars-simulator", "cell-machine", "championarcher", "chess", "chess.html", "chill-radio", "choppyorc.html", "chromaincident", "chrome-dino", "chromedino", "circlo", "circloO.html", "circloO2.html", "city-blocks-2", "clashofvikings.html", "clean-up-io", "cleanupio.html", "cluster-rush", "clusterrush.html", "color-switch-2-challenges", "connect3", "cookieclicker", "cookieclicker.htm", "core-ball", "craftmine", "crazycars.html", "crazycattle3D.html", "crazycrashlanding.html", "crazymotorcycle.html", "creativekillchamber", "crossyroad", "crossyroad.htm", "crowd city 2", "csgo-clicker", "ctr", "ctr-holiday", "ctr-tr", "cubefield", "cuttherope", "cuttherope.html", "cuttherope2", "cuttheropeholiday", "cuttheropetimetravel", "dadish", "dadish.html", "dadish2.html", "dadish3", "dadish3.html", "dadishtwo", "dante", "deal-or-no-deal", "death-run-3d", "death-soul", "deathchase.html", "deathrun", "deathrun3D.html", "defend-the-tank", "demolitionderbycrashracing.html", "dino", "dinosaur", "doctor-acorn2", "doctor-acorn3", "dodge", "doge-miner-2", "doge2048", "dogeminer", "dont-drop-the-white-ball-2", "doodle-jump", "doodlejump.html", "doom.html", "doublewires", "douchebag-workout-2", "dragon-vs-bricks", "draw-the-hill", "drawclimber.html", "dreadheadparkour.htm", "drift-boss", "driftboss", "driftboss.htm", "drive-mad", "drivemad.htm", "duck-life-treasurehunt", "ducklife2", "ducklife3", "ducklife4", "ducklife5", "ducklingsio.html", "duke-dashington-remastered", "dungeon-craft", "eagleride.html", "earntodie.html", "earntodie2.html", "edge-surf", "edgenotfound", "eggycar.html", "elastic-face", "elasticface.htm", "elasticman", "elasticmorty", "emulator-js", "endlesswar3", "escaperoad.html", "escaperoad2.html", "escapingtheprison", "escapingtheprison.html", "evil-glitch", "evilglitch", "evilglitch.html", "evolution", "exo", "factory-balls-forever", "factoryballs", "factoryballsforever", "fake-virus", "fancypantsadventure.html", "fancypantsadventure2.html", "fancypantsadventures", "fbwg", "finns-fantastic-food-machine", "fireboy-and-watergirl-1", "fireboy-and-watergirl-2", "fireboy-and-watergirl-3", "fireboy-and-watergirl-4", "fireboyandwatergirl.html", "fireboyandwatergirl2.html", "fireboyandwatergirl3.html", "fireboyandwatergirl4.html", "fireboywatergirlforesttemple", "fireice", "firewater", "Five Nights at Freddy's 2.html", "Five Nights at Freddy's 3.html", "Five Nights at Freddy's 4.html", "Five Nights at Freddy's 4_ Halloween.html", "Five Nights at Freddy's.html", "Five Nights at Freddy's_ World.html", "flappy-defense", "flappybird", "flappybird.html", "flashtetris", "flippy-fish", "flood-runner-2", "floodrunner2.html", "floodrunner3.html", "floodrunner4.html", "fnaf", "fnaf.html", "fnaf2", "fnaf2.html", "fnaf3", "fnaf3.html", "fnaf4", "fnaf4.html", "footballbros.html", "footballlegends.html", "freerider3.html", "Friday Night Funkin.html", "fridaynightfunkin", "friendlyfire", "froggys-battle", "fruit-ninja", "fruitninja.html", "frying-nemo", "FullScreenMario", "funnybattle.html", "funnybattle2.html", "funnymadracing.html", "funnyshooter2.html", "game-inside", "generic-fishing-game", "geodash", "geodash-2", "geodash-subzero", "geolite.html", "geometrydash.html", "geometrydashlite.html", "geometryvibes.html", "geometry_jump_sketchy", "georgeandtheprinter", "getaway-shootout", "getawayshootout.htm", "getontop.html", "getting-over-it", "gimme-the-airpod", "gladihoppers.html", "glass-city", "go-ball", "golf", "goodnight", "google-feud", "google-snake", "google-solitaire", "googlebaseball.html", "googledino.html", "gopher", "granny.html", "granny2.html", "gravity-soccer", "green", "greybox", "greyboxtesting", "grindcraft", "grow-in-the-hole", "guesstheiranswer.html", "gun-mayhem", "gun-mayhem-2", "gun-mayhem-redux", "gunspin", "hackertype", "Half Life.html", "hanger2.html", "happy-hop", "happy-wheels", "happywheels.html", "hba", "helicopter", "helios", "helixjump.html", "hexempire", "HexGL", "hextris", "highwaytraffic.html", "hillclimbracinglite.html", "holeio.html", "house-of-hazards", "houseofhazards.html", "hoverracerdrive.html", "icypurplehead2", "icypurplehead3", "icys-purple-head", "idle-breakout", "idle-shark", "idlebreakout.html", "impossiblequiz", "Indev.html", "interactivebuddy", "ironsnout.html", "iscribble-io", "jelly-truck", "jetpack", "jetpackjoyride.html", "jimothy-piggerton", "johnnytrigger.html", "jumpingshell.html", "just-one-boss", "justfall", "karatebros.html", "kart-fight-io", "kartbros.html", "kirka.html", "kitchen-gun-game", "kittencannon", "klocki", "konnekt", "krunker", "learntofly", "learntofly.html", "learntofly2", "learntofly2.html", "learntofly3.html", "learntoflyidle.html", "leveldevil.html", "line-rider", "linquest", "madalin-stunt-cars-2", "madalin-stunt-cars-3", "madalinstuntcars2.html", "makeitmeme", "mario", "marvinspectrum", "matrixrampage", "meat-boy", "melonplayground.html", "meme2048", "mergeroundracers.html", "minesweeper", "minesweeper.html", "mini-stilts", "miniputt", "missiles", "monkeymart.htm", "monstertracks.html", "moto-x3m", "moto-x3m-2", "moto-x3m-pool-party", "moto-x3m-spooky-land", "moto-x3m-winter", "my-friend-pedro", "MyFileList.txt", "n-gon", "ninja", "ninjavsevilcorp", "noobminer.html", "ns-shaft", "OfflineParadise", "om-bounce", "one-screen-run", "one-screen-run-2", "oppositeday.html", "osu", "ovo", "ovo.html", "ovo2.html", "ovo3dimensions.html", "packabunchas", "pacman", "pacman-fps", "pacman.html", "pandemic2", "papa-louie", "papas-burgeria", "papas-freezeria", "papas-hot-doggeria", "papas-pancakeria", "papas-pizzeria", "papas-sushiria", "papas-wingeria", "papasbakeria.html", "papasburgeria", "papasburgeria.html", "papascheeseria.html", "papascupcakeria.html", "papasdonuteria.html", "papasfreezeria.html", "papashotdoggeria.html", "papaspancakeria.html", "papaspastaria.html", "papaspizzaria", "papaspizzeria.html", "papasscooperia.html", "papassushiria.html", "papastacomia.html", "papaswingeria.html", "paperio2", "paperio2.htm", "papery-planes", "parkingfury.html", "parkingfury2.html", "parkingfury3.html", "particle-clicker", "particleclicker", "path-finder", "paths.txt", "pe-noire", "physicsplayground", "picosschool.html", "pikwip", "pingpongchaos.html", "pixel-cave", "pixelspeedrun.html", "pizzeria-simulator", "Plants vs Zombies.html", "plantsvszombies.html", "plonky.html", "polybranch", "polytrack.html", "poorbunny.html", "popcat-classic", "portalflash", "pou.html", "ppsspp-web-wasm", "precision-client", "protektor", "push-the-square", "push-your-luck", "pushback", "puzzle-ball", "pvz-2", "q1k3", "rabbit-samurai", "rabbit-samurai2", "racer", "radiusraid", "ragdollarchers.htm", "ragdollhit.html", "ragdollsoccer.html", "redball4vol1.html", "redball4vol2.html", "redball4vol3.html", "ResentClient5.1.html", "retro-bowl", "retrobowl", "retrobowl.html", "retrobowlcollege.html", "retrohaunt", "retrohighway.html", "retropingpong.html", "riddleschool.html", "riddleschool2.html", "riddleschool3.html", "riddleschool4.html", "riddleschool5.html", "riddletransfer.html", "riddletransfer2.html", "rise-of-neon-square", "roadblocks", "rocketsoccerderby.html", "rocking-sky-trip", "rolling-forests", "rolly-vortex", "rooftop-snipers", "rooftopsniper", "rooftopsnipers.htm", "rooftopsnipers2.html", "run-3", "run.html", "run2.html", "run3.html", "sand-game", "sandboxels", "sandgame.html", "scrambled-eggs", "scrapmetal", "senya-and-oscar-2", "sg", "shadow-world-adventure", "shards", "shift-flash", "shift-flash-2", "short-life-2", "short-ride", "shortlife.html", "shuttledeck", "skyblock", "sleepingbeauty", "slice-of-sasha", "slither", "slither snake", "slitherio", "slope", "slope-ball", "slope.html", "slope2", "slope2player.html", "slope3.html", "slowroads.html", "sm63", "sm63.html", "sm64", "sm64.html", "smashkarts", "smokingbarrels", "snake", "snes", "snowballio.html", "snowbattle", "snowrider.htm", "snowroad.htm", "soccerbros.html", "soccerrandom.htm", "soldier-legend", "solitaire", "sonic-the-hedgehog", "sort-the-court", "soundboard", "space-company", "spacebarclicker.html", "spacecompany", "spacegarden", "spacehuggers", "spaceinvaders", "spaceiskey.html", "spaceiskey2.html", "spacewaves.html", "speedstars.html", "spelunky", "sprunki.html", "Squid Gun Fest", "ssf", "stack", "stack-bump-3d", "stack.html", "stacktower", "stacktris.html", "stateio.html", "station-141", "stealingthediamond", "stick-archers-battle", "stickarchersbattle.html", "stickclimb", "stickfighter.html", "stickman", "stickman-boost", "stickman-dismount", "stickman-epic-battle", "stickman-golf", "Stickman-Survival", "stickmanhook.html", "stickmerge.html", "stickwar", "stormthehouse2", "subway-surfers-san-francisco", "subwaysurfersbeijing.html", "subwaysurfershavana.html", "subwaysurferssanfrancisco.html", "super-mario-maker-online", "super-puffer-fish-3d", "superbikethechampion.html", "superhero-io", "superhot", "superhot.html", "superliquidsoccer.html", "supermarioconstruct", "superstarcar.html", "survivio", "swerve", "synesthesia", "tabletennisworldtour.html", "tactical-weapon-pack-2", "tacticalassasin2", "tag.html", "tail-of-the-dragon", "tam-indian-truck-simulator-3d", "tank-trouble-2", "tanuki-sunset", "taproad.html", "temple-run-2", "templeofboom.html", "templerun", "templerun2.htm", "territorialio.html", "tetris", "the-final-earth", "the-final-earth-2", "the-impossible-quiz", "the-impossible-quiz-2", "the-little-giant", "thebattle", "theheist", "theimpossiblequiz.html", "theimpossiblequiz2.html", "themazeofspacegoblins", "there-is-no-game", "thereisnog.html", "theyarecoming.html", "thisistheonlylevel", "thisistheonlylevel.html", "thisistheonlyleveltoo.html", "time-shooter-3", "timeshooter2.html", "timeshooter3.htm", "tiny-fishing", "tiny-fragments", "tiny-islands", "tinyfishing.html", "tombofthemask.htm", "topple-adventure", "tosstheturtle", "tough-growth", "towermaster", "townscaper", "trapthecat.html", "trimps", "triviacrack.html", "tube-jumpers", "tubejumpers.html", "tunnel-rush", "tunnelrush.html", "tunnelz", "tv-static", "twitch-tetris", "underrun", "Undertale Yellow.html", "Undertale.html", "unfold-2", "unicyclehero.html", "up-left-out", "veloce", "vex3", "vex4", "vex4.html", "vex5", "vex5.html", "vex6", "vex6.htm", "vex7.htm", "vex8.htm", "vexx3m.html", "vexx3m2.html", "volleyrandom.html", "wartheknights.html", "waterworks", "webecomewhatwebehold.html", "webretro", "wheeliebike.html", "wheely.html", "wheely2.html", "wheely3.html", "wheely4.html", "wheely5.html", "wheely6.html", "wheely7.html", "wheely8.html", "winter-falling-price", "wipo", "wolf3d", "wordle", "wordleunlimited.html", "worldshardestgame.html", "worldshardestgame2.html", "worldshardestgame3.html", "wrestlebros.html", "x-trial-racing", "xx142-b2exe", "yoshifabrication", "you-are-bezos", "zig-zag", "zombierush.html", "zombocalypse", "zombs-royale"
+];
+
+// Determine games already hardcoded so we don't render them twice
+const existingNames = new Set(ORIGINAL_GAMES.map(g => g.url.split('/').pop()));
+
+// Auto-generate objects for everything else
+const GENERATED_GAMES = rawGamesList
+  .filter(fileName => !existingNames.has(fileName))
+  .map(fileName => {
+    // Clean up filename into Title
+    let clean = fileName.replace(/\.html?$/i, '').replace(/[-_]/g, ' ');
+    // Add spaces between camel casing and title-case words
+    clean = clean.replace(/([a-z])([A-Z])/g, '$1 $2');
+    let displayTitle = clean.replace(/\b\w/g, l => l.toUpperCase());
+    
+    // Auto Category Logic
+    let cat = 'sandbox';
+    let t = displayTitle.toLowerCase();
+    
+    if (t.match(/fnaf|night|horror|zombie|scary|blood|slender|amanda|buckshot|dead|fury/)) cat = 'horror';
+    else if (t.match(/shoot|gun|sniper|strike|kirka|krunker|doom|weapon|assassin|combat|battle|war|tank|fighter/)) cat = 'shooter';
+    else if (t.match(/rpg|quest|craft|idle|miner|life|sword|story/)) cat = 'rpg';
+    else if (t.match(/rhythm|fnf|friday|dash|beat|music|osu|sound/)) cat = 'rhythm';
+    else if (t.match(/strategy|bloons|btd|papa|chess|2048|tower|defend|defens|sim|manager|tycoon|sort/)) cat = 'strategy';
+    else if (t.match(/mario|sonic|run|jump|slope|vex|parkour|platform|climb|rider|bounce|bike|moto/)) cat = 'platformer';
+
+    return {
+      title: displayTitle,
+      desc: `Play ${displayTitle} unblocked online. Instant loading, no install.`,
+      cat: cat,
+      url: "https://fallacious0.dedyn.io/Resources/" + encodeURI(fileName),
+      tag: ""
+    };
+  });
+
+// Merge both arrays for the final massive catalog
+const GAMES = [...ORIGINAL_GAMES, ...GENERATED_GAMES];
+
+// Update DOM counters dynamically based on absolute total
+document.getElementById('nav-count').textContent = `◈ ${GAMES.length} GAMES`;
+document.getElementById('pill-all').textContent = `ALL GAMES · ${GAMES.length}`;
+document.getElementById('gcount').textContent = GAMES.length;
+document.getElementById('totalcount').textContent = GAMES.length;
+
+
+// --- ORIGINAL LOGIC ---
 const CC={sandbox:"#00e5ff",horror:"#ff1870",shooter:"#ff6b35",rpg:"#00ff9d",rhythm:"#ffd60a",strategy:"#ae45ff",platformer:"#4d9eff"};
 const BG_CC={sandbox:"rgba(0,229,255,0.06)",horror:"rgba(255,24,112,0.06)",shooter:"rgba(255,107,53,0.06)",rpg:"rgba(0,255,157,0.06)",rhythm:"rgba(255,214,10,0.06)",strategy:"rgba(174,69,255,0.06)",platformer:"rgba(77,158,255,0.06)"};
 let curCat='all',curQuery='';
@@ -182,7 +237,10 @@ function buildCards(){
   const grid=document.getElementById('gameGrid');
   grid.innerHTML=GAMES.map((g,i)=>{
     const col=CC[g.cat];const bg=BG_CC[g.cat];
-    return `<div class="gc" data-cat="${g.cat}" data-search="${(g.title+' '+g.desc+' '+g.cat).toLowerCase()}" style="border-left-color:${col}55;animation:cardIn 0.38s ease ${i*0.035}s both;"
+    // Optimize animation delay for massive lists
+    const delay = Math.min(i * 0.015, 1.5); 
+    
+    return `<div class="gc" data-cat="${g.cat}" data-search="${(g.title+' '+g.desc+' '+g.cat).toLowerCase()}" style="border-left-color:${col}55;animation:cardIn 0.38s ease ${delay}s both;"
       onmouseenter="this.style.boxShadow='0 12px 40px ${col}14,0 0 0 1px ${col}22';this.querySelector('.gc-hover').style.opacity='1';"
       onmouseleave="this.style.boxShadow='none';this.querySelector('.gc-hover').style.opacity='0';">
       <div class="gc-hover" style="position:absolute;inset:0;background:${bg};opacity:0;transition:opacity 0.35s;border-radius:10px;pointer-events:none;"></div>
@@ -210,7 +268,7 @@ function filterGames(){
   document.querySelectorAll('.gc').forEach((card)=>{
     const catOK=curCat==='all'||card.dataset.cat===curCat;
     const qOK=!curQuery||card.dataset.search.includes(curQuery);
-    if(catOK&&qOK){card.style.display='';card.style.animation='none';void card.offsetWidth;card.style.animation=`cardIn 0.35s ease ${vis*0.04}s both`;vis++;}
+    if(catOK&&qOK){card.style.display='';card.style.animation='none';void card.offsetWidth;card.style.animation=`cardIn 0.35s ease ${Math.min(vis*0.015, 0.5)}s both`;vis++;}
     else{card.style.display='none';}
   });
   document.getElementById('gcount').textContent=vis;
