@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paper Library · PastPaperGenie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&family=Space+Mono:wght@400;700&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;cursor:none}
+:root{--bg:#04040e;--card:rgba(255,255,255,0.022);--c1:#00e5ff;--c2:#ae45ff;--c3:#ff1870;--c4:#00ff9d;--c5:#ffd60a;--c6:#ff6b35;--c7:#4d9eff;--txt:#c8ccee;--dim:#5d6080;--f1:'Orbitron',monospace;--f2:'Exo 2',sans-serif;--f3:'Space Mono',monospace;--f4:'Cinzel Decorative',serif}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:var(--f2);min-height:100vh;overflow-x:hidden;opacity:0;transition:opacity 0.5s}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:linear-gradient(var(--c2),var(--c1));border-radius:2px}
+a{text-decoration:none;color:inherit}
+@keyframes gridMove{0%{background-position:0 0}100%{background-position:60px 60px}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+@keyframes floatB{0%,100%{transform:translateY(0)}50%{transform:translateY(10px)}}
+@keyframes slideUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes cardIn{from{opacity:0;transform:translateY(14px) scale(0.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes borderGlow{0%,100%{border-color:rgba(0,229,255,0.07)}50%{border-color:rgba(0,229,255,0.15)}}
+@keyframes searchPulse{0%,100%{box-shadow:0 0 0 rgba(0,229,255,0)}50%{box-shadow:0 0 22px rgba(0,229,255,0.1)}}
+@keyframes spinSlow{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes tagFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+.nav-link{font-family:var(--f1);font-size:10px;font-weight:700;letter-spacing:2.5px;color:var(--dim);transition:color 0.3s;position:relative;padding-bottom:3px}
+.nav-link::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--c1);box-shadow:0 0 6px var(--c1);transition:width 0.35s}
+.nav-link:hover,.nav-link.active{color:var(--c1)}
+.nav-link:hover::after,.nav-link.active::after{width:100%}
+.gc{background:var(--card);border:1px solid rgba(255,255,255,0.06);border-left:2px solid;border-radius:10px;padding:20px 20px 20px 22px;position:relative;overflow:hidden;transition:transform 0.35s cubic-bezier(0.175,0.885,0.32,1.275),box-shadow 0.35s,border-color 0.35s}
+.gc::after{content:'';position:absolute;top:0;right:0;bottom:0;left:0;opacity:0;transition:opacity 0.35s}
+.gc:hover{transform:translateY(-5px);border-color:rgba(255,255,255,0.14)!important}
+.gc:hover::after{opacity:1}
+.play-btn{display:inline-flex;align-items:center;gap:7px;padding:8px 18px;background:transparent;border-radius:5px;font-family:var(--f1);font-size:8.5px;font-weight:700;letter-spacing:2px;transition:all 0.3s;border-width:1px;border-style:solid;position:relative;overflow:hidden}
+.play-btn span.fill{content:'';position:absolute;inset:0;opacity:0;transition:opacity 0.3s;border-radius:5px}
+.play-btn:hover{color:#fff!important;transform:translateY(-1px)}
+.play-btn:hover span.fill{opacity:1}
+.pill{padding:8px 18px;border:1px solid rgba(255,255,255,0.08);border-radius:30px;font-family:var(--f1);font-size:9px;font-weight:700;letter-spacing:2px;color:var(--dim);background:transparent;transition:all 0.3s;white-space:nowrap;cursor:none}
+.pill:hover{color:#e4e8ff;border-color:rgba(255,255,255,0.2);transform:translateY(-1px)}
+.search-input{width:100%;padding:16px 52px;background:rgba(255,255,255,0.03);border:1px solid rgba(0,229,255,0.14);border-radius:10px;color:#fff;font-family:var(--f2);font-size:15px;letter-spacing:0.3px;outline:none;transition:border-color 0.3s,box-shadow 0.3s,background 0.3s}
+.search-input::placeholder{color:var(--dim)}
+.search-input:focus{border-color:rgba(0,229,255,0.4);box-shadow:0 0 28px rgba(0,229,255,0.1);background:rgba(0,229,255,0.025)}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity 0.55s ease,transform 0.55s ease}
+.revealed{opacity:1;transform:translateY(0)}
+@media(max-width:1200px){#gameGrid{grid-template-columns:repeat(3,1fr)!important}}
+@media(max-width:880px){#gameGrid{grid-template-columns:repeat(2,1fr)!important}}
+@media(max-width:500px){#gameGrid{grid-template-columns:1fr!important}.nav-desktop{display:none!important}#ham{display:flex!important}*{cursor:auto!important}#cdot,#cring{display:none!important}}
+@media(hover:none){*{cursor:auto!important}#cdot,#cring{display:none!important}}
+</style>
+</head>
+<body>
+
+<div id="cdot" style="position:fixed;top:0;left:0;width:7px;height:7px;background:var(--c1);border-radius:50%;pointer-events:none;z-index:10001;box-shadow:0 0 10px var(--c1),0 0 22px rgba(0,229,255,0.5);transform:translate(-50%,-50%);transition:opacity 0.2s;"></div>
+<div id="cring" style="position:fixed;top:0;left:0;width:30px;height:30px;border:1.5px solid rgba(0,229,255,0.65);border-radius:50%;pointer-events:none;z-index:10000;transform:translate(-50%,-50%);transition:width 0.25s,height 0.25s,border-color 0.25s,background 0.25s;"></div>
+<div id="overlay" style="position:fixed;inset:0;background:var(--bg);z-index:9500;pointer-events:none;opacity:0;transition:opacity 0.4s;"></div>
+
+<div id="mmenu" style="display:none;position:fixed;inset:0;background:rgba(4,4,14,0.97);z-index:9000;flex-direction:column;align-items:center;justify-content:center;gap:28px;">
+  <button onclick="toggleMenu()" style="position:absolute;top:22px;right:22px;background:none;border:none;color:var(--c1);font-size:22px;cursor:none;">✕</button>
+  <a href="/" class="nav-link" style="font-size:18px;letter-spacing:4px;">HOME</a>
+  <a href="/select/" class="nav-link active" style="font-size:18px;letter-spacing:4px;">GAMES</a>
+  <a href="/articles/" class="nav-link" style="font-size:18px;letter-spacing:4px;">ARTICLES</a>
+  <a href="/updates/" class="nav-link" style="font-size:18px;letter-spacing:4px;">UPDATES</a>
+  <a href="/about-us/" class="nav-link" style="font-size:18px;letter-spacing:4px;">ABOUT</a>
+</div>
+
+<!-- Fixed BG -->
+<div style="position:fixed;inset:0;pointer-events:none;z-index:0;">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(174,69,255,0.065) 0%,transparent 55%),radial-gradient(ellipse at 80% 15%,rgba(0,229,255,0.08) 0%,transparent 50%),radial-gradient(ellipse at 60% 85%,rgba(255,24,112,0.045) 0%,transparent 45%);"></div>
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(0,229,255,0.028) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,0.028) 1px,transparent 1px);background-size:60px 60px;animation:gridMove 28s linear infinite;"></div>
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.035) 3px,rgba(0,0,0,0.035) 4px);"></div>
+  <div style="position:absolute;width:450px;height:450px;border-radius:50%;background:radial-gradient(circle,rgba(0,229,255,0.05) 0%,transparent 70%);top:10%;left:5%;animation:float 8s ease-in-out infinite;"></div>
+  <div style="position:absolute;width:350px;height:350px;border-radius:50%;background:radial-gradient(circle,rgba(174,69,255,0.045) 0%,transparent 70%);bottom:10%;right:5%;animation:floatB 10s ease-in-out infinite;"></div>
+</div>
+
+<nav style="position:fixed;top:0;left:0;right:0;z-index:500;height:64px;padding:0 5%;display:flex;align-items:center;justify-content:space-between;background:rgba(4,4,14,0.82);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid rgba(0,229,255,0.07);animation:borderGlow 4s ease-in-out infinite;">
+  <a href="/" style="font-family:var(--f4);font-size:17px;font-weight:700;color:#fff;text-shadow:0 0 18px rgba(0,229,255,0.4);">PASTPAPER<span style="color:var(--c1);text-shadow:0 0 14px var(--c1);">GENIE</span></a>
+  <div class="nav-desktop" style="display:flex;gap:34px;align-items:center;">
+    <a href="/" class="nav-link">HOME</a>
+    <a href="/select/" class="nav-link active">GAMES</a>
+    <a href="/articles/" class="nav-link">ARTICLES</a>
+    <a href="/updates/" class="nav-link">UPDATES</a>
+    <a href="/about-us/" class="nav-link">ABOUT</a>
+  </div>
+  <div class="nav-desktop" style="font-family:var(--f3);font-size:9px;letter-spacing:2px;color:var(--c1);padding:7px 14px;border:1px solid rgba(0,229,255,0.2);border-radius:4px;">◈ 25 GAMES</div>
+  <div id="ham" style="display:none;flex-direction:column;gap:5px;padding:6px;z-index:9100;cursor:none;" onclick="toggleMenu()">
+    <span style="width:22px;height:2px;background:var(--c1);display:block;"></span>
+    <span style="width:22px;height:2px;background:var(--c1);display:block;"></span>
+    <span style="width:22px;height:2px;background:var(--c1);display:block;"></span>
+  </div>
+</nav>
+
+<div style="position:relative;z-index:2;padding-top:64px;">
+
+  <!-- HERO -->
+  <section style="padding:56px 5% 42px;text-align:center;">
+    <div style="max-width:1200px;margin:0 auto;">
+      <div style="font-family:var(--f3);font-size:10px;letter-spacing:5px;color:var(--c1);margin-bottom:12px;animation:slideUp 0.7s ease both;">▶ COMPLETE GAME LIBRARY</div>
+      <h1 style="font-family:var(--f1);font-weight:900;font-size:clamp(30px,7vw,60px);letter-spacing:5px;background:linear-gradient(135deg,#fff 0%,#a0e8ff 40%,var(--c1) 70%);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:10px;animation:slideUp 0.7s ease 0.08s both;">GAME LIBRARY</h1>
+      <p style="font-family:var(--f2);font-size:14px;color:var(--dim);margin-bottom:38px;letter-spacing:0.4px;animation:slideUp 0.7s ease 0.14s both;">Every game, unblocked, instantly playable — no installs, no logins, no limits.</p>
+      <!-- Search bar -->
+      <div style="position:relative;max-width:680px;margin:0 auto 26px;animation:slideUp 0.7s ease 0.2s both;" class="reveal">
+        <span style="position:absolute;left:18px;top:50%;transform:translateY(-50%);color:var(--dim);font-size:19px;pointer-events:none;z-index:1;">⌕</span>
+        <input class="search-input" id="searchInput" type="text" placeholder="Search by name, genre…" oninput="handleSearch(this.value)" onkeydown="if(event.key==='Escape'){clearSearch()}">
+        <button id="clearBtn" onclick="clearSearch()" style="position:absolute;right:16px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--dim);font-size:16px;opacity:0;transition:opacity 0.3s;cursor:none;font-family:monospace;padding:4px;">✕</button>
+      </div>
+      <!-- Category filters -->
+      <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:20px;" class="reveal">
+        <button class="pill" id="pill-all" onclick="setFilter('all',this)" style="border-color:rgba(0,229,255,0.4);color:var(--c1);">ALL · 25</button>
+        <button class="pill" onclick="setFilter('sandbox',this)" style="">⬡ SANDBOX</button>
+        <button class="pill" onclick="setFilter('horror',this)">☠ HORROR</button>
+        <button class="pill" onclick="setFilter('shooter',this)">⊕ SHOOTER</button>
+        <button class="pill" onclick="setFilter('rpg',this)">◈ RPG</button>
+        <button class="pill" onclick="setFilter('rhythm',this)">♪ RHYTHM</button>
+        <button class="pill" onclick="setFilter('strategy',this)">◆ STRATEGY</button>
+        <button class="pill" onclick="setFilter('platformer',this)">▲ PLATFORMER</button>
+      </div>
+      <!-- Count -->
+      <div style="font-family:var(--f3);font-size:10px;letter-spacing:3px;color:var(--dim);margin-bottom:42px;" class="reveal">SHOWING <span id="gcount" style="color:var(--c1);">25</span> OF 25 GAMES</div>
+    </div>
+  </section>
+
+  <!-- GRID -->
+  <section style="padding:0 5% 90px;">
+    <div style="max-width:1320px;margin:0 auto;">
+      <div id="gameGrid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;"></div>
+      <div id="noResults" style="display:none;flex-direction:column;align-items:center;padding:80px 0;gap:14px;">
+        <div style="font-family:var(--f1);font-size:42px;color:rgba(0,229,255,0.2);">ø</div>
+        <div style="font-family:var(--f3);font-size:11px;letter-spacing:4px;color:var(--dim);">NO GAMES FOUND</div>
+        <button onclick="clearSearch()" style="margin-top:8px;padding:9px 22px;border:1px solid rgba(0,229,255,0.25);color:var(--c1);background:transparent;font-family:var(--f1);font-size:9px;letter-spacing:2px;border-radius:5px;cursor:none;transition:all 0.3s;" onmouseenter="this.style.background='rgba(0,229,255,0.08)'" onmouseleave="this.style.background='transparent'">CLEAR SEARCH</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="padding:44px 5% 28px;border-top:1px solid rgba(0,229,255,0.07);background:rgba(0,0,0,0.25);">
+    <div style="max-width:1200px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:22px;text-align:center;">
+      <a href="/" style="font-family:var(--f4);font-size:18px;color:#fff;text-shadow:0 0 18px rgba(0,229,255,0.4);">PASTPAPER<span style="color:var(--c1);">GENIE</span></a>
+      <div style="display:flex;gap:28px;flex-wrap:wrap;justify-content:center;">
+        <a href="/" style="font-family:var(--f3);font-size:9px;letter-spacing:2px;color:var(--dim);transition:color 0.3s;" onmouseenter="this.style.color='#00e5ff'" onmouseleave="this.style.color='var(--dim)'">HOME</a>
+        <a href="/select/" style="font-family:var(--f3);font-size:9px;letter-spacing:2px;color:var(--c1);transition:color 0.3s;">GAMES</a>
+        <a href="/articles/" style="font-family:var(--f3);font-size:9px;letter-spacing:2px;color:var(--dim);transition:color 0.3s;" onmouseenter="this.style.color='#00e5ff'" onmouseleave="this.style.color='var(--dim)'">ARTICLES</a>
+        <a href="/updates/" style="font-family:var(--f3);font-size:9px;letter-spacing:2px;color:var(--dim);transition:color 0.3s;" onmouseenter="this.style.color='#00e5ff'" onmouseleave="this.style.color='var(--dim)'">UPDATES</a>
+        <a href="/about-us/" style="font-family:var(--f3);font-size:9px;letter-spacing:2px;color:var(--dim);transition:color 0.3s;" onmouseenter="this.style.color='#00e5ff'" onmouseleave="this.style.color='var(--dim)'">ABOUT</a>
+      </div>
+      <div style="font-family:var(--f3);font-size:9px;color:#2e3056;letter-spacing:1px;">© 2026 PASTPAPERGENIE · ALL GAMES REMAIN PROPERTY OF THEIR RESPECTIVE OWNERS</div>
+    </div>
+  </footer>
+</div>
+
+<script>
+// Game data
+const GAMES=[
+  {title:"Site Unblocker",desc:"Can Unblock ANY website .",cat:"",url:"https://pastpapergenie.co.uk/Resources/hehehehehhe.html",tag:"HOT"},
+  {title:"1.12 WASM Minecraft",desc:"WebAssembly-powered Minecraft 1.12 with blazing fast performance in your browser.",cat:"sandbox",url:"https://pastpapergenie.co.uk/Resources/1.12-u2-wasm%20(2).html",tag:""},
+  {title:"10 Minutes Till Dawn",desc:"Survive endless waves of aliens in this frantic bullet-hell roguelike shooter.",cat:"shooter",url:"https://pastpapergenie.co.uk/Resources/10-minutes-till-dawn",tag:""},
+  {title:"12 Mini Battles",desc:"Quick party games featuring 12 different mini-games for multiplayer fun.",cat:"party",url:"https://pastpapergenie.co.uk/Resources/12minibattles.html",tag:""},
+  {title:"100ng",desc:"Minimalist action game with simple mechanics and challenging gameplay.",cat:"action",url:"https://pastpapergenie.co.uk/Resources/100ng",tag:""},
+  {title:"1v1 LOL",desc:"Build and battle in this fast-paced online multiplayer shooter with a fortnite-style building system.",cat:"shooter",url:"https://pastpapergenie.co.uk/Resources/1v1lol",tag:"MULTI"},
+  {title:"1v1 Space",desc:"Real-time multiplayer space battle arena with tactical combat mechanics.",cat:"shooter",url:"https://pastpapergenie.co.uk/Resources/1v1space",tag:"MULTI"},
+  {title:"2020 Game",desc:"A narrative-driven game reflecting on the events of 2020.",cat:"puzzle",url:"https://pastpapergenie.co.uk/Resources/2020-game",tag:""},
+
+  {title:"Zig Zag",desc:"Endless zigzag platformer - navigate twisting paths.",cat:"platformer",url:"https://pastpapergenie.co.uk/Resources/zig-zag",tag:""},
+  {title:"Zombie Rush",desc:"Zombie apocalypse action - survive incoming hordes.",cat:"shooter",url:"https://pastpapergenie.co.uk/Resources/zombierush.html",tag:""},
+  {title:"Zombocalypse",desc:"Zombie survival game with tower defense mechanics.",cat:"strategy",url:"https://pastpapergenie.co.uk/Resources/zombocalypse",tag:""},
+  {title:"Zombs Royale",desc:"Top-down battle royale - survive on shrinking island.",cat:"io",url:"https://pastpapergenie.co.uk/Resources/zombs-royale",tag:"MULTI"}
+];
+
+// Color mapping for categories
+const CC={sandbox:'#00ff9d',horror:'#ff1870',shooter:'#00e5ff',rpg:'#ae45ff',rhythm:'#ffd60a',strategy:'#ff6b35',platformer:'#4d9eff',io:'#ff6b35'};
+
+// State
+let curCat='all',curQuery='';
+
+// Build game cards
+function buildCards(){
+  const grid=document.getElementById('gameGrid');
+  grid.innerHTML='';
+  GAMES.forEach((game,idx)=>{
+    const card=document.createElement('div');
+    card.className='gc';
+    card.dataset.cat=game.cat;
+    card.dataset.search=(game.title+' '+game.desc).toLowerCase();
+    card.style.borderLeftColor=CC[game.cat]||'var(--c1)';
+    card.style.animation=`cardIn 0.35s ease ${idx*0.04}s both`;
+    card.innerHTML=`
+      <div style="display:flex;flex-direction:column;height:100%;gap:12px;">
+        <div>
+          <div style="font-family:var(--f1);font-size:13px;font-weight:700;letter-spacing:1px;color:#fff;margin-bottom:4px;line-height:1.3;">${game.title}</div>
+          <div style="font-family:var(--f2);font-size:12px;color:var(--dim);line-height:1.4;">${game.desc}</div>
+        </div>
+        <div style="flex-grow:1;"></div>
+        <div style="display:flex;gap:8px;align-items:center;">
+          ${game.tag?`<span style="font-family:var(--f1);font-size:7px;letter-spacing:1px;color:${CC[game.cat]||'var(--c1)'};border:1px solid ${CC[game.cat]||'var(--c1)'}66;padding:4px 8px;border-radius:3px;">${game.tag}</span>`:''}
+          <a href="${game.url}" class="play-btn" style="border-color:${CC[game.cat]||'var(--c1)'}88;color:${CC[game.cat]||'var(--c1)'};margin-left:auto;">
+            <span class="fill" style="background:${CC[game.cat]||'var(--c1)'}22;"></span>
+            PLAY ▶
+          </a>
+        </div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+  filterGames();
+}
+
+// Filter games
+function filterGames(){
+  let vis=0;
+  document.querySelectorAll('.gc').forEach((card)=>{
+    const catOK=curCat==='all'||card.dataset.cat===curCat;
+    const qOK=!curQuery||card.dataset.search.includes(curQuery);
+    if(catOK&&qOK){card.style.display='';card.style.animation='none';void card.offsetWidth;card.style.animation=`cardIn 0.35s ease ${vis*0.04}s both`;vis++;}
+    else{card.style.display='none';}
+  });
+  document.getElementById('gcount').textContent=vis;
+  document.getElementById('noResults').style.display=vis===0?'flex':'none';
+}
+
+// Set category filter
+function setFilter(cat,el){
+  curCat=cat;
+  document.querySelectorAll('.pill').forEach(p=>{
+    p.style.color='var(--dim)';p.style.borderColor='rgba(255,255,255,0.08)';p.style.background='transparent';
+  });
+  const c=CC[cat]||'var(--c1)';
+  el.style.color='#fff';el.style.borderColor=cat==='all'?'rgba(0,229,255,0.5)':c+'88';el.style.background=cat==='all'?'rgba(0,229,255,0.1)':c+'18';
+  filterGames();
+}
+
+// Handle search
+function handleSearch(val){
+  curQuery=val.toLowerCase();
+  document.getElementById('clearBtn').style.opacity=val?'1':'0';
+  filterGames();
+}
+
+// Clear search
+function clearSearch(){
+  curQuery='';
+  document.getElementById('searchInput').value='';
+  document.getElementById('clearBtn').style.opacity='0';
+  filterGames();
+}
+
+// Initialize
+buildCards();
+
+// Custom cursor
+const dot=document.getElementById('cdot'),ring=document.getElementById('cring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});
+(function anim(){rx+=(mx-rx)*0.11;ry+=(my-ry)*0.11;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(anim);})();
+document.querySelectorAll('a,button,.pill').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{ring.style.width='44px';ring.style.height='44px';ring.style.borderColor='rgba(0,229,255,0.8)';ring.style.background='rgba(0,229,255,0.07)';});
+  el.addEventListener('mouseleave',()=>{ring.style.width='30px';ring.style.height='30px';ring.style.borderColor='rgba(0,229,255,0.65)';ring.style.background='transparent';});
+});
+
+// Page transitions
+document.querySelectorAll('a').forEach(a=>{
+  if(a.href&&a.origin===location.origin&&!a.target){
+    a.addEventListener('click',e=>{e.preventDefault();const ov=document.getElementById('overlay');ov.style.opacity='1';ov.style.pointerEvents='all';setTimeout(()=>{location.href=a.href;},380);});
+  }
+});
+
+// Fade in
+setTimeout(()=>{document.body.style.opacity='1';},60);
+
+// Scroll reveal
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('revealed');});},{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// Toggle mobile menu
+function toggleMenu(){
+  const m=document.getElementById('mmenu');
+  m.style.display=m.style.display==='flex'?'none':'flex';
+}
+
+// Style all pill on init
+(()=>{
+  const allPill=document.getElementById('pill-all');
+  if(allPill){
+    allPill.style.color='var(--c1)';
+    allPill.style.borderColor='rgba(0,229,255,0.5)';
+    allPill.style.background='rgba(0,229,255,0.1)';
+  }
+})();
+</script>
+</body>
+</html>
+
