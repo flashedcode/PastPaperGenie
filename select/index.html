@@ -147,6 +147,7 @@ a{text-decoration:none;color:inherit}
 </div>
 
 <script>
+// Game data
 const GAMES=[
   {title:"1.12 WASM Minecraft",desc:"WebAssembly-powered Minecraft 1.12 with blazing fast performance in your browser.",cat:"sandbox",url:"https://pastpapergenie.co.uk/Resources/1.12-u2-wasm%20(2).html",tag:""},
   {title:"10 Minutes Till Dawn",desc:"Survive endless waves of aliens in this frantic bullet-hell roguelike shooter.",cat:"shooter",url:"https://pastpapergenie.co.uk/Resources/10-minutes-till-dawn",tag:""},
@@ -749,6 +750,45 @@ const GAMES=[
   {title:"Zombs Royale",desc:"Top-down battle royale - survive on shrinking island.",cat:"io",url:"https://pastpapergenie.co.uk/Resources/zombs-royale",tag:"MULTI"}
 ];
 
+// Color mapping for categories
+const CC={sandbox:'#00ff9d',horror:'#ff1870',shooter:'#00e5ff',rpg:'#ae45ff',rhythm:'#ffd60a',strategy:'#ff6b35',platformer:'#4d9eff',io:'#ff6b35'};
+
+// State
+let curCat='all',curQuery='';
+
+// Build game cards
+function buildCards(){
+  const grid=document.getElementById('gameGrid');
+  grid.innerHTML='';
+  GAMES.forEach((game,idx)=>{
+    const card=document.createElement('div');
+    card.className='gc';
+    card.dataset.cat=game.cat;
+    card.dataset.search=(game.title+' '+game.desc).toLowerCase();
+    card.style.borderLeftColor=CC[game.cat]||'var(--c1)';
+    card.style.animation=`cardIn 0.35s ease ${idx*0.04}s both`;
+    card.innerHTML=`
+      <div style="display:flex;flex-direction:column;height:100%;gap:12px;">
+        <div>
+          <div style="font-family:var(--f1);font-size:13px;font-weight:700;letter-spacing:1px;color:#fff;margin-bottom:4px;line-height:1.3;">${game.title}</div>
+          <div style="font-family:var(--f2);font-size:12px;color:var(--dim);line-height:1.4;">${game.desc}</div>
+        </div>
+        <div style="flex-grow:1;"></div>
+        <div style="display:flex;gap:8px;align-items:center;">
+          ${game.tag?`<span style="font-family:var(--f1);font-size:7px;letter-spacing:1px;color:${CC[game.cat]||'var(--c1)'};border:1px solid ${CC[game.cat]||'var(--c1)'}66;padding:4px 8px;border-radius:3px;">${game.tag}</span>`:''}
+          <a href="${game.url}" class="play-btn" style="border-color:${CC[game.cat]||'var(--c1)'}88;color:${CC[game.cat]||'var(--c1)'};margin-left:auto;">
+            <span class="fill" style="background:${CC[game.cat]||'var(--c1)'}22;"></span>
+            PLAY ▶
+          </a>
+        </div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+  filterGames();
+}
+
+// Filter games
 function filterGames(){
   let vis=0;
   document.querySelectorAll('.gc').forEach((card)=>{
@@ -761,6 +801,7 @@ function filterGames(){
   document.getElementById('noResults').style.display=vis===0?'flex':'none';
 }
 
+// Set category filter
 function setFilter(cat,el){
   curCat=cat;
   document.querySelectorAll('.pill').forEach(p=>{
@@ -771,16 +812,25 @@ function setFilter(cat,el){
   filterGames();
 }
 
+// Handle search
 function handleSearch(val){
   curQuery=val.toLowerCase();
   document.getElementById('clearBtn').style.opacity=val?'1':'0';
   filterGames();
 }
-function clearSearch(){curQuery='';document.getElementById('searchInput').value='';document.getElementById('clearBtn').style.opacity='0';filterGames();}
 
+// Clear search
+function clearSearch(){
+  curQuery='';
+  document.getElementById('searchInput').value='';
+  document.getElementById('clearBtn').style.opacity='0';
+  filterGames();
+}
+
+// Initialize
 buildCards();
 
-// Cursor
+// Custom cursor
 const dot=document.getElementById('cdot'),ring=document.getElementById('cring');
 let mx=0,my=0,rx=0,ry=0;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});
@@ -804,10 +854,22 @@ setTimeout(()=>{document.body.style.opacity='1';},60);
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('revealed');});},{threshold:0.08});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
-function toggleMenu(){const m=document.getElementById('mmenu');m.style.display=m.style.display==='flex'?'none':'flex';}
+// Toggle mobile menu
+function toggleMenu(){
+  const m=document.getElementById('mmenu');
+  m.style.display=m.style.display==='flex'?'none':'flex';
+}
 
-// Init pill style
-(()=>{const allPill=document.getElementById('pill-all');if(allPill){allPill.style.color='var(--c1)';allPill.style.borderColor='rgba(0,229,255,0.5)';allPill.style.background='rgba(0,229,255,0.1)';}})();
+// Style all pill on init
+(()=>{
+  const allPill=document.getElementById('pill-all');
+  if(allPill){
+    allPill.style.color='var(--c1)';
+    allPill.style.borderColor='rgba(0,229,255,0.5)';
+    allPill.style.background='rgba(0,229,255,0.1)';
+  }
+})();
 </script>
 </body>
 </html>
+
