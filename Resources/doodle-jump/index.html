@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Fallacious0 studying website</title>
+<!-- CLOAK BUTTON — paste before </body> on every page -->
+<a href="/cloak.html" title="Settings" style="position:fixed;bottom:22px;right:22px;z-index:8000;width:40px;height:40px;background:rgba(4,4,14,0.85);border:1px solid rgba(0,229,255,0.2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;backdrop-filter:blur(10px);transition:all 0.3s;text-decoration:none;" onmouseenter="this.style.borderColor='rgba(0,229,255,0.55)';this.style.boxShadow='0 0 18px rgba(0,229,255,0.2)'" onmouseleave="this.style.borderColor='rgba(0,229,255,0.2)';this.style.boxShadow='none'">🛡️</a>
+<script>
+// ESC panic key — active on every page
+const _p=localStorage.getItem('f0_panic')||'https://classroom.google.com';
+document.addEventListener('keydown',e=>{if(e.key==='Escape')window.location.replace(_p);});
+</script>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="container">
+      <canvas id="canvas">Aww, your browser doesn't support HTML5!</canvas>
+      <div id="mainMenu">
+        <h1>doodle jump</h1>
+        <h3>using HTML5,</h3>
+        <h3>...by <a href="https://Github Games.github.io/" target="_blank">Github Games</a></h3>
+        <p class="info">use <span class="key left">←</span> <span class="key right">→</span> to move and space to (re) start...</p>
+        <a class="button" href="javascript:init()">Play</a>
+      </div>
+      <div id="gameOverMenu">
+        <h1>game over!</h1>
+        <h3 id="go_score">you scored 0 points</h3>
+        <a class="button" href="javascript:reset()">Restart</a>
+      </div>
+      <img id="sprite" src="sprites.png"/>
+      <div id="scoreBoard">
+        <p id="score">0</p>
+      </div>
+    </div>
+    <script src="main.js"></script>
+    <script src="/js/main.js"></script>
+  </body>
+</html>
