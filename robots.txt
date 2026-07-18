@@ -1,0 +1,8 @@
+# robots.txt for your website
+
+# Allow all search engines to crawl all pages
+User-agent: *
+Disallow:
+
+# Optional: Sitemap location (replace with your actual sitemap URL)
+Sitemap: https://https://pastpapergenie.co.uk/sitemap.xml
