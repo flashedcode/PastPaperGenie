@@ -1,0 +1,78 @@
+name: Build WASM release and publish Pages
+
+on:
+  push:
+    branches:
+      - wasm
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build PPSSPP Web
+    runs-on: ubuntu-latest
+    container:
+      image: emscripten/emsdk:5.0.7
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 1
+
+      - name: Checkout PPSSPP WASM
+        uses: actions/checkout@v6
+        with:
+          repository: root-hunter/ppsspp-wasm
+          ref: wasm
+          path: ppsspp-wasm-src
+          submodules: recursive
+          fetch-depth: 1
+
+      - name: Configure Git safe directory
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          git config --global --add safe.directory "$GITHUB_WORKSPACE/ppsspp-wasm-src"
+
+      - name: Install build tools
+        run: |
+          apt-get update
+          apt-get install -y --no-install-recommends ninja-build ca-certificates
+
+      - name: Build release
+        run: make wasm-release WASM_ROOT=ppsspp-wasm-src CMAKE=/usr/bin/cmake WASM_JOBS="-j$(nproc)"
+
+      - name: Install Angular dependencies
+        run: npm --prefix wasm-page ci
+
+      - name: Build static Pages artifact
+        run: make app-build-pages WASM_ROOT=ppsspp-wasm-src
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v6
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: wasm-page/dist/ppsspp-web
+
+  deploy:
+    name: Deploy GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v5
