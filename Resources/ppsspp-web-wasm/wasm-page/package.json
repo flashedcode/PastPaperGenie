@@ -11,7 +11,7 @@
     "watch": "ng build --watch --configuration development"
   },
   "dependencies": {
-    "@angular/common": "21.2.14",
+    "@angular/common": "21.2.20",
     "@angular/compiler": "21.2.14",
     "@angular/core": "21.2.14",
     "@angular/platform-browser": "21.2.14",
