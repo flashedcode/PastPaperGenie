@@ -14,7 +14,7 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#04040e">
+<meta name="theme-color" content="#203b14">
 
 <title>PastPaperGenie | Free Past Papers and Study Resources</title>
 <link rel="icon" type="image/x-icon" href="logos/fullnamewithcodotuk-mainlogo.jpeg">
@@ -73,250 +73,336 @@
 }
 </script>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:ital,wght@0,300;0,400;0,600;1,300&family=Space+Mono:wght@400;700&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
 <style>
-  *{margin:0;padding:0;box-sizing:border-box;cursor:none}
-  :root{--bg:#04040e;--s1:#07071a;--card:rgba(255,255,255,0.025);--b1:rgba(0,229,255,0.12);--c1:#00e5ff;--c2:#ae45ff;--c3:#ff1870;--c4:#00ff9d;--c5:#ffd60a;--txt:#c8ccee;--dim:#6a6d8e;--f1:'Orbitron',monospace;--f2:'Exo 2',sans-serif;--f3:'Space Mono',monospace;--f4:'Cinzel Decorative',serif}
-  html{scroll-behavior:smooth}
-  body{background:var(--bg);color:var(--txt);font-family:var(--f2);min-height:100vh;overflow-x:hidden;opacity:0;transition:opacity 0.5s}
-  ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:linear-gradient(var(--c2),var(--c1));border-radius:2px}
-  a{text-decoration:none;color:inherit}
-  @keyframes gridMove{0%{background-position:0 0}100%{background-position:60px 60px}}
-  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
-  @keyframes floatB{0%,100%{transform:translateY(0)}50%{transform:translateY(10px)}}
-  @keyframes neonPulse{0%,100%{box-shadow:0 0 8px rgba(0,229,255,0.3),inset 0 0 8px rgba(0,229,255,0.05)}50%{box-shadow:0 0 24px rgba(0,229,255,0.5),0 0 50px rgba(0,229,255,0.15),inset 0 0 16px rgba(0,229,255,0.08)}}
-  @keyframes borderGlow{0%,100%{border-color:rgba(0,229,255,0.12)}50%{border-color:rgba(0,229,255,0.3)}}
-  @keyframes breathe-glow {
-      from { text-shadow: 0 0 4px rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.3); }
-      to { text-shadow: 0 0 8px rgba(255, 255, 255, 0.9), 0 0 16px rgba(255, 255, 255, 0.7), 0 0 24px rgba(255, 255, 255, 0.4); }
+  :root {
+    --green: #203b14;
+    --cream: #fbfdf6;
+    --ink: #1b2217;
+    --line: #b4c0a2;
+    --panel: #eef2e3;
+    --stripe: #f4f7ec;
+    --link: #1a4fa0;
+    --visited: #6a3f8f;
+  }
+  
+  * { box-sizing: border-box; }
+  html { background: #dfe6d0; scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font: 14px/1.5 Verdana, Geneva, sans-serif;
+    color: var(--ink);
+    opacity: 0;
+    transition: opacity 0.5s;
   }
 
-  .nav-link{font-family:var(--f1);font-size:10px;font-weight:700;letter-spacing:2.5px;color:var(--dim);transition:color 0.3s;position:relative;padding-bottom:3px}
-  .nav-link::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--c1);box-shadow:0 0 6px var(--c1);transition:width 0.35s cubic-bezier(0.4,0,0.2,1)}
-  .nav-link:hover,.nav-link.active{color:var(--c1)}
-  .nav-link:hover::after,.nav-link.active::after{width:100%}
+  a { color: var(--link); text-decoration: none; }
+  a:visited { color: var(--visited); }
+  a:hover { text-decoration: underline; }
+  a:focus-visible, button:focus-visible, input:focus-visible {
+    outline: 2px solid var(--green);
+    outline-offset: 2px;
+  }
 
-  .game-card{background:var(--card);border:1px solid rgba(0,229,255,0.08);border-radius:10px;padding:20px;transition:all 0.4s cubic-bezier(0.175,0.885,0.32,1.275);position:relative;overflow:hidden}
-  .game-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,229,255,0.06) 0%,transparent 55%);opacity:0;transition:opacity 0.4s}
-  .game-card::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--c1),transparent);transition:left 0.6s}
-  .game-card:hover{transform:translateY(-5px) scale(1.01);border-color:rgba(0,229,255,0.28);box-shadow:0 12px 40px rgba(0,229,255,0.08),0 2px 0 rgba(0,229,255,0.15) inset}
-  .game-card:hover::before{opacity:1}
-  .game-card:hover::after{left:100%}
+  #page {
+    max-width: 1000px;
+    margin: 12px auto;
+    background: var(--cream);
+    border: 1px solid var(--green);
+    padding: 0 16px 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  }
 
-  .play-btn{display:inline-flex;align-items:center;gap:7px;padding:9px 20px;background:transparent;border:1px solid rgba(0,229,255,0.3);color:var(--c1);font-family:var(--f1);font-size:9px;font-weight:700;letter-spacing:2px;border-radius:5px;transition:all 0.3s;position:relative;overflow:hidden}
-  .play-btn::before{content:'';position:absolute;inset:0;background:rgba(0,229,255,0.08);transform:translateX(-101%);transition:transform 0.3s}
-  .play-btn:hover{border-color:var(--c1);color:#fff;box-shadow:0 0 18px rgba(0,229,255,0.25)}
-  .play-btn:hover::before{transform:translateX(0)}
+  header {
+    border-bottom: 3px double var(--green);
+    padding: 14px 0 0;
+  }
+  h1 { font: bold 30px/1.1 Georgia, "Times New Roman", serif; margin: 0; }
+  h1 a, h1 a:visited { color: var(--green); text-decoration: none; }
+  h1 small { font-size: 14px; font-weight: normal; color: #4a5640; }
+  .blurb { margin: 4px 0 10px; color: #4a5640; }
 
-  .cta-btn{display:inline-flex;align-items:center;gap:10px;padding:12px 28px;background:linear-gradient(135deg,rgba(0,229,255,0.12),rgba(174,69,255,0.12));border:1px solid rgba(0,229,255,0.4);color:#fff;font-family:var(--f1);font-size:11px;font-weight:700;letter-spacing:2px;border-radius:6px;transition:all 0.4s;animation:neonPulse 3s ease-in-out infinite}
-  .cta-btn:hover{background:linear-gradient(135deg,rgba(0,229,255,0.22),rgba(174,69,255,0.22));box-shadow:0 0 40px rgba(0,229,255,0.35);transform:translateY(-2px)}
+  nav {
+    background: var(--green);
+    margin: 0 -16px;
+    padding: 6px 16px;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  nav a, nav a:visited { color: var(--cream); font-weight: bold; font-size: 13px; }
+  nav a:hover { text-decoration: underline; }
 
-  .section-label{font-family:var(--f3);font-size:10px;letter-spacing:5px;color:var(--c1);text-transform:uppercase;display:flex;align-items:center;gap:12px;margin-bottom:14px}
-  .section-label::before{content:'';width:24px;height:1px;background:var(--c1);box-shadow:0 0 6px var(--c1)}
-  .section-title{font-family:var(--f1);font-weight:900;font-size:clamp(22px,4vw,32px);letter-spacing:2px;color:#e4e8ff;text-transform:uppercase}
+  .section-title {
+    font: bold 22px Georgia, serif;
+    color: var(--green);
+    margin-bottom: 12px;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 4px;
+  }
+
+  .search-box {
+    display: flex;
+    gap: 8px;
+    margin: 16px 0;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    padding: 10px;
+  }
+  .search-box input {
+    flex: 1;
+    font: inherit;
+    padding: 6px 10px;
+    border: 1px solid var(--line);
+    background: #fff;
+  }
+
+  button, .btn {
+    font: inherit;
+    font-size: 12px;
+    padding: 4px 12px;
+    background: #e3e9d3;
+    border: 2px solid;
+    border-color: #fff #7d8a6a #7d8a6a #fff;
+    cursor: pointer;
+    color: var(--ink);
+    display: inline-block;
+  }
+  button:active, .btn:active { border-color: #7d8a6a #fff #fff #7d8a6a; }
+
+  .provider-bar {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+    background: var(--panel);
+    padding: 8px;
+    border: 1px solid var(--line);
+    align-items: center;
+  }
+  .provider-btn {
+    font-size: 11px;
+    padding: 3px 8px;
+  }
+  .provider-btn.active {
+    background: var(--green);
+    color: var(--cream);
+    border-color: var(--green);
+    font-weight: bold;
+  }
+
+  .play { border: 1px solid var(--green); background: #111; margin: 8px 0; }
+  .play iframe { display: block; width: 100%; height: 500px; border: 0; }
+
+  .box { border: 1px solid var(--line); background: var(--panel); padding: 12px; margin-bottom: 16px; }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 16px;
+    margin-top: 12px;
+  }
+  .game-card {
+    border: 1px solid var(--line);
+    background: var(--panel);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .game-card img {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    border: 1px solid var(--line);
+    margin-bottom: 8px;
+  }
+  .game-card h3 {
+    font: bold 14px Georgia, serif;
+    margin: 4px 0;
+    color: var(--green);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .episodes-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 8px;
+    background: #fff;
+    border: 1px solid var(--line);
+  }
 
   #glowing-tip {
-      font-family: system-ui, -apple-system, sans-serif;
-      font-weight: 300;
-      font-size: 0.95rem;
-      color: #ffffff;
-      margin: 0;
-      transition: opacity 0.4s ease-in-out;
-      opacity: 1;
-      animation: breathe-glow 2s infinite alternate ease-in-out;
+    font-style: italic;
+    color: var(--green);
+    font-weight: bold;
+    text-align: center;
+    margin: 8px 0;
   }
 
-  @media(max-width:768px){
-    .nav-desktop{display:none!important}
-    #ham{display:flex!important}
-    *{cursor:auto!important}
-    #cdot,#cring{display:none!important}
+  footer {
+    border-top: 1px solid var(--line);
+    margin-top: 24px;
+    padding-top: 12px;
+    font-size: 12px;
+    color: #4a5640;
+    text-align: center;
   }
-  @media(hover:none){*{cursor:auto!important}#cdot,#cring{display:none!important}}
+
+  @media (max-width: 720px) {
+    .play iframe { height: 320px; }
+    .grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+  }
 </style>
 </head>
 <body>
 
-<!-- Custom cursor -->
-<div id="cdot" style="position:fixed;top:0;left:0;width:7px;height:7px;background:var(--c1);border-radius:50%;pointer-events:none;z-index:10001;box-shadow:0 0 10px var(--c1),0 0 22px rgba(0,229,255,0.5);transform:translate(-50%,-50%);transition:opacity 0.2s;"></div>
-<div id="cring" style="position:fixed;top:0;left:0;width:30px;height:30px;border:1.5px solid rgba(0,229,255,0.65);border-radius:50%;pointer-events:none;z-index:10000;transform:translate(-50%,-50%);transition:width 0.25s,height 0.25s,border-color 0.25s,background 0.25s;"></div>
+<div id="page">
+  <header>
+    <h1><a href="/">PastPaperGenie <small>v3</small></a></h1>
+    <p class="blurb">Anime Streaming Hub & Free Unblocked Browser Games</p>
+    <nav>
+      <a href="/">HOME</a>
+      <a href="#games-section">GAMES</a>
+      <a href="#anime-section">ANIME</a>
+      <button id="loginBtn" style="margin-left:auto;">LOGIN</button>
+      <span id="userProfile" style="display:none;color:var(--cream);font-weight:bold;font-size:12px;"></span>
+      <button id="logoutBtn" style="display:none;">LOGOUT</button>
+    </nav>
+  </header>
 
-<!-- Fixed BG -->
-<div style="position:fixed;inset:0;pointer-events:none;z-index:0;">
-  <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 15% 60%,rgba(174,69,255,0.07) 0%,transparent 55%),radial-gradient(ellipse at 85% 20%,rgba(0,229,255,0.09) 0%,transparent 50%),radial-gradient(ellipse at 50% 90%,rgba(255,24,112,0.05) 0%,transparent 45%);"></div>
-  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(0,229,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,0.03) 1px,transparent 1px);background-size:60px 60px;animation:gridMove 28s linear infinite;"></div>
-  <div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.04) 3px,rgba(0,0,0,0.04) 4px);pointer-events:none;"></div>
-  <div style="position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(0,229,255,0.055) 0%,transparent 70%);top:20%;left:10%;animation:float 7s ease-in-out infinite;"></div>
-  <div style="position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(174,69,255,0.05) 0%,transparent 70%);bottom:15%;right:5%;animation:floatB 9s ease-in-out infinite;"></div>
-</div>
+  <main style="padding-top: 16px;">
 
-<!-- Mobile menu -->
-<div id="mmenu" style="display:none;position:fixed;inset:0;background:rgba(4,4,14,0.97);z-index:9000;flex-direction:column;align-items:center;justify-content:center;gap:28px;">
-  <a href="/" class="nav-link" style="font-size:18px;letter-spacing:4px;">HOME</a>
-  <a href="/select/" class="nav-link" style="font-size:18px;letter-spacing:4px;">GAMES</a>
-  <a href="/anime/" class="nav-link active" style="font-size:18px;letter-spacing:4px;">ANIME</a>
-  <a href="/articles/" class="nav-link" style="font-size:18px;letter-spacing:4px;">ARTICLES</a>
-  <a href="/updates/" class="nav-link" style="font-size:18px;letter-spacing:4px;">UPDATES</a>
-</div>
+    <!-- ANIME SECTION -->
+    <section id="anime-section">
+      <h2 class="section-title">Anime Streaming Hub</h2>
 
-<!-- NAV -->
-<nav style="position:fixed;top:0;left:0;right:0;z-index:500;height:64px;padding:0 5%;display:flex;align-items:center;justify-content:space-between;background:rgba(4,4,14,0.82);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid rgba(0,229,255,0.07);animation:borderGlow 4s ease-in-out infinite;">
-  <a href="/" style="font-family:var(--f4);font-size:17px;font-weight:700;letter-spacing:1px;color:#fff;text-shadow:0 0 18px rgba(0,229,255,0.45);">PASTPAPER<span style="color:var(--c1);text-shadow:0 0 14px var(--c1);">GENIE</span></a>
-  <div class="nav-desktop" style="display:flex;gap:34px;align-items:center;">
-    <a href="/" class="nav-link">HOME</a>
-    <a href="/select/" class="nav-link">GAMES</a>
-    <a href="/anime/" class="nav-link active">ANIME</a>
-    <a href="/articles/" class="nav-link">ARTICLES</a>
-    <a href="/updates/" class="nav-link">UPDATES</a>
-  </div>
-  
-  <div style="display:flex;gap:12px;align-items:center;">
-    <a href="/select/" class="nav-desktop" style="font-family:var(--f1);font-size:9px;font-weight:700;letter-spacing:2px;padding:8px 18px;border:1px solid rgba(0,229,255,0.35);color:var(--c1);border-radius:4px;transition:all 0.3s;" onmouseenter="this.style.background='rgba(0,229,255,0.1)';this.style.boxShadow='0 0 16px rgba(0,229,255,0.25)'" onmouseleave="this.style.background='transparent';this.style.boxShadow='none'">▶ PLAY NOW</a>
-    <button id="loginBtn" class="nav-desktop" style="font-family:var(--f1);font-size:9px;font-weight:700;letter-spacing:2px;padding:8px 18px;border:1px solid rgba(0,229,255,0.35);color:var(--c1);background:transparent;border-radius:4px;transition:all 0.3s;cursor:pointer;" onmouseenter="this.style.background='rgba(0,229,255,0.1)';" onmouseleave="this.style.background='transparent'">LOGIN</button>
-    <span id="userProfile" style="display:none;font-family:var(--f3);font-size:10px;color:var(--c4);letter-spacing:1px;text-shadow:0 0 10px rgba(0,255,157,0.45);"></span>
-    <button id="logoutBtn" style="display:none;font-family:var(--f1);font-size:9px;font-weight:700;letter-spacing:2px;padding:8px 18px;border:1px solid rgba(255,24,112,0.35);color:var(--c3);background:transparent;border-radius:4px;transition:all 0.3s;cursor:pointer;" onmouseenter="this.style.background='rgba(255,24,112,0.1)';" onmouseleave="this.style.background='transparent'">LOGOUT</button>
-  </div>
+      <p id="glowing-tip">Spirited Away was the first anime film to win an Academy Award.</p>
 
-  <div id="ham" style="display:none;flex-direction:column;gap:5px;padding:6px;z-index:9100;cursor:pointer;" onclick="toggleMenu()">
-    <span style="width:22px;height:2px;background:var(--c1);display:block;transition:all 0.3s;"></span>
-    <span style="width:22px;height:2px;background:var(--c1);display:block;transition:all 0.3s;"></span>
-    <span style="width:22px;height:2px;background:var(--c1);display:block;transition:all 0.3s;"></span>
-  </div>
-</nav>
-
-<!-- MAIN CONTENT -->
-<main style="position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:110px 5% 80px;">
-    
-    <div style="text-align:center;margin-bottom:45px;">
-        <div class="section-label" style="justify-content:center;">ANIME STREAMING HUB</div>
-        <h1 class="section-title" style="margin-bottom:20px;">Stream over 26,000 Anime</h1>
-        
-        <div style="margin:8px 0; text-align:center;">
-            <p id="glowing-tip">Spirited Away was the first anime film to win an Academy Award.</p>
-        </div>
-
-        <div style="max-width:600px;margin:20px auto 0;display:flex;gap:10px;background:rgba(255,255,255,0.02);border:1px solid rgba(0,229,255,0.25);padding:6px;border-radius:8px;backdrop-filter:blur(10px);box-shadow:0 0 20px rgba(0,229,255,0.05);">
-            <input type="text" id="searchInput" placeholder="Search anime title (e.g. Naruto, One Piece)..." style="flex:1;background:transparent;border:none;padding:10px 16px;color:#fff;font-family:var(--f3);font-size:13px;outline:none;">
-            <button onclick="searchAnime()" class="cta-btn" style="padding:10px 24px;animation:none;">SEARCH</button>
-        </div>
-    </div>
-
-    <!-- Video Player View -->
-    <div id="playerView" style="display:none;margin-bottom:40px;">
-        <button onclick="goBack()" class="play-btn" style="margin-bottom:20px;">&larr; BACK TO FEED</button>
-        
-        <div style="aspect-ratio:16/9;width:100%;background:#000;border-radius:10px;overflow:hidden;box-shadow:0 15px 50px rgba(0,229,255,0.15);border:1px solid rgba(0,229,255,0.25);margin-bottom:24px;">
-            <iframe id="videoPlayer" src="" style="width:100%;height:100%;border:none;" allowfullscreen></iframe>
-        </div>
-        
-        <h2 id="watchTitle" style="font-family:var(--f1);font-size:22px;font-weight:700;margin-bottom:20px;color:#e4e8ff;"></h2>
-        
-        <div style="background:var(--card);border:1px solid rgba(0,229,255,0.12);border-radius:10px;padding:22px;">
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
-                <h3 style="font-family:var(--f3);font-size:10px;letter-spacing:3px;color:var(--c1);text-transform:uppercase;">Select Episode</h3>
-                <span id="episodeCountBadge" style="font-family:var(--f3);font-size:9px;background:rgba(0,229,255,0.1);color:var(--c1);padding:4px 10px;border-radius:4px;border:1px solid rgba(0,229,255,0.2);"></span>
-            </div>
-            <div id="episodeGrid" style="display:flex;flex-wrap:wrap;gap:8px;max-height:220px;overflow-y:auto;padding-right:6px;"></div>
-        </div>
-    </div>
-
-    <!-- Continue Watching Section -->
-    <div id="continueWatchingContainer"></div>
-
-    <!-- Results Grid -->
-    <div id="resultsGrid" style="display:grid;grid-template-columns:repeat(auto-fill, minmax(200px, 1fr));gap:20px;">
-        <div style="grid-column:1/-1;text-align:center;padding:60px 0;color:var(--dim);">
-            <p style="font-family:var(--f3);font-size:11px;letter-spacing:2px;">Type an anime name above to begin streaming one of our 1000+ anime collection.</p>
-        </div>
-    </div>
-</main>
-    <section style="padding:80px 5%;">
-    <div style="max-width:1200px;margin:0 auto;">
-      <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:50px;">
-        <div><div class="section-label">TOP PICKS</div><div class="section-title">Featured Games</div></div>
-        <a href="/select/" style="font-family:var(--f3);font-size:10px;letter-spacing:3px;color:var(--c1);opacity:0.75;">VIEW ALL →</a>
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search anime title (e.g. Naruto, One Piece, Jujutsu Kaisen)...">
+        <button onclick="searchAnime()">SEARCH</button>
       </div>
-      <div class="games-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;">
-        <div class="game-card reveal">
-          <div style="font-family:var(--f3);font-size:9px;letter-spacing:3px;color:var(--c1);margin-bottom:10px;">SANDBOX</div>
-          <h3 style="font-family:var(--f1);font-size:14px;font-weight:700;margin-bottom:8px;color:#e4e8ff;">Minecraft 1.20.4</h3>
-          <p style="font-size:13px;color:var(--dim);margin-bottom:20px;line-height:1.7;">Latest JS build. Full features, runs completely in-browser with no installs.</p>
-          <a href="https://pastpapergenie.co.uk/Resources/1.12-u2-wasm%20(2).html" class="play-btn" target="_blank">▶ PLAY NOW</a>
+
+      <!-- Video Player View -->
+      <div id="playerView" style="display:none; margin-bottom: 24px;">
+        <button onclick="goBack()">&larr; BACK TO LIST</button>
+
+        <h2 id="watchTitle" style="font: bold 20px Georgia, serif; color: var(--green); margin: 12px 0 6px;"></h2>
+
+        <!-- Source Selector -->
+        <div class="provider-bar">
+          <strong style="font-size:11px; margin-right:4px;">SERVER:</strong>
+          <button class="provider-btn active" onclick="setSource('megaplay_sub', this)">MegaPlay (Sub)</button>
+          <button class="provider-btn" onclick="setSource('megaplay_dub', this)">MegaPlay (Dub)</button>
+          <button class="provider-btn" onclick="setSource('vidsrc', this)">VidSrc API</button>
+          <button class="provider-btn" onclick="setSource('anix', this)">AniX Ultra</button>
+          <button class="provider-btn" onclick="setSource('multiembed', this)">MultiEmbed</button>
+          <button class="provider-btn" onclick="setSource('autoembed', this)">AutoEmbed</button>
         </div>
-        <div class="game-card reveal">
-          <div style="font-family:var(--f3);font-size:9px;letter-spacing:3px;color:var(--c2);margin-bottom:10px;">HORROR</div>
-          <h3 style="font-family:var(--f1);font-size:14px;font-weight:700;margin-bottom:8px;color:#e4e8ff;">FNAF 1</h3>
-          <p style="font-size:13px;color:var(--dim);margin-bottom:20px;line-height:1.7;">Survive the night. The original Five Nights at Freddy's, unblocked.</p>
-          <a href="https://pastpapergenie.co.uk/Resources/Five Nights at Freddy's.html" class="play-btn" target="_blank" style="border-color:rgba(174,69,255,0.3);color:var(--c2);">▶ PLAY NOW</a>
+
+        <div class="play">
+          <iframe id="videoPlayer" src="" allowfullscreen></iframe>
         </div>
-        <div class="game-card reveal">
-          <div style="font-family:var(--f3);font-size:9px;letter-spacing:3px;color:var(--c3);margin-bottom:10px;">SHOOTER</div>
-          <h3 style="font-family:var(--f1);font-size:14px;font-weight:700;margin-bottom:8px;color:#e4e8ff;">Kirka.io</h3>
-          <p style="font-size:13px;color:var(--dim);margin-bottom:20px;line-height:1.7;">Fast-paced multiplayer first-person shooter in your browser.</p>
-          <a href="https://pastpapergenie.co.uk/Resources/kirka.html" class="play-btn" target="_blank" style="border-color:rgba(255,24,112,0.3);color:var(--c3);">▶ PLAY NOW</a>
-        </div>
-        <div class="game-card reveal">
-          <div style="font-family:var(--f3);font-size:9px;letter-spacing:3px;color:var(--c4);margin-bottom:10px;">RPG</div>
-          <h3 style="font-family:var(--f1);font-size:14px;font-weight:700;margin-bottom:8px;color:#e4e8ff;">Undertale</h3>
-          <p style="font-size:13px;color:var(--dim);margin-bottom:20px;line-height:1.7;">Classic indie RPG where your choices define a universe's fate.</p>
-          <a href="https://pastpapergenie.co.uk/Resources/Undertale.html" class="play-btn" target="_blank" style="border-color:rgba(0,255,157,0.3);color:var(--c4);">▶ PLAY NOW</a>
-        </div>
-        <div class="game-card reveal">
-          <div style="font-family:var(--f3);font-size:9px;letter-spacing:3px;color:var(--c5);margin-bottom:10px;">RHYTHM</div>
-          <h3 style="font-family:var(--f1);font-size:14px;font-weight:700;margin-bottom:8px;color:#e4e8ff;">Friday Night Funkin</h3>
-          <p style="font-size:13px;color:var(--dim);margin-bottom:20px;line-height:1.7;">Rap battles and sick beats — the legendary rhythm battle game.</p>
-          <a href="https://pastpapergenie.co.uk/Resources/Friday Night Funkin.html" class="play-btn" target="_blank" style="border-color:rgba(255,214,10,0.3);color:var(--c5);">▶ PLAY NOW</a>
-        </div>
-        <div class="game-card reveal">
-          <div style="font-family:var(--f3);font-size:9px;letter-spacing:3px;color:#ff6b35;margin-bottom:10px;">PLATFORMER</div>
-          <h3 style="font-family:var(--f1);font-size:14px;font-weight:700;margin-bottom:8px;color:#e4e8ff;">Geometry Dash Lite</h3>
-          <p style="font-size:13px;color:var(--dim);margin-bottom:20px;line-height:1.7;">Test your reflexes in this pulse-pounding rhythm platformer.</p>
-          <a href="https://pastpapergenie.co.uk/Resources/geolite.html" class="play-btn" target="_blank" style="border-color:rgba(255,107,53,0.3);color:#ff6b35;">▶ PLAY NOW</a>
+
+        <div class="box">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <strong>SELECT EPISODE</strong>
+            <span id="episodeCountBadge" class="small"></span>
+          </div>
+          <div id="episodeGrid" class="episodes-grid"></div>
         </div>
       </div>
-      <div style="text-align:center;margin-top:48px;"><a href="/select/" class="cta-btn" style="animation:none;">VIEW ALL 25+ GAMES →</a></div>
-    </div>
-  </section>
 
-<!-- FOOTER -->
-<footer style="padding:44px 5% 28px;border-top:1px solid rgba(0,229,255,0.07);background:rgba(0,0,0,0.25);position:relative;z-index:2;">
-    <div style="max-width:1200px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:22px;text-align:center;">
-        <a href="/" style="font-family:var(--f4);font-size:18px;color:#fff;text-shadow:0 0 18px rgba(0,229,255,0.4);">PASTPAPER<span style="color:var(--c1);">GENIE</span></a>
-        <div style="display:flex;gap:28px;flex-wrap:wrap;justify-content:center;">
-            <a href="/" style="font-family:var(--f3);font-size:9px;letter-spacing:2px;color:var(--dim);">HOME</a>
-            <a href="/select/" style="font-family:var(--f3);font-size:9px;letter-spacing:2px;color:var(--dim);">GAMES</a>
-            <a href="/anime/" style="font-family:var(--f3);font-size:9px;letter-spacing:2px;color:var(--dim);">ANIME</a>
-            <a href="/articles/" style="font-family:var(--f3);font-size:9px;letter-spacing:2px;color:var(--dim);">ARTICLES</a>
-            <a href="/updates/" style="font-family:var(--f3);font-size:9px;letter-spacing:2px;color:var(--dim);">UPDATES</a>
+      <!-- Continue Watching Section -->
+      <div id="continueWatchingContainer"></div>
+
+      <!-- Anime Results Grid -->
+      <div id="resultsGrid" class="grid">
+        <div style="grid-column: 1/-1; text-align:center; padding: 40px 0; color: #4a5640;">
+          Loading recommended anime...
         </div>
-        <div style="font-family:var(--f3);font-size:9px;color:#2e3056;letter-spacing:1px;">© 2026 PASTPAPERGENIE · ALL ANIME CONTENT PROVIDED VIA EXTERNAL EMBEDS</div>
-    </div>
-</footer>
+      </div>
+    </section>
 
-<!-- MAIN SCRIPTS -->
+    <!-- GAMES SECTION -->
+    <section id="games-section" style="margin-top: 40px;">
+      <h2 class="section-title">Featured Unblocked Games</h2>
+      
+      <div class="grid">
+        <div class="game-card">
+          <div>
+            <span style="font-size:10px; color:var(--green); font-weight:bold;">SANDBOX</span>
+            <h3>Minecraft 1.20.4</h3>
+            <p style="font-size:12px; color:#4a5640;">Full JS build, runs completely in-browser with no installs.</p>
+          </div>
+          <a href="https://pastpapergenie.co.uk/Resources/1.12-u2-wasm%20(2).html" class="btn" target="_blank" style="margin-top:10px;">▶ PLAY NOW</a>
+        </div>
+
+        <div class="game-card">
+          <div>
+            <span style="font-size:10px; color:var(--green); font-weight:bold;">HORROR</span>
+            <h3>FNAF 1</h3>
+            <p style="font-size:12px; color:#4a5640;">Survive the night. The original Five Nights at Freddy's.</p>
+          </div>
+          <a href="https://pastpapergenie.co.uk/Resources/Five Nights at Freddy's.html" class="btn" target="_blank" style="margin-top:10px;">▶ PLAY NOW</a>
+        </div>
+
+        <div class="game-card">
+          <div>
+            <span style="font-size:10px; color:var(--green); font-weight:bold;">SHOOTER</span>
+            <h3>Kirka.io</h3>
+            <p style="font-size:12px; color:#4a5640;">Fast-paced multiplayer first-person shooter in your browser.</p>
+          </div>
+          <a href="https://pastpapergenie.co.uk/Resources/kirka.html" class="btn" target="_blank" style="margin-top:10px;">▶ PLAY NOW</a>
+        </div>
+
+        <div class="game-card">
+          <div>
+            <span style="font-size:10px; color:var(--green); font-weight:bold;">RPG</span>
+            <h3>Undertale</h3>
+            <p style="font-size:12px; color:#4a5640;">Classic indie RPG where your choices define a universe's fate.</p>
+          </div>
+          <a href="https://pastpapergenie.co.uk/Resources/Undertale.html" class="btn" target="_blank" style="margin-top:10px;">▶ PLAY NOW</a>
+        </div>
+
+        <div class="game-card">
+          <div>
+            <span style="font-size:10px; color:var(--green); font-weight:bold;">RHYTHM</span>
+            <h3>Friday Night Funkin</h3>
+            <p style="font-size:12px; color:#4a5640;">Rap battles and sick beats — the legendary rhythm game.</p>
+          </div>
+          <a href="https://pastpapergenie.co.uk/Resources/Friday Night Funkin.html" class="btn" target="_blank" style="margin-top:10px;">▶ PLAY NOW</a>
+        </div>
+
+        <div class="game-card">
+          <div>
+            <span style="font-size:10px; color:var(--green); font-weight:bold;">PLATFORMER</span>
+            <h3>Geometry Dash Lite</h3>
+            <p style="font-size:12px; color:#4a5640;">Test your reflexes in this pulse-pounding rhythm platformer.</p>
+          </div>
+          <a href="https://pastpapergenie.co.uk/Resources/geolite.html" class="btn" target="_blank" style="margin-top:10px;">▶ PLAY NOW</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© 2026 PASTPAPERGENIE · ALL ANIME CONTENT PROVIDED VIA EXTERNAL EMBEDS</p>
+  </footer>
+</div>
+
+<!-- ANIME LOGIC SCRIPT -->
 <script>
-    // Custom Cursor
-    const dot = document.getElementById('cdot'), ring = document.getElementById('cring');
-    let mx = 0, my = 0, rx = 0, ry = 0;
-    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; dot.style.left = mx + 'px'; dot.style.top = my + 'px'; });
-    (function anim(){ rx += (mx - rx) * 0.11; ry += (my - ry) * 0.11; ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; requestAnimationFrame(anim); })();
-    document.addEventListener('mouseover', e => {
-        if(e.target.tagName === 'A' || e.target.tagName === 'BUTTON' || e.target.closest('.game-card') || e.target.closest('button')) {
-            ring.style.width = '44px'; ring.style.height = '44px'; ring.style.borderColor = 'rgba(0,229,255,0.8)'; ring.style.background = 'rgba(0,229,255,0.07)';
-        } else {
-            ring.style.width = '30px'; ring.style.height = '30px'; ring.style.borderColor = 'rgba(0,229,255,0.65)'; ring.style.background = 'transparent';
-        }
-    });
-
-    // Mobile Menu & Fade In
-    function toggleMenu() {
-        const m = document.getElementById('mmenu');
-        m.style.display = m.style.display === 'flex' ? 'none' : 'flex';
-    }
     setTimeout(() => { document.body.style.opacity = '1'; }, 60);
 
-    // Anime Tip Rotator
+    // Tip Rotator
     const tips = [
         "Spirited Away was the first anime film to win an Academy Award.",
         "Naruto's iconic run was originally created to save time and money on animating arm movements.",
@@ -335,16 +421,18 @@
         }, 400);
     }, 4000);
 
-    // Anime Streaming & Search Core
+    // Anime Player State
     let currentAnimeId = null;
     let currentAnimeTitle = '';
+    let currentEp = 1;
     let totalEpisodes = 12;
+    let currentSource = 'megaplay_sub';
     const recommendedIds = [174154, 145064, 40748, 1735, 269, 21, 101922, 11061, 16498];
 
     async function loadRecommended() {
         const grid = document.getElementById('resultsGrid');
         if(!grid) return;
-        grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:60px 0;font-family:var(--f3);color:var(--c1);">Loading recommended hits...</div>';
+        grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px 0;">Loading recommended hits...</div>';
 
         const graphqlQuery = `
             query ($idIn: [Int]) {
@@ -366,12 +454,9 @@
                 body: JSON.stringify({ query: graphqlQuery, variables: { idIn: recommendedIds } })
             });
             const data = await response.json();
-            const animeList = data.data.Page.media;
-
-            grid.innerHTML = '<div style="grid-column:1/-1;margin-bottom:5px;display:flex;align-items:center;gap:15px;"><div style="height:1px;background:linear-gradient(90deg,var(--c1),transparent);flex:1;"></div><div style="font-family:var(--f3);font-size:12px;letter-spacing:4px;color:var(--c1);text-transform:uppercase;">Trending Hits</div><div style="height:1px;background:linear-gradient(270deg,var(--c1),transparent);flex:1;"></div></div>';
-            renderCards(animeList, grid);
+            renderCards(data.data.Page.media, grid);
         } catch (err) {
-            grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:60px 0;font-family:var(--f3);color:var(--dim);">Type an anime name above to begin streaming.</div>';
+            grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px 0;">Type an anime name above to begin.</div>';
         }
     }
 
@@ -380,7 +465,7 @@
         if (!query) { loadRecommended(); return; }
 
         const grid = document.getElementById('resultsGrid');
-        grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:60px 0;font-family:var(--f3);color:var(--c1);">Searching database...</div>';
+        grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px 0;">Searching database...</div>';
 
         const graphqlQuery = `
             query ($search: String) {
@@ -403,20 +488,20 @@
             });
             const data = await response.json();
             const animeList = data.data.Page.media;
-
             grid.innerHTML = '';
             
             if (animeList.length === 0) {
-                grid.innerHTML += '<div style="grid-column:1/-1;text-align:center;padding:60px 0;font-family:var(--f3);color:var(--dim);">No anime found matching your search.</div>';
+                grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px 0;">No anime found.</div>';
                 return;
             }
             renderCards(animeList, grid);
         } catch (err) {
-            grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:60px 0;font-family:var(--f3);color:var(--c3);">Failed to fetch search results. Check your connection.</div>';
+            grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px 0;">Failed to fetch results.</div>';
         }
     }
 
     function renderCards(animeList, grid) {
+        grid.innerHTML = '';
         animeList.forEach(anime => {
             const title = anime.title.english || anime.title.romaji;
             const eps = anime.episodes || '?';
@@ -426,12 +511,12 @@
             card.onclick = () => selectAnime(anime.id, title, anime.episodes);
 
             card.innerHTML = `
-                <div style="aspect-ratio:3/4;overflow:hidden;background:#07071a;border-radius:6px;margin-bottom:14px;position:relative;">
-                    <img src="${anime.coverImage.large}" alt="${title}" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s;" onmouseenter="this.style.transform='scale(1.05)'" onmouseleave="this.style.transform='scale(1)'">
-                    <span style="position:absolute;bottom:8px;right:8px;background:rgba(4,4,14,0.85);font-family:var(--f3);font-size:9px;padding:3px 6px;border-radius:4px;color:var(--c1);border:1px solid rgba(0,229,255,0.2);">${eps} EPS</span>
+                <img src="${anime.coverImage.large}" alt="${title}">
+                <div>
+                  <h3>${title}</h3>
+                  <span style="font-size:11px; color:#4a5640;">${eps} Episodes</span>
                 </div>
-                <div style="font-family:var(--f3);font-size:9px;letter-spacing:2px;color:var(--c1);margin-bottom:6px;">ANIME</div>
-                <h3 style="font-family:var(--f1);font-size:13px;font-weight:700;color:#e4e8ff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${title}</h3>
+                <button style="margin-top:6px; width:100%;">WATCH</button>
             `;
             grid.appendChild(card);
         });
@@ -445,11 +530,11 @@
         document.getElementById('resultsGrid').style.display = 'none';
         document.getElementById('playerView').style.display = 'block';
         document.getElementById('watchTitle').innerText = title;
-        document.getElementById('episodeCountBadge').innerText = `${totalEpisodes} Episodes`;
+        document.getElementById('episodeCountBadge').innerText = `${totalEpisodes} EPS`;
 
         buildEpisodeList();
         playEpisode(startEp);
-        window.scrollTo({ top: 180, behavior: 'smooth' });
+        window.scrollTo({ top: document.getElementById('anime-section').offsetTop - 20, behavior: 'smooth' });
     }
 
     function buildEpisodeList() {
@@ -460,30 +545,45 @@
         for (let i = 1; i <= limit; i++) {
             const btn = document.createElement('button');
             btn.id = `ep-btn-${i}`;
-            btn.className = 'play-btn';
-            btn.style.padding = '8px 14px';
-            btn.style.fontSize = '10px';
             btn.innerText = `EP ${i}`;
             btn.onclick = () => playEpisode(i);
             episodeGrid.appendChild(btn);
         }
     }
 
+    function getEmbedUrl(source, id, ep) {
+        switch(source) {
+            case 'megaplay_sub': return `https://megaplay.buzz/stream/ani/${id}/${ep}/sub`;
+            case 'megaplay_dub': return `https://megaplay.buzz/stream/ani/${id}/${ep}/dub`;
+            case 'vidsrc': return `https://vidsrc.to/embed/anime/${id}/${ep}`;
+            case 'anix': return `https://anix.to/embed/anime/${id}/${ep}`;
+            case 'multiembed': return `https://multiembed.mov/directstream.php?video_id=${id}&s=${ep}`;
+            case 'autoembed': return `https://player.autoembed.cc/embed/anime/${id}/${ep}`;
+            default: return `https://megaplay.buzz/stream/ani/${id}/${ep}/sub`;
+        }
+    }
+
+    function setSource(srcKey, btnEl) {
+        currentSource = srcKey;
+        document.querySelectorAll('.provider-btn').forEach(b => b.classList.remove('active'));
+        btnEl.classList.add('active');
+        playEpisode(currentEp);
+    }
+
     function playEpisode(epNum) {
+        currentEp = epNum;
         document.querySelectorAll('#episodeGrid button').forEach(b => {
-            b.style.background = 'transparent';
-            b.style.color = 'var(--c1)';
-            b.style.borderColor = 'rgba(0,229,255,0.3)';
+            b.style.background = '#e3e9d3';
+            b.style.color = 'var(--ink)';
         });
 
         const activeBtn = document.getElementById(`ep-btn-${epNum}`);
         if(activeBtn) {
-            activeBtn.style.background = 'rgba(0,229,255,0.1)';
-            activeBtn.style.color = '#fff';
-            activeBtn.style.borderColor = 'var(--c1)';
+            activeBtn.style.background = 'var(--green)';
+            activeBtn.style.color = 'var(--cream)';
         }
 
-        document.getElementById('videoPlayer').src = `https://megaplay.buzz/stream/ani/${currentAnimeId}/${epNum}/sub`;
+        document.getElementById('videoPlayer').src = getEmbedUrl(currentSource, currentAnimeId, epNum);
 
         if (window.saveEpisodeProgress) {
             window.saveEpisodeProgress(currentAnimeId, currentAnimeTitle, epNum, totalEpisodes);
@@ -499,10 +599,9 @@
     loadRecommended();
 </script>
 
-<!-- FIREBASE BACKEND SCRIPT -->
+<!-- FIREBASE SCRIPT -->
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
     import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
     import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
@@ -512,12 +611,10 @@
         projectId: "pastpapergenie-auth",
         storageBucket: "pastpapergenie-auth.firebasestorage.app",
         messagingSenderId: "670440449105",
-        appId: "1:670440449105:web:e98ce9eb790bca2409c470",
-        measurementId: "G-4SP4GQFGPW"
+        appId: "1:670440449105:web:e98ce9eb790bca2409c470"
     };
 
     const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
     const auth = getAuth(app);
     const db = getFirestore(app);
     const provider = new GoogleAuthProvider();
@@ -527,12 +624,8 @@
     const logoutBtn = document.getElementById('logoutBtn');
     const userProfile = document.getElementById('userProfile');
 
-    if(loginBtn) {
-        loginBtn.addEventListener('click', () => { signInWithPopup(auth, provider).catch(console.error); });
-    }
-    if(logoutBtn) {
-        logoutBtn.addEventListener('click', () => { signOut(auth).catch(console.error); });
-    }
+    if(loginBtn) loginBtn.addEventListener('click', () => signInWithPopup(auth, provider).catch(console.error));
+    if(logoutBtn) logoutBtn.addEventListener('click', () => signOut(auth).catch(console.error));
 
     window.saveEpisodeProgress = (animeId, title, epNum, totalEps) => {
         if (currentUser && animeId) {
@@ -551,10 +644,10 @@
         if (user) {
             currentUser = user;
             if(loginBtn) loginBtn.style.display = 'none';
-            if(logoutBtn) logoutBtn.style.display = 'inline-flex';
+            if(logoutBtn) logoutBtn.style.display = 'inline-block';
             if(userProfile) {
                 userProfile.style.display = 'inline';
-                userProfile.innerText = `HELLO, ${user.displayName ? user.displayName.toUpperCase() : 'USER'} `;
+                userProfile.innerText = `HI, ${user.displayName ? user.displayName.toUpperCase() : 'USER'}`;
             }
 
             try {
@@ -564,12 +657,10 @@
                     const data = docSnap.data();
                     showContinueWatching(data.animeId, data.title, data.epNum, data.totalEps);
                 }
-            } catch (err) {
-                console.error("Error fetching watch history:", err);
-            }
+            } catch (err) {}
         } else {
             currentUser = null;
-            if(loginBtn) loginBtn.style.display = 'inline-flex';
+            if(loginBtn) loginBtn.style.display = 'inline-block';
             if(logoutBtn) logoutBtn.style.display = 'none';
             if(userProfile) userProfile.style.display = 'none';
             removeContinueWatching();
@@ -583,20 +674,21 @@
 
         const continueDiv = document.createElement('div');
         continueDiv.id = "continueWatchingBanner";
-        continueDiv.style = "background:rgba(0,229,255,0.05); border:1px solid #00e5ff; padding:20px; border-radius:10px; display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px;";
+        continueDiv.className = "box";
+        continueDiv.style.display = "flex";
+        continueDiv.style.justifyContent = "space-between";
+        continueDiv.style.alignItems = "center";
         
         continueDiv.innerHTML = `
             <div>
-                <div style="font-family:var(--f3);font-size:10px;color:#00e5ff;letter-spacing:2px;margin-bottom:5px;">CONTINUE WATCHING</div>
-                <h3 style="font-family:var(--f1);color:#fff;font-size:16px;">${title} - Episode ${epNum}</h3>
+                <span class="small" style="color:var(--green); font-weight:bold;">CONTINUE WATCHING</span>
+                <h3 style="margin:4px 0;">${title} - Episode ${epNum}</h3>
             </div>
-            <button class="cta-btn" style="border-color:#00e5ff; cursor:pointer;">RESUME</button>
+            <button class="btn">RESUME</button>
         `;
         
         continueDiv.querySelector('button').onclick = () => {
-            if(window.selectAnime) {
-                window.selectAnime(animeId, title, totalEps, epNum);
-            }
+            if(window.selectAnime) window.selectAnime(animeId, title, totalEps, epNum);
         };
         container.appendChild(continueDiv);
     }
@@ -606,9 +698,6 @@
         if (existing) existing.remove();
     }
 </script>
-
-  <div class="glow-divider"></div>
 </body>
 </html>
-
 
